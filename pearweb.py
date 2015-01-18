@@ -13,16 +13,18 @@ See the file LICENSE for copying permission.
 import asyncio
 import json
 import logging
+import pathlib
 import signal
 
 from aiohttp import web
-from mako.lookup import TemplateLookup
+from jinja2 import Environment, FileSystemLoader
 from os import getenv
 
 LOG_FORMAT = "{asctime} [{process}] {levelname}({name}): {message}"
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, style="{")
 
-lookup = TemplateLookup(directories=["templates"], output_encoding="utf-8")
+TEMPLATE_PATH = pathlib.Path.cwd() / "templates"
+lookup = Environment(loader=FileSystemLoader(str(TEMPLATE_PATH)))
 
 with open("commands.json") as cmd_fp:
     commands = json.load(cmd_fp)
@@ -30,9 +32,9 @@ with open("commands.json") as cmd_fp:
 
 @asyncio.coroutine
 def handle_commands(request):
-    template = lookup.get_template("commands.mako")
+    template = lookup.get_template("commands.jinja")
     body = template.render(subtitle="Commands", commands=commands)
-    return web.Response(body=body)
+    return web.Response(content_type="text/html", text=body)
 
 
 if __name__ == "__main__":

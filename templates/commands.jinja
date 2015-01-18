@@ -1,0 +1,47 @@
+{% extends "base.jinja" %}
+{% block content %}
+<h2 class="row">List of commands:</h2>
+<dl class="row">
+{% for command in commands %}
+  <div class="panel panel-primary">
+    <dt class="panel-heading">
+    {% if command.trigger is string %}
+      <kbd>{{ command.trigger|e }}</kbd>
+    {% else %}
+    {% for trigger in command.trigger %}
+      <kbd>{{ trigger|e }}</kbd>
+    {% endfor %}
+    {% endif %}
+    {% if command.modonly %}
+      <span class="label label-danger pull-right">Moderator</span>
+    {% else %}
+      <span class="label label-default pull-right">Everyone</span>
+    {% endif %}
+    </dt>
+    <dd class="panel-body">
+      {{command.desc}}
+    {% if command.url %}
+      <a href="{{command.url}}" class="btn btn-info btn-sm pull-right">
+        <span class="glyphicon glyphicon-link" aria-hidden="true"></span> Link
+      </a>
+    {% endif %}
+    {% if command.example %}
+    {% if command.example is string %}
+      <div style="display: block;">
+        <span class="label label-success">Example:</span>
+        <kbd>{{ command.example|e }}</kbd>
+      </div>
+    {% else %}
+    {% for example in command.example %}
+      <div style="display: block;">
+        <span class="label label-success">Example:</span>
+        <kbd>{{ example|e }}</kbd>
+      </div>
+    {% endfor %}
+    {% endif %}
+    {% endif %}
+    </dd>
+  </div>
+{% endfor %}
+</dl>
+{% endblock %}
