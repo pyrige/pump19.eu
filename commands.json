@@ -38,10 +38,10 @@
     "modonly": true,
     "desc": "Add a quotation with optional attribution to the quotation database.",
     "example": [
-      "&addquote Death isn't cruel - merely terribly, terribly good at his job.",
-      "&addquote (Douglas Adams) I'd take the awe of understanding over the awe of ignorance any day.",
-      "&addquote [1969-10-29] LO",
-      "&addquote (Albert Einstein) [1954-03-24] Wisdom is not a product of schooling but of the lifelong attempt to acquire it."
+      "&addquote Gem of Hilarity.",
+      "&addquote (Someone) Gem of Hilarity.",
+      "&addquote [2015-01-31] Gem of Hilarity.",
+      "&addquote (Someone) [2015-01-31] Gem of Hilarity."
     ]
   },
   {
