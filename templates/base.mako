@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
   </head>
   <body>
-  <div class="container-fluid">
-    <header class="page-header">
-    <h1>Pump19 Twitch Chat Golem</h1>
-    </header>
-    ${self.body()}
-  </div>
+    <div class="container">
+      <header class="page-header row">
+        <h1>Pump19 <small>Twitch Chat Golem</small></h1>
+      </header>
+      ${self.body()}
+    </div>
   </body>
 </html>

@@ -1,7 +1,7 @@
 <%inherit file="base.mako"/>
 
-<h2 class="row-fluid">List of commands:</h2>
-<dl class="row-fluid">
+<h2 class="row">List of commands:</h2>
+<dl class="row">
   % for command in commands:
   ${add_command(command)}\
   % endfor
@@ -41,9 +41,9 @@
 <%def name="add_example(example)">
 <% example = [example] if isinstance(example, str) else example %>
 % for entry in example:
-<div class="row-fluid">
-  <span class="label label-success">Example:</span>
-  <kbd class="example">${entry | h}</kbd>
-</div>
+  <div style="display: block;">
+    <span class="label label-success">Example:</span>
+    <kbd class="example">${entry | h}</kbd>
+  </div>
 % endfor
 </%def>
