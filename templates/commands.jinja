@@ -6,10 +6,10 @@
   <div class="panel panel-primary">
     <dt class="panel-heading">
     {% if command.trigger is string %}
-      <kbd>{{ command.trigger|e }}</kbd>
+      <kbd>{{ command.trigger }}</kbd>
     {% else %}
     {% for trigger in command.trigger %}
-      <kbd>{{ trigger|e }}</kbd>
+      <kbd>{{ trigger }}</kbd>
     {% endfor %}
     {% endif %}
     {% if command.modonly %}
@@ -29,13 +29,13 @@
     {% if command.example is string %}
       <div style="display: block;">
         <span class="label label-success">Example:</span>
-        <kbd>{{ command.example|e }}</kbd>
+        <kbd>{{ command.example }}</kbd>
       </div>
     {% else %}
     {% for example in command.example %}
       <div style="display: block;">
         <span class="label label-success">Example:</span>
-        <kbd>{{ example|e }}</kbd>
+        <kbd>{{ example }}</kbd>
       </div>
     {% endfor %}
     {% endif %}

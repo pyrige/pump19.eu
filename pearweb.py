@@ -24,7 +24,8 @@ LOG_FORMAT = "{asctime} [{process}] {levelname}({name}): {message}"
 logging.basicConfig(level=logging.INFO, format=LOG_FORMAT, style="{")
 
 TEMPLATE_PATH = pathlib.Path.cwd() / "templates"
-lookup = Environment(loader=FileSystemLoader(str(TEMPLATE_PATH)))
+lookup = Environment(autoescape=True,
+                     loader=FileSystemLoader(str(TEMPLATE_PATH)))
 
 with open("commands.json") as cmd_fp:
     commands = json.load(cmd_fp)
