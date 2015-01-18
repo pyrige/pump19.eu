@@ -8,7 +8,7 @@
 </dl>
 
 <%def name="add_command(command)">
-<div class="panel panel-success">
+<div class="panel panel-primary">
   <dt class="panel-heading"> \
     ${add_trigger(command.get("trigger"))}
 % if command.get("modonly"):
