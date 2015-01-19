@@ -11,7 +11,11 @@
       <header class="page-header">
         <h1>Pump19 <small>Twitch Chat Golem</small></h1>
       </header>
+
+      {% filter indent(6, true) %}
       {% block content %}{% endblock %}
+      {% endfilter %}
+
     </div>
   </body>
 </html>
