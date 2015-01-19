@@ -1,7 +1,7 @@
 {% extends "base.jinja" %}
 {% block content %}
-<h2 class="row">List of commands:</h2>
-<dl class="row">
+<h2>List of commands:</h2>
+<dl>
 {% for command in commands %}
   <div class="panel panel-primary">
     <dt class="panel-heading">
@@ -27,16 +27,14 @@
     {% endif %}
     {% if command.example %}
     {% if command.example is string %}
-      <div style="display: block;">
-        <span class="label label-success">Example:</span>
-        <kbd>{{ command.example }}</kbd>
-      </div>
+      <br>
+      <span class="label label-success">Example:</span>
+      <kbd>{{ command.example }}</kbd>
     {% else %}
     {% for example in command.example %}
-      <div style="display: block;">
-        <span class="label label-success">Example:</span>
-        <kbd>{{ example }}</kbd>
-      </div>
+      <br>
+      <span class="label label-success">Example:</span>
+      <kbd>{{ example }}</kbd>
     {% endfor %}
     {% endif %}
     {% endif %}
