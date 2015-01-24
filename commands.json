@@ -1,57 +1,57 @@
 [
   {
-    "trigger": "\patreon",
+    "trigger": "\\patreon",
     "desc": "Post the current number of patrons and total monthly earnings for the LRR patreon.",
     "url": "https://www.patreon.com/loadingreadyrun"
   },
   {
-    "trigger": ["\latest", "\latest video"],
+    "trigger": ["\\latest", "\\latest video"],
     "desc": "Post the latest video from the LRR video archive.",
     "url": "http://loadingreadyrun.com/videos/archive"
   },
   {
-    "trigger": "\latest podcast",
+    "trigger": "\\latest podcast",
     "desc": "Post the latest podcast from the LRR podcast archive.",
     "url": "http://loadingreadyrun.com/lrrcasts/archive"
   },
   {
-    "trigger": "\latest broadcast",
+    "trigger": "\\latest broadcast",
     "desc": "Post the latest broadcast from the LRR Twitch.tv channel.",
     "url": "http://www.twitch.tv/loadingreadyrun/profile/past_broadcasts"
   },
   {
-    "trigger": "\quote",
+    "trigger": "\\quote",
     "desc": "Post a randomly selected quotation."
   },
   {
-    "trigger": "\quote <id:int>",
+    "trigger": "\\quote <id:int>",
     "desc": "Post the quotation with the specified ID.",
-    "example": "\quote 8"
+    "example": "\\quote 8"
   },
   {
-    "trigger": "\quote <attrib:str>",
+    "trigger": "\\quote <attrib:str>",
     "desc": "Post a randomly selected quotation filtered by attribution.",
-    "example": "\quote Spoopifer"
+    "example": "\\quote Spoopifer"
   },
   {
-    "trigger": "\addquote (<attrib:str>) [<date:iso-date>] <quote:str>",
+    "trigger": "\\addquote (<attrib:str>) [<date:iso-date>] <quote:str>",
     "modonly": true,
     "desc": "Add a quotation with optional attribution to the quotation database.",
     "example": [
-      "\addquote Gem of Hilarity.",
-      "\addquote (Someone) Gem of Hilarity.",
-      "\addquote [2015-01-31] Gem of Hilarity.",
-      "\addquote (Someone) [2015-01-31] Gem of Hilarity."
+      "\\addquote Gem of Hilarity.",
+      "\\addquote (Someone) Gem of Hilarity.",
+      "\\addquote [2015-01-31] Gem of Hilarity.",
+      "\\addquote (Someone) [2015-01-31] Gem of Hilarity."
     ]
   },
   {
-    "trigger": "\delquote <id:int>",
+    "trigger": "\\delquote <id:int>",
     "modonly": true,
     "desc": "Remove the quotation with the specified ID from the quotation database.",
-    "example": "\delquote 8"
+    "example": "\\delquote 8"
   },
   {
-    "trigger": "\help",
+    "trigger": "\\help",
     "desc": "Post the link to Pump19's list of supported commands.",
     "url": "https://pump19.herokuapp.com/commands"
   }
