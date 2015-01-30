@@ -1,1 +1,1 @@
-web: python3 pearweb.py
+web: python3 application.wsgi
