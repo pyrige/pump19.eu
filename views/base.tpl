@@ -10,7 +10,6 @@
       <div class="uk-navbar-brand">Pump19</div>
       <ul class="uk-navbar-nav">
         <li class="uk-active"><a href="">Commands</a></li>
-        <li><a href="">Quotes</a></li>
       </ul>
     </nav>
 
