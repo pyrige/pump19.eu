@@ -26,5 +26,10 @@ def handle_commands():
 
 if __name__ == "__main__":
     # we start a local dev server when this file is executed as a script
+    # add a route for static files
+    @app.route("/static/<filepath:path>")
+    def serve_static(filepath):
+        return bottle.static_file(filepath, "./static")
+
     bottle.run(app=app, host="localhost", port=8080,
                reloader=False, debug=True)

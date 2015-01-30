@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Pump19 &#124; {{ subtitle }}</title>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/uikit/2.16.2/css/uikit.almost-flat.min.css">
+    <link rel="stylesheet" href="/static/css/uikit.almost-flat.min.css">
   </head>
   <body>
     <nav class="uk-navbar uk-navbar-attached">
