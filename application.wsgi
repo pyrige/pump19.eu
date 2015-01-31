@@ -23,7 +23,7 @@ app = application = bottle.Bottle()
 def handle_commands():
     return {"subtitle": "Home"}
 
-@app.route("/commands/")
+@app.route("/commands")
 @bottle.view("commands")
 def handle_commands():
     return {"subtitle": "Commands",

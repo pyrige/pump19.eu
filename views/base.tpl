@@ -16,7 +16,7 @@
           % if get("active") == "commands":
             <li class="active"><a href="#">Commands</a></li>
           % else:
-            <li><a href="/commands/">Commands</a></li>
+            <li><a href="/commands">Commands</a></li>
           % end
         </ul>
       </div>
