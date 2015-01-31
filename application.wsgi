@@ -18,7 +18,12 @@ with open("commands.json") as cmd_fp:
 
 app = application = bottle.Bottle()
 
-@app.route("/commands")
+@app.route("/")
+@bottle.view("home")
+def handle_commands():
+    return {"subtitle": "Home"}
+
+@app.route("/commands/")
 @bottle.view("commands")
 def handle_commands():
     return {"subtitle": "Commands",
