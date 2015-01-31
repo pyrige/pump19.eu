@@ -3,17 +3,28 @@
   <head>
     <meta charset="utf-8">
     <title>Pump19 &#124; {{ subtitle }}</title>
-    <link rel="stylesheet" href="/static/css/uikit.almost-flat.min.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
   </head>
   <body>
-    <nav class="uk-navbar uk-navbar-attached">
-      <div class="uk-navbar-brand">Pump19</div>
-      <ul class="uk-navbar-nav">
-        <li class="uk-active"><a href="">Commands</a></li>
-      </ul>
-    </nav>
+    <header>
+      <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <span class="navbar-brand">Pump19</span>
+          </div>
+          <ul class="nav navbar-nav">
+            % if get("active") == "commands":
+              <li class="active"><a href="#">Commands</a></li>
+            % else:
+              <li><a href="/commands">Commands</a></li>
+            % end
+          </ul>
+        </div>
+      </nav>
+    </header>
 
-    <div class="uk-container uk-container-center">
+    <div class="container">
       {{!base}}
     </div>
   </body>

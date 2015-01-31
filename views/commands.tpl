@@ -1,43 +1,43 @@
-% rebase("base.tpl", subtitle=subtitle)
-<h1>List of commands</h1>
+% rebase("base.tpl", subtitle=subtitle, active="commands")
+<h1>Commands</h1>
 <dl>
 % for command in commands:
-    <div class="uk-panel uk-panel-box uk-panel-box-primary uk-margin">
-      <dt>
-        <span class="uk-icon-terminal uk-icon-button"></span>
+    <div class="panel panel-primary">
+      <dt class="panel-heading">
       % if isinstance(command["trigger"], str):
-        <kbd class="uk-text-large">{{command["trigger"]}}</kbd>
+        <kbd>{{command["trigger"]}}</kbd>
       % else:
         % for trigger in command["trigger"]:
-        <kbd class="uk-text-large">{{trigger}}</kbd>
+        <kbd>{{trigger}}</kbd>
         % end
       % end
       % if "modonly" in command:
-        <div class="uk-badge uk-badge-danger uk-panel-badge">Moderator</div>
+        <div class="label label-danger pull-right">Moderator</div>
       % else:
-        <div class="uk-badge uk-badge-success uk-panel-badge">Everyone</div>
+        <div class="label label-success pull-right">Everyone</div>
       % end
       </dt>
-      <dd>
+      <dd class="panel-body">
         {{command["desc"]}}
       % if "url" in command:
-        <a href="{{command["url"]}}" class="uk-button uk-button-mini uk-button-primary">
-          <span class="uk-icon-link"></span> Link
+        <a href="{{command["url"]}}" class="btn btn-default btn-xs pull-right">
+          <span class="fa fa-external-link"></span> Link
         </a>
       % end
       % if "example" in command:
-        <div class="uk-panel uk-panel-box uk-panel-box-secondary uk-margin-top">
+        <div class="well well-sm list-unstyled">
         % if isinstance(command["example"], str):
-          <div class="uk-display-block">
-            <span class="uk-badge uk-badge-warning">Example</span>
+          <span class="label label-warning pull-right">Example</span>
+          <div>
+            <span class="badge"><span class="fa fa-terminal"></span></span>
             <kbd>{{command["example"]}}</kbd>
           </div>
         % else:
+          <span class="label label-warning pull-right">Examples</span>
           % for example in command["example"]:
-          <div class="uk-display-block">
-            <span class="uk-badge uk-badge-warning">Example</span>
-            <kbd>{{example}}</kbd>
-          </div>
+          <div>
+            <span class="badge"><span class="fa fa-terminal"></span></span>
+            <kbd>{{example}}</kbd></div>
           % end
         % end
         </div>
