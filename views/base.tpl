@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Pump19 &#124; {{ subtitle }}</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/mini.css">
   </head>
   <body>
     <nav class="navbar navbar-default navbar-static-top">
