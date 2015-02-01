@@ -9,7 +9,7 @@
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/">Pump19</a>
+          <a class="navbar-brand" href="/"><span class="fa fa-twitch"></span> Pump19</a>
         </div>
         <ul class="nav navbar-nav">
           % if get("active") == "commands":
