@@ -53,6 +53,6 @@
   {
     "trigger": "\\help",
     "desc": "Post the link to Pump19's list of supported commands.",
-    "url": "https://pump19.herokuapp.com/commands"
+    "url": "http://pump19.tk/commands"
   }
 ]
