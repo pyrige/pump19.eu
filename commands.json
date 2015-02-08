@@ -34,6 +34,11 @@
     "example": "\\quote Spoopifer"
   },
   {
+    "trigger": "\\qdb",
+    "desc": "Post the link to the quote database.",
+    "url": "http://pump19.tk/quotes/"
+  },
+  {
     "trigger": "\\addquote (<attrib:str>) [<date:iso-date>] <quote:str>",
     "modonly": true,
     "desc": "Add a quotation with optional attribution to the quotation database.",

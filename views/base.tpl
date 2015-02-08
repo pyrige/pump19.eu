@@ -18,6 +18,11 @@
           % else:
             <li><a href="/commands">Commands</a></li>
           % end
+          % if get("active") == "quotes":
+            <li class="active"><a href="/quotes/">Quotes</a></li>
+          % else:
+            <li><a href="/quotes/">Quotes</a></li>
+          % end
         </ul>
       </div>
     </nav>

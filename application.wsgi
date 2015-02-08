@@ -10,31 +10,56 @@ Copyright (c) 2015 Twisted Pear <pear at twistedpear dot at>
 See the file LICENSE for copying permission.
 """
 
-import bottle
-import json
+from bottle import Bottle, route, template
+from bottle.ext import sqlalchemy
+from functools import partial
+from json import load as load_json
+from os import environ
+from sqlalchemy import create_engine
 
 with open("commands.json") as cmd_fp:
-    commands = json.load(cmd_fp)
+    commands = load_json(cmd_fp)
 
-app = application = bottle.Bottle()
+app = application = Bottle()
+engine = create_engine(environ["DATABASE_URL"])
+sa_plugin = sqlalchemy.Plugin(engine, commit=False)
+app.install(sa_plugin)
 
-@app.route("/")
-@bottle.view("home")
+def handle_home():
+    return template("home", subtitle="Home")
+
 def handle_commands():
-    return {"subtitle": "Home"}
+    return template("commands", subtitle="Commands", commands=commands)
 
-@app.route("/commands")
-@bottle.view("commands")
-def handle_commands():
-    return {"subtitle": "Commands",
-            "commands": commands}
+def handle_quotes(page, db):
+    nof_quotes = db.execute("SELECT COUNT(*) FROM quotes").scalar()
+    page = max(page, 0)
+    page = min(page, nof_quotes // 10)
+
+    offset = 10 * page
+    quotes = db.execute("""SELECT qid,
+                                  quote,
+                                  attrib_name AS name,
+                                  attrib_date as date
+                           FROM quotes
+                           ORDER BY qid DESC
+                           LIMIT 10
+                           OFFSET {offset}""".format(offset=offset))
+    quotes = [dict(row) for row in quotes.fetchall()]
+    return template("quotes",
+            subtitle="Quotes", quotes=quotes, page=page, count=nof_quotes)
+
+app.route("/", "GET", handle_home)
+app.route("/commands", "GET", handle_commands)
+app.route("/quotes/", "GET", partial(handle_quotes, 0))
+app.route("/quotes/<page:int>", "GET", handle_quotes)
 
 if __name__ == "__main__":
     # we start a local dev server when this file is executed as a script
     # add a route for static files
+    from bottle import static_file, run
     @app.route("/static/<filepath:path>")
     def serve_static(filepath):
-        return bottle.static_file(filepath, "./static")
+        return static_file(filepath, "./static")
 
-    bottle.run(app=app, host="localhost", port=8080,
-               reloader=False, debug=True)
+    run(app=app, host="localhost", port=8080, reloader=True, debug=True)
