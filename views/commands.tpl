@@ -21,7 +21,7 @@
         {{command["desc"]}}
       % if "url" in command:
         <a href="{{command["url"]}}" class="btn btn-default btn-xs pull-right">
-          <span class="fa fa-external-link"></span> Link
+          <i class="fa fa-external-link"></i>&nbsp;Link
         </a>
       % end
       % if "example" in command:
@@ -29,14 +29,14 @@
         % if isinstance(command["example"], str):
           <span class="label label-warning pull-right">Example</span>
           <div>
-            <span class="badge"><span class="fa fa-terminal"></span></span>
+            <span class="badge"><i class="fa fa-terminal"></i></span>
             <kbd>{{command["example"]}}</kbd>
           </div>
         % else:
           <span class="label label-warning pull-right">Examples</span>
           % for example in command["example"]:
           <div>
-            <span class="badge"><span class="fa fa-terminal"></span></span>
+            <span class="badge"><i class="fa fa-terminal"></i></span>
             <kbd>{{example}}</kbd></div>
           % end
         % end

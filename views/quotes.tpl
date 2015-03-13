@@ -7,12 +7,12 @@
   <ul class="pager">
   % if page > 0:
     <li class="previous">
-      <a href="/quotes/{{page-1}}"><span class="fa fa-arrow-left"> Newer</span></a>
+      <a href="/quotes/{{page-1}}"><i class="fa fa-arrow-left"></i>&nbsp;Newer</a>
     </li>
   % end
   % if page < count//10:
     <li class="next">
-      <a href="/quotes/{{page+1}}">Older <span class="fa fa-arrow-right"></span></a>
+      <a href="/quotes/{{page+1}}">Older&nbsp;<i class="fa fa-arrow-right"></i></a>
     </li>
   % end
   </ul>
@@ -37,12 +37,12 @@
   <ul class="pager">
   % if page > 0:
     <li class="previous">
-      <a href="/quotes/{{page-1}}"><span class="fa fa-arrow-left"> Newer</span></a>
+      <a href="/quotes/{{page-1}}"><i class="fa fa-arrow-left"></i>&nbsp;Newer</a>
     </li>
   % end
   % if page < count//10:
     <li class="next">
-      <a href="/quotes/{{page+1}}">Older <span class="fa fa-arrow-right"></span></a>
+      <a href="/quotes/{{page+1}}">Older&nbsp;<i class="fa fa-arrow-right"></i></a>
     </li>
   % end
   </ul>
