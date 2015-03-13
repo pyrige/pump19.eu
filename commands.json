@@ -20,6 +20,11 @@
     "url": "http://www.twitch.tv/loadingreadyrun/profile/past_broadcasts"
   },
   {
+    "trigger": "\\latest highlight",
+    "desc": "Post the latest highlight from the LRR Twitch.tv channel.",
+    "url": "http://www.twitch.tv/loadingreadyrun/profile"
+  },
+  {
     "trigger": "\\quote",
     "desc": "Post a randomly selected quotation."
   },
