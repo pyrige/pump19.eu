@@ -39,6 +39,11 @@
               </a>
             </li>
           % end
+          <li>
+            <a href="http://git.io/A29Y">
+                <i class="fa fa-github-square"></i>&nbsp;Issues
+            </a>
+          </li>
         </ul>
       </div>
     </nav>
