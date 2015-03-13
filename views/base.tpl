@@ -14,14 +14,30 @@
         </div>
         <ul class="nav navbar-nav">
           % if get("active") == "commands":
-            <li class="active"><a href="#">Commands</a></li>
+            <li class="active">
+              <a href="#">
+                <i class="fa fa-keyboard-o"></i>&nbsp;Commands
+              </a>
+            </li>
           % else:
-            <li><a href="/commands">Commands</a></li>
+            <li>
+              <a href="/commands">
+                <i class="fa fa-keyboard-o"></i>&nbsp;Commands
+              </a>
+            </li>
           % end
           % if get("active") == "quotes":
-            <li class="active"><a href="/quotes/">Quotes</a></li>
+            <li class="active">
+              <a href="#">
+                <i class="fa fa-comment-o"></i>&nbsp;Quotes
+              </a>
+            </li>
           % else:
-            <li><a href="/quotes/">Quotes</a></li>
+            <li>
+              <a href="/quotes/">
+                <i class="fa fa-comment-o"></i>&nbsp;Quotes
+              </a>
+            </li>
           % end
         </ul>
       </div>
@@ -37,7 +53,7 @@
         Powered by
         <a href="http://getbootstrap.com/">Bootstrap</a> (<a href="http://bootswatch.com/slate/">Slate</a> Theme)
         and
-        <a href="https://fortawesome.github.io/Font-Awesome/">Font Awesome</a>
+        <a href="https://fortawesome.github.io/Font-Awesome/"><i class="fa fa-flag"></i>&nbsp;Font Awesome</a>
       </small></p>
     </footer>
   </body>
