@@ -7,7 +7,7 @@
 </h1>
 <nav>
   <ul class="pager">
-  % if prev_page:
+  % if prev_page is not None:
     <li class="previous">
       <a href="/quotes/{{prev_page}}"><i class="fa fa-arrow-left"></i>&nbsp;Newer</a>
     </li>
@@ -16,7 +16,7 @@
       <a href="#"><i class="fa fa-arrow-left"></i>&nbsp;Newer</a>
     </li>
   % end
-  % if next_page:
+  % if next_page is not None:
     <li class="next">
       <a href="/quotes/{{next_page}}">Older&nbsp;<i class="fa fa-arrow-right"></i></a>
     </li>
@@ -45,7 +45,7 @@
 % end
 <nav>
   <ul class="pager">
-  % if prev_page:
+  % if prev_page is not None:
     <li class="previous">
       <a href="/quotes/{{prev_page}}"><i class="fa fa-arrow-left"></i>&nbsp;Newer</a>
     </li>
@@ -54,7 +54,7 @@
       <a href="#"><i class="fa fa-arrow-left"></i>&nbsp;Newer</a>
     </li>
   % end
-  % if next_page:
+  % if next_page is not None:
     <li class="next">
       <a href="/quotes/{{next_page}}">Older&nbsp;<i class="fa fa-arrow-right"></i></a>
     </li>
