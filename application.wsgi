@@ -32,7 +32,9 @@ def handle_commands():
     return template("commands", subtitle="Commands", commands=commands)
 
 def handle_quotes(page, db):
-    nof_quotes = db.execute("SELECT COUNT(*) FROM quotes").scalar()
+    nof_quotes = db.execute("""SELECT COUNT(*)
+                               FROM quotes
+                               WHERE deleted = FALSE""").scalar()
     page = max(page, 0)
     page = min(page, nof_quotes // 10)
 
@@ -42,6 +44,7 @@ def handle_quotes(page, db):
                                   attrib_name AS name,
                                   attrib_date as date
                            FROM quotes
+                           WHERE deleted = FALSE
                            ORDER BY qid DESC
                            LIMIT 10
                            OFFSET {offset}""".format(offset=offset))
