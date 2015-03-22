@@ -28,9 +28,9 @@
   </ul>
 </nav>
 % for quote in quotes:
-<blockquote>
-  <span class="pull-right badge">#{{quote["qid"]}}</span>
+<blockquote class="clearfix">
   <p>{{quote["quote"]}}</p>
+  <span class="pull-right badge">#{{quote["qid"]}}</span>
   % if quote["name"] or quote["date"]:
   <small>
     % if quote["name"]:
