@@ -35,8 +35,11 @@ def handle_quotes(page, db):
     nof_quotes = db.execute("""SELECT COUNT(*)
                                FROM quotes
                                WHERE deleted = FALSE""").scalar()
+    nof_pages, remainder = divmod(nof_quotes, 10)
+    if remainder: nof_pages += 1
+
     page = max(page, 0)
-    page = min(page, nof_quotes // 10)
+    page = min(page, nof_pages - 1)
 
     offset = 10 * page
     quotes = db.execute("""SELECT qid,
@@ -50,7 +53,8 @@ def handle_quotes(page, db):
                            OFFSET {offset}""".format(offset=offset))
     quotes = [dict(row) for row in quotes.fetchall()]
     return template("quotes",
-            subtitle="Quotes", quotes=quotes, page=page, count=nof_quotes)
+            subtitle="Quotes", quotes=quotes, page=page,
+            nof_quotes=nof_quotes, nof_pages=nof_pages)
 
 app.route("/", "GET", handle_home)
 app.route("/commands", "GET", handle_commands)

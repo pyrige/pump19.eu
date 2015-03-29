@@ -1,32 +1,8 @@
 % rebase("base.tpl", subtitle=subtitle, active="quotes")
-% prev_page = page - 1 if page > 0 else None
-% next_page = page + 1 if page < count//10 else None
 <h1>
   Quotes
-  <span class="pull-right btn btn-default">Total <span class="badge">{{count}}</span></span>
+  <span class="pull-right btn btn-default">Total <span class="badge">{{nof_quotes}}</span></span>
 </h1>
-<nav>
-  <ul class="pager">
-  % if prev_page is not None:
-    <li class="previous">
-      <a href="/quotes/{{prev_page}}"><i class="fa fa-arrow-left"></i>&nbsp;Newer</a>
-    </li>
-  % else:
-    <li class="previous disabled">
-      <a href="#"><i class="fa fa-arrow-left"></i>&nbsp;Newer</a>
-    </li>
-  % end
-  % if next_page is not None:
-    <li class="next">
-      <a href="/quotes/{{next_page}}">Older&nbsp;<i class="fa fa-arrow-right"></i></a>
-    </li>
-  % else:
-    <li class="next disabled">
-      <a href="#">Older&nbsp;<i class="fa fa-arrow-right"></i></a>
-    </li>
-  % end
-  </ul>
-</nav>
 % for quote in quotes:
 <blockquote class="clearfix">
   <p>{{quote["quote"]}}</p>
@@ -43,25 +19,4 @@
   % end
 </blockquote>
 % end
-<nav>
-  <ul class="pager">
-  % if prev_page is not None:
-    <li class="previous">
-      <a href="/quotes/{{prev_page}}"><i class="fa fa-arrow-left"></i>&nbsp;Newer</a>
-    </li>
-  % else:
-    <li class="previous disabled">
-      <a href="#"><i class="fa fa-arrow-left"></i>&nbsp;Newer</a>
-    </li>
-  % end
-  % if next_page is not None:
-    <li class="next">
-      <a href="/quotes/{{next_page}}">Older&nbsp;<i class="fa fa-arrow-right"></i></a>
-    </li>
-  % else:
-    <li class="next disabled">
-      <a href="#">Older&nbsp;<i class="fa fa-arrow-right"></i></a>
-    </li>
-  % end
-  </ul>
-</nav>
+% include("quotes_pagination", page=page, nof_pages=nof_pages)
