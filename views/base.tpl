@@ -13,36 +13,14 @@
           <a class="navbar-brand" href="/"><span class="fa fa-twitch"></span> Pump19</a>
         </div>
         <ul class="nav navbar-nav">
-          % if get("active") == "commands":
-            <li class="active">
-              <a href="#">
-                <i class="fa fa-keyboard-o"></i>&nbsp;Commands
-              </a>
-            </li>
-          % else:
-            <li>
-              <a href="/commands">
-                <i class="fa fa-keyboard-o"></i>&nbsp;Commands
-              </a>
-            </li>
-          % end
-          % if get("active") == "quotes":
-            <li class="active">
-              <a href="#">
-                <i class="fa fa-comment-o"></i>&nbsp;Quotes
-              </a>
-            </li>
-          % else:
-            <li>
-              <a href="/quotes/">
-                <i class="fa fa-comment-o"></i>&nbsp;Quotes
-              </a>
-            </li>
-          % end
+          <li{{!" class=\"active\"" if get("active") == "commands" else ""}}>
+            <a href="/commands"><i class="fa fa-keyboard-o"></i>&nbsp;Commands</a>
+          </li>
+          <li{{!" class=\"active\"" if get("active") == "quotes" else ""}}>
+            <a href="/quotes/"><i class="fa fa-comment-o"></i>&nbsp;Quotes</a>
+          </li>
           <li>
-            <a href="http://git.io/A29Y">
-                <i class="fa fa-github-square"></i>&nbsp;Issues
-            </a>
+            <a href="http://git.io/A29Y"><i class="fa fa-github-square"></i>&nbsp;Issues</a>
           </li>
         </ul>
       </div>
