@@ -41,7 +41,7 @@
   {
     "trigger": "\\qdb",
     "desc": "Post the link to the quote database.",
-    "url": "http://pump19.tk/quotes/"
+    "url": "http://pump19.eu/quotes/"
   },
   {
     "trigger": "\\addquote (<attrib:str>) [<date:iso-date>] <quote:str>",
@@ -63,6 +63,6 @@
   {
     "trigger": "\\help",
     "desc": "Post the link to Pump19's list of supported commands.",
-    "url": "http://pump19.tk/commands"
+    "url": "http://pump19.eu/commands"
   }
 ]
