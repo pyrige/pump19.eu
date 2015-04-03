@@ -32,7 +32,11 @@
 
     <footer class="container text-center text-muted">
       <p><small>
-        &copy; 2015 Twisted Pear<br>
+        &copy; 2015 Twisted Pear
+        <a href="bitcoin:15bJMTjnQxtsyfr8Xsu4dePtSZtoC2qkFY">
+          <i class="fa fa-btc"></i>15bJMTjnQxtsyfr8Xsu4dePtSZtoC2qkFY
+        </a>
+        <br>
         Powered by
         <a href="http://getbootstrap.com/">Bootstrap</a> (<a href="http://bootswatch.com/slate/">Slate</a> Theme)
         and
