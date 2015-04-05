@@ -61,14 +61,9 @@
     "example": "\\delquote 8"
   },
   {
-    "trigger": "\\goodquote <id:int>",
-    "desc": "Rate the quotation with the specified ID as being good.",
-    "example": "\\goodquote 8"
-  },
-  {
-    "trigger": "\\badquote <id:int>",
-    "desc": "Rate the quotation with the specified ID as being bad.",
-    "example": "\\badquote 8"
+    "trigger": ["\\goodquote <id:int>", "\\badquote <id:int>"],
+    "desc": "Rate the quotation with the specified ID as either good or bad.",
+    "example": ["\\goodquote 8", "\\badquote 8"]
   },
   {
     "trigger": "\\help",
