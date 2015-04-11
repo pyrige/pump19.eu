@@ -23,6 +23,13 @@
             <a href="http://git.io/A29Y"><i class="fa fa-github-square"></i>&nbsp;Issues</a>
           </li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+        % if session.get("logged_in", False):
+          <li><a href="/logout"><i class="fa fa-sign-out"></i>&nbsp;Log out</a></li>
+        % else:
+          <li><a href="/login"><i class="fa fa-sign-in"></i>&nbsp;Log in</a></li>
+        % end
+        </ul>
       </div>
     </nav>
 
