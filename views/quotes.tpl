@@ -1,6 +1,6 @@
 % rebase("base.tpl", subtitle=subtitle, active="quotes")
 <h1>
-  Quotes
+  <i class="fa fa-comment-o"></i>&nbsp;Quotes
   <span class="pull-right btn btn-default">Total <span class="badge">{{nof_quotes}}</span></span>
 </h1>
 <div class="well well-sm" style="margin-bottom: 20px;">

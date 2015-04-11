@@ -1,5 +1,5 @@
 % rebase("base.tpl", subtitle=subtitle, active="commands")
-<h1>Commands</h1>
+<h1><i class="fa fa-keyboard-o"></i>&nbsp;Commands</h1>
 <dl>
 % for command in commands:
     <div class="panel panel-primary">
