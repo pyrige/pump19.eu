@@ -1,4 +1,4 @@
-% rebase("base.tpl", subtitle=subtitle, active="commands")
+% rebase("base.tpl", active="commands")
 <h1><i class="fa fa-keyboard-o"></i>&nbsp;Commands</h1>
 <dl>
 % for command in commands:

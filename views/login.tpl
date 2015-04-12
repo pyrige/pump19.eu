@@ -1,4 +1,4 @@
-% rebase("base.tpl", subtitle=subtitle, session=session)
+% rebase("base.tpl", active="login")
 % if session.get("logged_in", False):
   <h1><i class="fa fa-twitch"></i>&nbsp;Connected with Twitch.tv</h1>
   <p>

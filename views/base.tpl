@@ -25,9 +25,13 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
         % if session.get("logged_in", False):
-          <li><a href="/logout"><i class="fa fa-sign-out"></i>&nbsp;Log out</a></li>
+          <li>
+            <a href="/logout"><i class="fa fa-sign-out"></i>&nbsp;Log out</a>
+          </li>
         % else:
-          <li><a href="/login"><i class="fa fa-sign-in"></i>&nbsp;Log in</a></li>
+          <li{{!" class=\"active\"" if get("active") == "login" else ""}}>
+            <a href="/login"><i class="fa fa-sign-in"></i>&nbsp;Log in</a>
+          </li>
         % end
         </ul>
       </div>
