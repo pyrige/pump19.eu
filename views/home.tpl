@@ -21,6 +21,9 @@
       Pump. Pump 19, To Be Precise.
       I Stood At The Bottom Of A Hole Two Hundred Feet Deep And Pumped Water.
       For Two Hundred And Forty Years, Mr. Lipvig.
+      But Now I Am Ambulating In The Sunlight.
+      This Is Better, Mr. Lipvig.
+      This Is Better!
     <footer>Mr. Pump (aka Pump 19) in <cite title="Going Postal">Going Postal</cite></footer>
   </blockquote>
 
