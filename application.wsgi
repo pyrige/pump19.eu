@@ -10,6 +10,7 @@ Copyright (c) 2015 Twisted Pear <pear at twistedpear dot at>
 See the file LICENSE for copying permission.
 """
 
+from Crypto.Cipher import ARC2
 from beaker.middleware import SessionMiddleware
 from bottle import Bottle, redirect, request, route, template, view
 from bottle.ext import sqlalchemy
@@ -17,9 +18,10 @@ from functools import partial
 from json import load as json_loadf, loads as json_loads
 from os import environ
 from sqlalchemy import create_engine
-from urllib.request import Request, urlopen
-from urllib.parse import urlencode
+from sqlalchemy.exc import IntegrityError
 from urllib.error import HTTPError
+from urllib.parse import urlencode, urljoin
+from urllib.request import Request, urlopen
 
 with open("commands.json") as cmd_fp:
     commands = json_loadf(cmd_fp)
@@ -31,6 +33,9 @@ TWITCH_TOKEN_URL = TWITCH_BASE_URL + "/oauth2/token"
 TWITCH_CLIENT_ID = environ["TWITCH_CLIENT_ID"]
 TWITCH_CLIENT_SECRET = environ["TWITCH_CLIENT_SECRET"]
 OAUTH_RESPONSE_URL = environ["OAUTH_RESPONSE_URL"]
+
+CODEFALL_CIPHER = ARC2.new(environ["CODEFALL_SECRET"], ARC2.MODE_ECB)
+CODEFALL_URL_BASE = environ["CODEFALL_URL_BASE"]
 
 app = Bottle()
 engine = create_engine(environ["DATABASE_URL"])
@@ -47,11 +52,128 @@ session_opts = {
 application = SessionMiddleware(app, session_opts)
 
 
+def int_to_codefall_key(value):
+    raw = value.to_bytes(ARC2.block_size, byteorder="big")
+    msg = CODEFALL_CIPHER.encrypt(raw)
+    return int.from_bytes(msg, byteorder="big")
+
+
+def codefall_key_to_int(value):
+    msg = value.to_bytes(ARC2.block_size, byteorder="big")
+    raw = CODEFALL_CIPHER.decrypt(msg)
+    return int.from_bytes(raw, byteorder="big")
+
+
 def handle_home():
     """Show the home page."""
     session = request.environ.get("beaker.session")
     return template("home", session=session,
                     subtitle="Home")
+
+
+def handle_codefall(db):
+    """Show a list of all codefall pages and a form to add new ones."""
+    session = request.environ.get("beaker.session")
+    user_name = session.get("user_name")
+
+    # we can't retrieve keys without user name
+    if not user_name:
+        return template("codefall", session=session,
+                        subtitle="Codefall")
+
+    # get all codes for the user from the database
+    codes_qry = """SELECT cid, description, code, code_type, claimed
+                   FROM codefall
+                   WHERE user_name = :user_name"""
+    codes = db.execute(codes_qry, {"user_name": user_name})
+
+    unclaimed, claimed = list(), list()
+    for code in codes:
+        entry = {"description": code.description,
+                 "code_type": code.code_type}
+
+        if not code.claimed:
+            # for unclaimed codes we need to generate our "random" link
+            secret = int_to_codefall_key(code.cid)
+            secret_url = CODEFALL_URL_BASE.format(secret=secret)
+            entry["secret_url"] = secret_url
+            unclaimed.append(entry)
+        else:
+            claimed.append(entry)
+
+    return template("codefall", session=session,
+                    subtitle="Codefall",
+                    unclaimed=unclaimed, claimed=claimed)
+
+
+def handle_codefall_add(db):
+    """Add a new codefall page."""
+    session = request.environ.get("beaker.session")
+    # we require users to be logged in when adding new codes
+    if not session.get("logged_in", False):
+        redirect("/codefall")
+
+    # get all mandatory items
+    user_name = session.get("user_name")
+    description = request.forms.get("description")
+    code = request.forms.get("code")
+    code_type = request.forms.get("code_type")
+    if not all((user_name, description, code, code_type)):
+        redirect("/codefall")
+
+    new_code_qry = """INSERT INTO codefall (description,
+                                            code,
+                                            code_type,
+                                            user_name)
+                      VALUES (:description,:code, :code_type, :user_name)"""
+    try:
+        db.execute(new_code_qry,
+                   {"description": description,
+                    "code": code,
+                    "code_type": code_type,
+                    "user_name": user_name})
+    except IntegrityError:
+        redirect("/codefall")
+
+    # everything seems fine, store the data now
+    db.commit()
+
+    # now redirect back to codefall page
+    redirect("/codefall")
+
+
+def handle_codefall_claim(secret, db):
+    """Claim a codefall page."""
+    session = request.environ.get("beaker.session")
+
+    # first, try to parse the secret
+    try:
+        cid = codefall_key_to_int(secret)
+    except:
+        return template("codefall_claim", session=session,
+                        subtitle="Codefall")
+
+    claim_code_qry = """UPDATE codefall
+                        SET claimed = True
+                        WHERE
+                            cid = :cid
+                            AND
+                            claimed = False
+                        RETURNING description, code, code_type"""
+
+    code = db.execute(claim_code_qry, {"cid": cid})
+    db.commit()
+    code = code.first()
+    if not code:
+        return template("codefall_claim", session=session,
+                        subtitle="Codefall")
+
+    entry = {"description": code.description,
+             "code": code.code,
+             "code_type": code.code_type}
+
+    return template("codefall_claim", session=session,
+                    subtitle="Codefall", entry=entry)
 
 
 def handle_commands():
@@ -171,6 +293,9 @@ def handle_quotes(page, db):
                     nof_quotes=nof_quotes, nof_pages=nof_pages)
 
 app.route("/", "GET", handle_home)
+app.route("/codefall", "GET", handle_codefall)
+app.route("/codefall/add", "POST", handle_codefall_add)
+app.route("/codefall/<secret:int>", "GET", handle_codefall_claim)
 app.route("/commands", "GET", handle_commands)
 app.route("/login", "GET", handle_login)
 app.route("/oauth", "GET", handle_oauth)

@@ -20,6 +20,9 @@
             <li{{!" class=\"active\"" if get("active") == "quotes" else ""}}>
               <a href="/quotes/"><i class="fa fa-comment-o"></i>&nbsp;Quotes</a>
             </li>
+            <li{{!" class=\"active\"" if get("active") == "codefall" else ""}}>
+              <a href="/codefall"><i class="fa fa-gift"></i>&nbsp;Codefall</a>
+            </li>
             <li>
               <a href="http://git.io/A29Y"><i class="fa fa-github-square"></i>&nbsp;Issues</a>
             </li>
