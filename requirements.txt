@@ -1,3 +1,4 @@
 Beaker==1.6.5.post1
 bottle==0.12.8
 bottle-sqlalchemy==0.4.2
+pycrypto==2.6.1
