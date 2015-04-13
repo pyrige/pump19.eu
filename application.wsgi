@@ -47,6 +47,7 @@ session_opts = {
     "session.data_dir": environ["SESSION_DATA_DIR"],
     "session.url": environ["DATABASE_URL"],
     "session.cookie_domain": environ["SESSION_COOKIE_DOMAIN"],
+    "session.cookie_expires": False,
     "session.secret": environ["SESSION_SECRET"]
 }
 application = SessionMiddleware(app, session_opts)
