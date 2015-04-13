@@ -35,7 +35,8 @@ TWITCH_CLIENT_SECRET = environ["TWITCH_CLIENT_SECRET"]
 OAUTH_RESPONSE_URL = environ["OAUTH_RESPONSE_URL"]
 
 CODEFALL_CIPHER = ARC2.new(environ["CODEFALL_SECRET"], ARC2.MODE_ECB)
-CODEFALL_URL_BASE = environ["CODEFALL_URL_BASE"]
+CODEFALL_CLAIM_URL = environ["CODEFALL_CLAIM_URL"]
+CODEFALL_SHOW_URL = environ["CODEFALL_SHOW_URL"]
 
 app = Bottle()
 engine = create_engine(environ["DATABASE_URL"])
@@ -96,7 +97,7 @@ def handle_codefall(db):
         if not code.claimed:
             # for unclaimed codes we need to generate our "random" link
             secret = int_to_codefall_key(code.cid)
-            secret_url = CODEFALL_URL_BASE.format(secret=secret)
+            secret_url = CODEFALL_SHOW_URL.format(secret=secret)
             entry["secret_url"] = secret_url
             unclaimed.append(entry)
         else:
@@ -174,6 +175,40 @@ def handle_codefall_claim(secret, db):
              "code_type": code.code_type}
 
     return template("codefall_claim", session=session,
+                    subtitle="Codefall", entry=entry)
+
+
+def handle_codefall_show(secret, db):
+    """Show a codefall page (letting people claim it)."""
+    session = request.environ.get("beaker.session")
+
+    # first, try to parse the secret
+    try:
+        cid = codefall_key_to_int(secret)
+    except:
+        return template("codefall_show", session=session,
+                        subtitle="Codefall")
+
+    show_code_qry = """SELECT description, code_type
+                       FROM codefall
+                       WHERE
+                            cid = :cid
+                            AND
+                            claimed = False"""
+
+    code = db.execute(show_code_qry, {"cid": cid})
+    code = code.first()
+    if not code:
+        return template("codefall_show", session=session,
+                        subtitle="Codefall")
+
+    claim_url = CODEFALL_CLAIM_URL.format(secret=secret)
+
+    entry = {"description": code.description,
+             "claim_url": claim_url,
+             "code_type": code.code_type}
+
+    return template("codefall_show", session=session,
                     subtitle="Codefall", entry=entry)
 
 
@@ -295,8 +330,9 @@ def handle_quotes(page, db):
 
 app.route("/", "GET", handle_home)
 app.route("/codefall", "GET", handle_codefall)
+app.route("/codefall/<secret:int>", "GET", handle_codefall_show)
 app.route("/codefall/add", "POST", handle_codefall_add)
-app.route("/codefall/<secret:int>", "GET", handle_codefall_claim)
+app.route("/codefall/claim/<secret:int>", "GET", handle_codefall_claim)
 app.route("/commands", "GET", handle_commands)
 app.route("/login", "GET", handle_login)
 app.route("/oauth", "GET", handle_oauth)
