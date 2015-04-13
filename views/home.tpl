@@ -24,6 +24,7 @@
       But Now I Am Ambulating In The Sunlight.
       This Is Better, Mr. Lipvig.
       This Is Better!
+    </p>
     <footer>Mr. Pump (aka Pump 19) in <cite title="Going Postal">Going Postal</cite></footer>
   </blockquote>
 

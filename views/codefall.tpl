@@ -1,12 +1,6 @@
 % rebase("base.tpl", active="codefall")
 <h1><i class="fa fa-gift"></i>&nbsp;Codefall</h1>
-<p>
-  On this page you can
-  <ul>
-    <li>add new keys and links for codefall and</li>
-    <li>view your claimed and unclaimed codefall entries.</li>
-  </ul>
-</p>
+<p>On this page you can <strong>add new keys and links</strong> for codefall and view your claimed and unclaimed codefall entries.</p>
 % if session.get("logged_in", False):
 <h3>Unclaimed Entries</h3>
   % if not len(unclaimed):
