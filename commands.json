@@ -25,6 +25,11 @@
     "url": "http://www.twitch.tv/loadingreadyrun/profile"
   },
   {
+    "trigger": "\\codefall",
+    "desc": "Post one of your unclaimed codefall entries.",
+    "url": "http://pump19.eu/codefall"
+  },
+  {
     "trigger": "\\quote",
     "desc": "Post a randomly selected quotation."
   },
