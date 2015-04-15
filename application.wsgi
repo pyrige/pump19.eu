@@ -117,9 +117,9 @@ def handle_codefall_add(db):
 
     # get all mandatory items
     user_name = session.get("user_name")
-    description = request.forms.get("description")
-    code = request.forms.get("code")
-    code_type = request.forms.get("code_type")
+    description = request.forms.getunicode("description")
+    code = request.forms.getunicode("code")
+    code_type = request.forms.getunicode("code_type")
     if not all((user_name, description, code, code_type)):
         redirect("/codefall")
 

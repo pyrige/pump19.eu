@@ -24,7 +24,7 @@
   % end
 
 <h3>Add a New Entry</h3>
-<form action="/codefall/add" method="POST" class="well">
+<form action="/codefall/add" method="POST" accept-charset="utf-8" class="well">
   <div class="form-group">
     <label for="codefallDescription">
       <i class="fa fa-info"></i>
