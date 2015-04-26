@@ -60,6 +60,17 @@
     ]
   },
   {
+    "trigger": "\\modquote <id:int> (<attrib:str>) [<date:iso-date>] <quote:str>",
+    "modonly": true,
+    "desc": "Modify an existing quotation with optional attribution. All fields are updated and/or deleted in case they're omitted.",
+    "example": [
+      "\\modquote 8 Gem of Hilarity.",
+      "\\modquote 8 (Someone) Gem of Hilarity.",
+      "\\modquote 8 [2015-01-31] Gem of Hilarity.",
+      "\\modquote 8 (Someone) [2015-01-31] Gem of Hilarity."
+    ]
+  },
+  {
     "trigger": "\\delquote <id:int>",
     "modonly": true,
     "desc": "Remove the quotation with the specified ID from the quotation database.",
