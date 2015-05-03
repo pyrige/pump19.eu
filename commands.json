@@ -82,6 +82,10 @@
     "example": ["\\goodquote 8", "\\badquote 8"]
   },
   {
+    "trigger": "\\lrrmc",
+    "desc": "Post the URL and current status of the LRR Minecraft server."
+  },
+  {
     "trigger": "\\help",
     "desc": "Post the link to Pump19's list of supported commands.",
     "url": "http://pump19.eu/commands"
