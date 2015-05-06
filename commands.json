@@ -82,11 +82,6 @@
     "example": "\\delquote 8"
   },
   {
-    "trigger": ["\\goodquote <id:int>", "\\badquote <id:int>"],
-    "desc": "Rate the quotation with the specified ID as either good or bad.",
-    "example": ["\\goodquote 8", "\\badquote 8"]
-  },
-  {
     "trigger": "\\lrrmc",
     "desc": "Post the URL and current status of the LRR Minecraft server."
   },
