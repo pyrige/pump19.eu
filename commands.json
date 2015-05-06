@@ -44,9 +44,9 @@
     "example": "\\quote Spoopifer"
   },
   {
-    "trigger": "\\quote f:<keyword:str>",
-    "desc": "Post a randomly selected quotation filtered by keyword.",
-    "example": "\\quote f:dickbutt"
+    "trigger": "\\findquote <keyword:str>",
+    "desc": "Search for a randomly selected quotation containing the specified keyword.",
+    "example": "\\findquote dickbutt"
   },
   {
     "trigger": "\\qdb",
