@@ -44,6 +44,11 @@
     "example": "\\quote Spoopifer"
   },
   {
+    "trigger": "\\quote f:<keyword:str>",
+    "desc": "Post a randomly selected quotation filtered by keyword.",
+    "example": "\\quote f:dickbutt"
+  },
+  {
     "trigger": "\\qdb",
     "desc": "Post the link to the quote database.",
     "url": "http://pump19.eu/quotes/"
