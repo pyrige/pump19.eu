@@ -8,11 +8,9 @@
   <div class="small-12 columns">
     <div data-alert class="secondary radius alert-box">
       <span class="label warning"><i class="fa fa-exclamation-triangle"></i>&nbsp;Disclaimer</span>
-      <small>
       Please keep in mind that many of the following quotes are taken <strong>out of context</strong>, be it for comedic effect or out of necessity.
       Take all of them with a grain of salt and bear in mind they don't necessarily reflect their originators' views and opinions.
       That being said, if you find any quote to be particularly awful, please notify the moderator of your choice to have its removal evaluated.
-      </small>
       <a href="#" class="close"><i class="fa fa-times"></i></a>
     </div>
   </div>
