@@ -86,7 +86,8 @@ def handle_codefall(db):
     # get all codes for the user from the database
     codes_qry = """SELECT cid, description, code, code_type, claimed
                    FROM codefall
-                   WHERE user_name = :user_name"""
+                   WHERE user_name = :user_name
+                   ORDER BY description"""
     codes = db.execute(codes_qry, {"user_name": user_name})
 
     unclaimed, claimed = list(), list()
