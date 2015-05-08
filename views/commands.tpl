@@ -36,7 +36,7 @@
   % if "example" in command:
     <div class="row hide-for-small-only">
       <div class="small-12 columns">
-        <div class="panel clearfix">
+        <div class="radius callout panel clearfix">
         % if isinstance(command["example"], str):
           <span class="right radius label">Example</span>
           <div>
@@ -57,7 +57,6 @@
     </div>
   % end
     <div class="row"><div class="small-10 small-centered columns"><hr></div></div>
-  </div>
   </div>
 </div>
 % end
