@@ -26,7 +26,7 @@
           {{quote["name"]}}
         % end
         % if quote["date"]:
-          <span class="radius label">{{quote["date"]}}</span>
+          <small>[{{quote["date"]}}]</small>
         % end
       </cite>
       % end
