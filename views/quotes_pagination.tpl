@@ -8,7 +8,7 @@
       <li><a href="/quotes/0"><i class="fa fa-angle-double-left"></i></a></li>
       <li><a href="/quotes/{{prev_page}}"><i class="fa fa-angle-left"></i></a></li>
     % end
-    % for page_no in range(max(0, page - 2), min(last_page, page + 3)):
+    % for page_no in range(max(0, page - 2), min(nof_pages, page + 3)):
       <li{{!" class=\"current\"" if page is page_no else ""}}>
         <a href="/quotes/{{page_no}}">{{page_no}}</a>
       </li>
