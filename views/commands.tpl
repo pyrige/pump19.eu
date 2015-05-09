@@ -56,7 +56,7 @@
       </div>
     </div>
   % end
-    <div class="row"><div class="small-10 small-centered columns"><hr></div></div>
+    <div class="row"><div class="small-12 columns"><hr></div></div>
   </div>
 </div>
 % end
