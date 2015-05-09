@@ -11,7 +11,7 @@
     <script src="/static/js/vendor/modernizr.js"></script>
   </head>
   <body>
-    <header>
+    <header class="fixed">
       <nav class="top-bar" data-topbar role="navigation">
         <ul class="title-area">
           <li class="name">
