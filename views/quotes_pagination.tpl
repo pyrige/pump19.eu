@@ -5,21 +5,17 @@
   <nav class="small-11 small-centered columns pagination-centered">
     <ul class="pagination">
     % if prev_page is not None:
-      <li>
-        <a href="/quotes/{{prev_page}}"><i class="fa fa-arrow-left"></i></a>
-      </li>
-    % else:
-      <li class="unavailable"><a href="/quotes/"><i class="fa fa-arrow-left"></i></a></li>
+      <li><a href="/quotes/0"><i class="fa fa-angle-double-left"></i></a></li>
+      <li><a href="/quotes/{{prev_page}}"><i class="fa fa-angle-left"></i></a></li>
     % end
-    % for page_no in range(nof_pages):
+    % for page_no in range(max(0, page - 2), min(last_page, page + 3)):
       <li{{!" class=\"current\"" if page is page_no else ""}}>
         <a href="/quotes/{{page_no}}">{{page_no}}</a>
       </li>
     % end
     % if next_page is not None:
-      <li><a href="/quotes/{{next_page}}"><i class="fa fa-arrow-right"></i></a></li>
-    % else:
-      <li class="unavailable"><a href="/quotes/{{last_page}}"><i class="fa fa-arrow-right"></i></a></li>
+      <li><a href="/quotes/{{next_page}}"><i class="fa fa-angle-right"></i></a></li>
+      <li><a href="/quotes/{{last_page}}"><i class="fa fa-angle-double-right"></i></a></li>
     % end
     </ul>
   </nav>
