@@ -14,7 +14,7 @@
           <label>
             <i class="fa fa-tag"></i>&nbsp;Keyword
             <small>required</small>
-            <input required type="text" name="keyword" pattern="[a-zA-Z]{3,}" placeholder="dickbutt">
+            <input required type="text" name="keyword" pattern=".{3,}" placeholder="dickbutt">
           </label>
           <small class="error">Please specify at least three (3) characters.</small>
         </div>
