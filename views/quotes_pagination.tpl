@@ -2,7 +2,7 @@
 % prev_page = page - 1 if page > 0 else None
 % next_page = page + 1 if page < last_page else None
 <div class="row">
-  <nav class="small-11 small-centered columns pagination-centered">
+  <nav class="small-12 columns pagination-centered">
     <ul class="pagination">
     % if prev_page is not None:
       <li><a href="/quotes/0"><i class="fa fa-angle-double-left"></i></a></li>
