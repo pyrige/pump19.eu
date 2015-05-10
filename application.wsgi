@@ -329,6 +329,45 @@ def handle_quotes(page, db):
                     subtitle="Quotes", quotes=quotes, page=page,
                     nof_quotes=nof_quotes, nof_pages=nof_pages)
 
+def handle_quotes_search(db):
+    """Show a search form and available search results (on POST)."""
+    session = request.environ.get("beaker.session")
+
+    # on GET just show the search form
+    if request.method != "POST":
+        return template("quotes_search", session=session,
+                        subtitle="Search Quotes")
+
+    # this is POST, search for stuff
+    keyword = request.forms.getunicode("keyword")
+    scope = request.forms.getunicode("scope", "Q")
+    if not keyword or len(keyword) < 3 or scope not in ("Q", "A", "B"):
+        redirect("/quotes/search")
+
+    find_quote_qry = """SELECT qid,
+                               quote,
+                               attrib_name AS name,
+                               attrib_date AS date
+                        FROM quotes
+                        WHERE
+                            deleted = False
+                            AND ("""
+    if scope in "QB":
+        find_quote_qry += "quote ILIKE :keyword"
+    if scope == "B":
+        find_quote_qry += " OR "
+    if scope in "AB":
+        find_quote_qry += "attrib_name ILIKE :keyword"
+    find_quote_qry += ") ORDER BY qid DESC"
+
+    quotes = db.execute(find_quote_qry,
+                        {"keyword": "%{}%".format(keyword)})
+
+    quotes = [dict(row) for row in quotes.fetchall()]
+    return template("quotes_result", session=session,
+                    subtitle="Search Result", keyword=keyword, quotes=quotes)
+
+
 app.route("/", "GET", handle_home)
 app.route("/codefall", "GET", handle_codefall)
 app.route("/codefall/<secret:int>", "GET", handle_codefall_show)
@@ -340,6 +379,7 @@ app.route("/oauth", "GET", handle_oauth)
 app.route("/logout", "GET", handle_logout)
 app.route("/quotes/", "GET", partial(handle_quotes, 0))
 app.route("/quotes/<page:int>", "GET", handle_quotes)
+app.route("/quotes/search", ("GET", "POST"), handle_quotes_search)
 
 if __name__ == "__main__":
     # we start a local dev server when this file is executed as a script

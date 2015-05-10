@@ -25,8 +25,17 @@
             <li{{!" class=\"active\"" if get("active") == "commands" else ""}}>
               <a href="/commands"><i class="fa fa-keyboard-o"></i>&nbsp;Commands</a>
             </li>
-            <li{{!" class=\"active\"" if get("active") == "quotes" else ""}}>
+            % if get("active") == "quotes":
+            <li class="has-dropdown active">
+            % else:
+            <li class="has-dropdown">
+            % end
               <a href="/quotes/"><i class="fa fa-comment-o"></i>&nbsp;Quotes</a>
+              <ul class="dropdown">
+                <li{{!" class=\"active\"" if get("active") == "quotes_search" else ""}}>
+                  <a href="/quotes/search"><i class="fa fa-search"></i>&nbsp;Search</a>
+                </li>
+              </ul>
             </li>
             <li{{!" class=\"active\"" if get("active") == "codefall" else ""}}>
               <a href="/codefall"><i class="fa fa-gift"></i>&nbsp;Codefall</a>
