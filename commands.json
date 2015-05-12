@@ -30,58 +30,6 @@
     "url": "http://pump19.eu/codefall"
   },
   {
-    "trigger": "\\quote",
-    "desc": "Post a randomly selected quotation."
-  },
-  {
-    "trigger": "\\quote <id:int>",
-    "desc": "Post the quotation with the specified ID.",
-    "example": "\\quote 8"
-  },
-  {
-    "trigger": "\\quote <attrib:str>",
-    "desc": "Post a randomly selected quotation filtered by attribution.",
-    "example": "\\quote Spoopifer"
-  },
-  {
-    "trigger": "\\findquote <keyword:str>",
-    "desc": "Search for a randomly selected quotation containing the specified keyword.",
-    "example": "\\findquote dickbutt"
-  },
-  {
-    "trigger": "\\qdb",
-    "desc": "Post the link to the quote database.",
-    "url": "http://pump19.eu/quotes/"
-  },
-  {
-    "trigger": "\\addquote (<attrib:str>) [<date:iso-date>] <quote:str>",
-    "modonly": true,
-    "desc": "Add a quotation with optional attribution to the quotation database.",
-    "example": [
-      "\\addquote Gem of Hilarity.",
-      "\\addquote (Someone) Gem of Hilarity.",
-      "\\addquote [2015-01-31] Gem of Hilarity.",
-      "\\addquote (Someone) [2015-01-31] Gem of Hilarity."
-    ]
-  },
-  {
-    "trigger": "\\modquote <id:int> (<attrib:str>) [<date:iso-date>] <quote:str>",
-    "modonly": true,
-    "desc": "Modify an existing quotation with optional attribution. All fields are updated and/or deleted in case they're omitted.",
-    "example": [
-      "\\modquote 8 Gem of Hilarity.",
-      "\\modquote 8 (Someone) Gem of Hilarity.",
-      "\\modquote 8 [2015-01-31] Gem of Hilarity.",
-      "\\modquote 8 (Someone) [2015-01-31] Gem of Hilarity."
-    ]
-  },
-  {
-    "trigger": "\\delquote <id:int>",
-    "modonly": true,
-    "desc": "Remove the quotation with the specified ID from the quotation database.",
-    "example": "\\delquote 8"
-  },
-  {
     "trigger": "\\lrrmc",
     "desc": "Post the URL and current status of the LRR Minecraft server."
   },

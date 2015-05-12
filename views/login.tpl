@@ -32,8 +32,7 @@
     <p>
       Granting us <strong>minimal</strong> access to your <a href="https://twitch.tv">Twitch.tv</a>
       account will allow us to see your Twitch user name and lets us provide additional functionality
-      that requires authentication (such as rating <a href="/quotes/">quotes</a> or maintaining your
-      <a href="#">codefall</a> entries).
+      that requires authentication.
     </p>
     <p>
       While we keep track of your user name, we <strong>do not</strong> have access to your password.
