@@ -10,13 +10,13 @@ Copyright (c) 2015 Twisted Pear <pear at twistedpear dot at>
 See the file LICENSE for copying permission.
 """
 
-from Crypto.Cipher import ARC2
 from beaker.middleware import SessionMiddleware
 from bottle import Bottle, redirect, request, route, template, view
 from bottle.ext import sqlalchemy
 from functools import partial
 from json import load as json_loadf, loads as json_loads
 from os import environ
+from skippy import Skippy
 from sqlalchemy import create_engine
 from sqlalchemy.exc import IntegrityError
 from urllib.error import HTTPError
@@ -34,7 +34,7 @@ TWITCH_CLIENT_ID = environ["TWITCH_CLIENT_ID"]
 TWITCH_CLIENT_SECRET = environ["TWITCH_CLIENT_SECRET"]
 OAUTH_RESPONSE_URL = environ["OAUTH_RESPONSE_URL"]
 
-CODEFALL_CIPHER = ARC2.new(environ["CODEFALL_SECRET"], ARC2.MODE_ECB)
+CODEFALL_CIPHER = Skippy(environ["CODEFALL_SECRET"].encode())
 CODEFALL_CLAIM_URL = environ["CODEFALL_CLAIM_URL"]
 CODEFALL_SHOW_URL = environ["CODEFALL_SHOW_URL"]
 
@@ -52,18 +52,6 @@ session_opts = {
     "session.secret": environ["SESSION_SECRET"]
 }
 application = SessionMiddleware(app, session_opts)
-
-
-def int_to_codefall_key(value):
-    raw = value.to_bytes(ARC2.block_size, byteorder="big")
-    msg = CODEFALL_CIPHER.encrypt(raw)
-    return int.from_bytes(msg, byteorder="big")
-
-
-def codefall_key_to_int(value):
-    msg = value.to_bytes(ARC2.block_size, byteorder="big")
-    raw = CODEFALL_CIPHER.decrypt(msg)
-    return int.from_bytes(raw, byteorder="big")
 
 
 def handle_home():
@@ -97,7 +85,7 @@ def handle_codefall(db):
 
         if not code.claimed:
             # for unclaimed codes we need to generate our "random" link
-            secret = int_to_codefall_key(code.cid)
+            secret = CODEFALL_CIPHER.encrypt(code.cid)
             secret_url = CODEFALL_SHOW_URL.format(secret=secret)
             entry["secret_url"] = secret_url
             unclaimed.append(entry)
@@ -151,7 +139,7 @@ def handle_codefall_claim(secret, db):
 
     # first, try to parse the secret
     try:
-        cid = codefall_key_to_int(secret)
+        cid = CODEFALL_CIPHER.decrypt(secret)
     except:
         return template("codefall_claim", session=session,
                         subtitle="Codefall")
@@ -185,7 +173,7 @@ def handle_codefall_show(secret, db):
 
     # first, try to parse the secret
     try:
-        cid = codefall_key_to_int(secret)
+        cid = CODEFALL_CIPHER.decrypt(secret)
     except:
         return template("codefall_show", session=session,
                         subtitle="Codefall")
