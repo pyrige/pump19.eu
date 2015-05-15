@@ -337,20 +337,19 @@ def handle_quotes_search(db):
                                quote,
                                attrib_name AS name,
                                attrib_date AS date
-                        FROM quotes
+                        FROM quotes, plainto_tsquery('english', :keyword) Q
                         WHERE
                             deleted = False
                             AND ("""
     if scope in "QB":
-        find_quote_qry += "quote ILIKE :keyword"
+        find_quote_qry += "quote @@ Q"
     if scope == "B":
         find_quote_qry += " OR "
     if scope in "AB":
-        find_quote_qry += "attrib_name ILIKE :keyword"
+        find_quote_qry += "attrib_name @@ Q"
     find_quote_qry += ") ORDER BY qid DESC"
 
-    quotes = db.execute(find_quote_qry,
-                        {"keyword": "%{}%".format(keyword)})
+    quotes = db.execute(find_quote_qry, {"keyword": keyword})
 
     quotes = [dict(row) for row in quotes.fetchall()]
     return template("quotes_result", session=session,
