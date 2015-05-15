@@ -357,6 +357,13 @@ def handle_quotes_search(db):
                     subtitle="Search Result", keyword=keyword, quotes=quotes)
 
 
+def handle_contribute():
+    """Show contribution page (links to repositories, issue trackers etc)."""
+    session = request.environ.get("beaker.session")
+    return template("contribute", session=session,
+                    subtitle="Contribute")
+
+
 app.route("/", "GET", handle_home)
 app.route("/codefall", "GET", handle_codefall)
 app.route("/codefall/<secret:int>", "GET", handle_codefall_show)
@@ -369,6 +376,7 @@ app.route("/logout", "GET", handle_logout)
 app.route("/quotes/", "GET", partial(handle_quotes, 0))
 app.route("/quotes/<page:int>", "GET", handle_quotes)
 app.route("/quotes/search", ("GET", "POST"), handle_quotes_search)
+app.route("/contribute", "GET", handle_contribute)
 
 if __name__ == "__main__":
     # we start a local dev server when this file is executed as a script

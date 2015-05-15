@@ -29,7 +29,7 @@
               <a href="/codefall"><i class="fa fa-gift"></i>&nbsp;Codefall</a>
             </li>
             <li>
-              <a href="http://git.io/A29Y"><i class="fa fa-github-square"></i>&nbsp;Issues</a>
+              <a href="/contribute"><i class="fa fa-code-fork"></i>&nbsp;Contribute</a>
             </li>
           </ul>
 
