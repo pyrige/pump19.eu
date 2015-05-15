@@ -11,7 +11,7 @@ See the file LICENSE for copying permission.
 """
 
 from beaker.middleware import SessionMiddleware
-from bottle import Bottle, redirect, request, route, template, view
+from bottle import Bottle, redirect, request, template
 from bottle.ext import sqlalchemy
 from functools import partial
 from json import load as json_loadf, loads as json_loads
@@ -20,7 +20,7 @@ from skippy import Skippy
 from sqlalchemy import create_engine
 from sqlalchemy.exc import IntegrityError
 from urllib.error import HTTPError
-from urllib.parse import urlencode, urljoin
+from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 with open("commands.json") as cmd_fp:
@@ -316,6 +316,7 @@ def handle_quotes(page, db):
     return template("quotes", session=session,
                     subtitle="Quotes", quotes=quotes, page=page,
                     nof_quotes=nof_quotes, nof_pages=nof_pages)
+
 
 def handle_quotes_search(db):
     """Show a search form and available search results (on POST)."""
