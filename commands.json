@@ -34,6 +34,10 @@
     "desc": "Post the URL and current status of the LRR Minecraft server."
   },
   {
+    "trigger": "\\mumble",
+    "desc": "Post the hostname, port and current status of the LRR Mumble server."
+  },
+  {
     "trigger": "\\help",
     "desc": "Post the link to Pump19's list of supported commands.",
     "url": "http://pump19.eu/commands"
