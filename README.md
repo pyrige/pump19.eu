@@ -1,5 +1,6 @@
 # pump19.eu
-A simple [web frontend](http://pump19.eu) for the [Pump19 Twitch chat golem](https://github.com/TwistedPear-AT/pump19).
+A simple [web frontend](http://pump19.eu) for the
+[Pump19 Twitch chat golem](https://github.com/pyrige/pump19).
 
 ## Requirements
 - [Bottle](http://bottlepy.org/)
