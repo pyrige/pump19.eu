@@ -11,32 +11,13 @@ See the file LICENSE for copying permission.
 """
 
 from beaker.middleware import SessionMiddleware
-from bottle import Bottle, redirect, request, template
+from bottle import Bottle
 from bottle.ext import sqlalchemy
 from functools import partial
-from json import load as json_loadf, loads as json_loads
 from os import environ
-from skippy import Skippy
 from sqlalchemy import create_engine
-from sqlalchemy.exc import IntegrityError
-from urllib.error import HTTPError
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
 
-with open("commands.json") as cmd_fp:
-    commands = json_loadf(cmd_fp)
-
-# get settings for Twitch.tv authorization code flow
-TWITCH_BASE_URL = "https://api.twitch.tv/kraken"
-TWITCH_OAUTH_URL = TWITCH_BASE_URL + "/oauth2/authorize"
-TWITCH_TOKEN_URL = TWITCH_BASE_URL + "/oauth2/token"
-TWITCH_CLIENT_ID = environ["TWITCH_CLIENT_ID"]
-TWITCH_CLIENT_SECRET = environ["TWITCH_CLIENT_SECRET"]
-OAUTH_RESPONSE_URL = environ["OAUTH_RESPONSE_URL"]
-
-CODEFALL_CIPHER = Skippy(environ["CODEFALL_SECRET"].encode())
-CODEFALL_CLAIM_URL = environ["CODEFALL_CLAIM_URL"]
-CODEFALL_SHOW_URL = environ["CODEFALL_SHOW_URL"]
+import routes
 
 app = Bottle()
 engine = create_engine(environ["DATABASE_URL"])
@@ -53,329 +34,26 @@ session_opts = {
 }
 application = SessionMiddleware(app, session_opts)
 
+# misc routes
+app.route("/", "GET", routes.misc.home)
+app.route("/commands", "GET", routes.misc.commands)
+app.route("/contribute", "GET", routes.misc.contribute)
 
-def handle_home():
-    """Show the home page."""
-    session = request.environ.get("beaker.session")
-    return template("home", session=session,
-                    subtitle="Home")
+# codefall routes
+app.route("/codefall", "GET", routes.codefall.main)
+app.route("/codefall/<secret:int>", "GET", routes.codefall.show)
+app.route("/codefall/add", "POST", routes.codefall.add)
+app.route("/codefall/claim/<secret:int>", "GET", routes.codefall.claim)
 
+# auth routes
+app.route("/login", "GET", routes.auth.login)
+app.route("/logout", "GET", routes.auth.logout)
+app.route("/oauth", "GET", routes.auth.oauth)
 
-def handle_codefall(db):
-    """Show a list of all codefall pages and a form to add new ones."""
-    session = request.environ.get("beaker.session")
-    user_name = session.get("user_name")
-
-    # we can't retrieve keys without user name
-    if not user_name:
-        return template("codefall", session=session,
-                        subtitle="Codefall")
-
-    # get all codes for the user from the database
-    codes_qry = """SELECT cid, description, code, code_type, claimed
-                   FROM codefall
-                   WHERE user_name = :user_name
-                   ORDER BY description"""
-    codes = db.execute(codes_qry, {"user_name": user_name})
-
-    unclaimed, claimed = list(), list()
-    for code in codes:
-        entry = {"description": code.description,
-                 "code_type": code.code_type}
-
-        if not code.claimed:
-            # for unclaimed codes we need to generate our "random" link
-            secret = CODEFALL_CIPHER.encrypt(code.cid)
-            secret_url = CODEFALL_SHOW_URL.format(secret=secret)
-            entry["secret_url"] = secret_url
-            unclaimed.append(entry)
-        else:
-            claimed.append(entry)
-
-    return template("codefall", session=session,
-                    subtitle="Codefall",
-                    unclaimed=unclaimed, claimed=claimed)
-
-
-def handle_codefall_add(db):
-    """Add a new codefall page."""
-    session = request.environ.get("beaker.session")
-    # we require users to be logged in when adding new codes
-    if not session.get("logged_in", False):
-        redirect("/codefall")
-
-    # get all mandatory items
-    user_name = session.get("user_name")
-    description = request.forms.getunicode("description")
-    code = request.forms.getunicode("code")
-    code_type = request.forms.getunicode("code_type")
-    if not all((user_name, description, code, code_type)):
-        redirect("/codefall")
-
-    new_code_qry = """INSERT INTO codefall (description,
-                                            code,
-                                            code_type,
-                                            user_name)
-                      VALUES (:description,:code, :code_type, :user_name)"""
-    try:
-        db.execute(new_code_qry,
-                   {"description": description,
-                    "code": code,
-                    "code_type": code_type,
-                    "user_name": user_name})
-    except IntegrityError:
-        redirect("/codefall")
-
-    # everything seems fine, store the data now
-    db.commit()
-
-    # now redirect back to codefall page
-    redirect("/codefall")
-
-
-def handle_codefall_claim(secret, db):
-    """Claim a codefall page."""
-    session = request.environ.get("beaker.session")
-
-    # first, try to parse the secret
-    try:
-        cid = CODEFALL_CIPHER.decrypt(secret)
-    except:
-        return template("codefall_claim", session=session,
-                        subtitle="Codefall")
-
-    claim_code_qry = """UPDATE codefall
-                        SET claimed = True
-                        WHERE
-                            cid = :cid
-                            AND
-                            claimed = False
-                        RETURNING description, code, code_type"""
-
-    code = db.execute(claim_code_qry, {"cid": cid})
-    db.commit()
-    code = code.first()
-    if not code:
-        return template("codefall_claim", session=session,
-                        subtitle="Codefall")
-
-    entry = {"description": code.description,
-             "code": code.code,
-             "code_type": code.code_type}
-
-    return template("codefall_claim", session=session,
-                    subtitle="Codefall", entry=entry)
-
-
-def handle_codefall_show(secret, db):
-    """Show a codefall page (letting people claim it)."""
-    session = request.environ.get("beaker.session")
-
-    # first, try to parse the secret
-    try:
-        cid = CODEFALL_CIPHER.decrypt(secret)
-    except:
-        return template("codefall_show", session=session,
-                        subtitle="Codefall")
-
-    show_code_qry = """SELECT description, code_type
-                       FROM codefall
-                       WHERE
-                            cid = :cid
-                            AND
-                            claimed = False"""
-
-    code = db.execute(show_code_qry, {"cid": cid})
-    code = code.first()
-    if not code:
-        return template("codefall_show", session=session,
-                        subtitle="Codefall")
-
-    claim_url = CODEFALL_CLAIM_URL.format(secret=secret)
-
-    entry = {"description": code.description,
-             "claim_url": claim_url,
-             "code_type": code.code_type}
-
-    return template("codefall_show", session=session,
-                    subtitle="Codefall", entry=entry)
-
-
-def handle_commands():
-    """Show a list of supported commands."""
-    session = request.environ.get("beaker.session")
-    return template("commands", session=session,
-                    subtitle="Commands", commands=commands)
-
-
-def handle_login():
-    """Show the login page and create a new session."""
-    session = request.environ.get("beaker.session")
-    session.save()
-
-    return template("login", session=session,
-                    subtitle="Login",
-                    twitch_oauth_url=TWITCH_OAUTH_URL,
-                    twitch_client_id=TWITCH_CLIENT_ID,
-                    oauth_response_url=OAUTH_RESPONSE_URL)
-
-
-def handle_oauth():
-    """
-    Handle the answer from Twitch and request an oauth token.
-    Store both the token and the user name in the session.
-    """
-    session = request.environ.get("beaker.session")
-    # make sure we get both state and code and the response is for this session
-    state = request.query.get("state")
-    code = request.query.get("code")
-    if not state or not code or session.id != state:
-        redirect("/logout")
-
-    # now we need to get an access token
-    token_opts = {
-        "client_id": TWITCH_CLIENT_ID,
-        "client_secret": TWITCH_CLIENT_SECRET,
-        "grant_type": "authorization_code",
-        "redirect_uri": OAUTH_RESPONSE_URL,
-        "code": code
-    }
-    token_data = urlencode(token_opts).encode()
-    token_request = Request(TWITCH_TOKEN_URL, data=token_data)
-    try:
-        response = urlopen(token_request, timeout=5)
-        raw_data = response.read()
-    except HTTPError:
-        redirect("/logout")
-
-    token_data = json_loads(raw_data.decode(errors="replace"))
-
-    # make sure we got our token
-    if "access_token" not in token_data:
-        redirect("/logout")
-
-    # store the token in our session
-    token = token_data["access_token"]
-    session["oauth_token"] = token
-
-    # now get the user name as well
-    user_headers = {"Authorization": "OAuth {0}".format(token)}
-    user_request = Request(TWITCH_BASE_URL, headers=user_headers)
-    try:
-        response = urlopen(user_request, timeout=5)
-        raw_data = response.read()
-    except HTTPError:
-        redirect("/logout")
-
-    user_data = json_loads(raw_data.decode(errors="replace"))
-    # make sure we got our token
-    if "token" not in user_data or "user_name" not in user_data["token"]:
-        redirect("/logout")
-
-    # store user name in our session
-    user_name = user_data["token"]["user_name"]
-    session["user_name"] = user_name
-    session["logged_in"] = True
-    session.save()
-
-    redirect("/login")
-
-
-def handle_logout():
-    """Clear a user's session."""
-    session = request.environ.get("beaker.session")
-    session.delete()
-    redirect("/login")
-
-
-def handle_quotes(page, db):
-    """Show a paginated portion of all known quotes."""
-    session = request.environ.get("beaker.session")
-
-    nof_quotes = db.execute("""SELECT COUNT(*)
-                               FROM quotes
-                               WHERE deleted = FALSE""").scalar()
-    nof_pages, remainder = divmod(nof_quotes, 10)
-    if remainder:
-        nof_pages += 1
-
-    page = max(page, 0)
-    page = min(page, nof_pages - 1)
-
-    offset = 10 * page
-    quotes = db.execute("""SELECT qid,
-                                  quote,
-                                  attrib_name AS name,
-                                  attrib_date as date
-                           FROM quotes
-                           WHERE deleted = FALSE
-                           ORDER BY qid DESC
-                           LIMIT 10
-                           OFFSET {offset}""".format(offset=offset))
-    quotes = [dict(row) for row in quotes.fetchall()]
-    return template("quotes", session=session,
-                    subtitle="Quotes", quotes=quotes, page=page,
-                    nof_quotes=nof_quotes, nof_pages=nof_pages)
-
-
-def handle_quotes_search(db):
-    """Show a search form and available search results (on POST)."""
-    session = request.environ.get("beaker.session")
-
-    # on GET just show the search form
-    if request.method != "POST":
-        return template("quotes_search", session=session,
-                        subtitle="Search Quotes")
-
-    # this is POST, search for stuff
-    keyword = request.forms.getunicode("keyword")
-    scope = request.forms.getunicode("scope", "Q")
-    if not keyword or len(keyword) < 3 or scope not in ("Q", "A", "B"):
-        redirect("/quotes/search")
-
-    find_quote_qry = """SELECT qid,
-                               quote,
-                               attrib_name AS name,
-                               attrib_date AS date
-                        FROM quotes, plainto_tsquery('english', :keyword) Q
-                        WHERE
-                            deleted = False
-                            AND ("""
-    if scope in "QB":
-        find_quote_qry += "quote @@ Q"
-    if scope == "B":
-        find_quote_qry += " OR "
-    if scope in "AB":
-        find_quote_qry += "attrib_name @@ Q"
-    find_quote_qry += ") ORDER BY qid DESC"
-
-    quotes = db.execute(find_quote_qry, {"keyword": keyword})
-
-    quotes = [dict(row) for row in quotes.fetchall()]
-    return template("quotes_result", session=session,
-                    subtitle="Search Result", keyword=keyword, quotes=quotes)
-
-
-def handle_contribute():
-    """Show contribution page (links to repositories, issue trackers etc)."""
-    session = request.environ.get("beaker.session")
-    return template("contribute", session=session,
-                    subtitle="Contribute")
-
-
-app.route("/", "GET", handle_home)
-app.route("/codefall", "GET", handle_codefall)
-app.route("/codefall/<secret:int>", "GET", handle_codefall_show)
-app.route("/codefall/add", "POST", handle_codefall_add)
-app.route("/codefall/claim/<secret:int>", "GET", handle_codefall_claim)
-app.route("/commands", "GET", handle_commands)
-app.route("/login", "GET", handle_login)
-app.route("/oauth", "GET", handle_oauth)
-app.route("/logout", "GET", handle_logout)
-app.route("/quotes/", "GET", partial(handle_quotes, 0))
-app.route("/quotes/<page:int>", "GET", handle_quotes)
-app.route("/quotes/search", ("GET", "POST"), handle_quotes_search)
-app.route("/contribute", "GET", handle_contribute)
+# quote routes
+app.route("/quotes/", "GET", partial(routes.quotes.main, 0))
+app.route("/quotes/<page:int>", "GET", routes.quotes.main)
+app.route("/quotes/search", ("GET", "POST"), routes.quotes.search)
 
 if __name__ == "__main__":
     # we start a local dev server when this file is executed as a script
