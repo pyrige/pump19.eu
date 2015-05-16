@@ -1,5 +1,6 @@
 Beaker==1.7.0
-bottle-redis=0.2.1
+bottle-redis==0.2.1
 bottle-sqlalchemy==0.4.2
 bottle==0.12.8
-http://git.io/vUS0t
+redis==2.10.3
+http://git.io/vUS0t  # Skippy
