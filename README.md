@@ -5,7 +5,6 @@ A simple [web frontend](http://pump19.eu) for the [Pump19 Twitch chat golem](htt
 - [Bottle](http://bottlepy.org/)
 - bottle-sqlalchemy
 - [Beaker](https://github.com/bbangert/beaker)
-- [PyCrypto](https://www.dlitz.net/software/pycrypto/)
 
 ## License ##
 Copyright (c) 2015 Twisted Pear (pear at twistedpear dot at).  
