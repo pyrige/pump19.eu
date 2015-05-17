@@ -12,7 +12,7 @@ See the file LICENSE for copying permission.
 
 from beaker.middleware import SessionMiddleware
 from bottle import Bottle
-from bottle.ext import sqlalchemy
+from bottle.ext import sqlalchemy, redis
 from functools import partial
 from os import environ
 from sqlalchemy import create_engine
@@ -20,9 +20,14 @@ from sqlalchemy import create_engine
 import routes
 
 app = Bottle()
+
+# install plugins
 engine = create_engine(environ["DATABASE_URL"])
 sa_plugin = sqlalchemy.Plugin(engine, commit=False)
 app.install(sa_plugin)
+
+redis_plugin = redis.RedisPlugin()
+app.install(redis_plugin)
 
 session_opts = {
     "session.type": "file",
@@ -38,6 +43,7 @@ application = SessionMiddleware(app, session_opts)
 app.route("/", "GET", routes.misc.home)
 app.route("/commands", "GET", routes.misc.commands)
 app.route("/contribute", "GET", routes.misc.contribute)
+app.route("/scrobblrr", "GET", routes.misc.scrobblrr)
 
 # codefall routes
 app.route("/codefall", "GET", routes.codefall.main)
@@ -54,6 +60,7 @@ app.route("/oauth", "GET", routes.auth.oauth)
 app.route("/quotes/", "GET", partial(routes.quotes.main, 0))
 app.route("/quotes/<page:int>", "GET", routes.quotes.main)
 app.route("/quotes/search", ("GET", "POST"), routes.quotes.search)
+
 
 if __name__ == "__main__":
     # we start a local dev server when this file is executed as a script
