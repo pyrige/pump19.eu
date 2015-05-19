@@ -28,9 +28,6 @@
             <li{{!" class=\"active\"" if get("active") == "codefall" else ""}}>
               <a href="/codefall"><i class="fa fa-gift"></i>&nbsp;Codefall</a>
             </li>
-            <li{{!" class=\"active\"" if get("active") == "scrobblrr" else ""}}>
-              <a href="/scrobblrr"><i class="fa fa-music"></i>&nbsp;ScrobbLRR</a>
-            </li>
             <li>
               <a href="/contribute"><i class="fa fa-code-fork"></i>&nbsp;Contribute</a>
             </li>

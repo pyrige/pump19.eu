@@ -26,9 +26,6 @@ engine = create_engine(environ["DATABASE_URL"])
 sa_plugin = sqlalchemy.Plugin(engine, commit=False)
 app.install(sa_plugin)
 
-redis_plugin = redis.RedisPlugin()
-app.install(redis_plugin)
-
 session_opts = {
     "session.type": "file",
     "session.data_dir": environ["SESSION_DATA_DIR"],
@@ -43,7 +40,6 @@ application = SessionMiddleware(app, session_opts)
 app.route("/", "GET", routes.misc.home)
 app.route("/commands", "GET", routes.misc.commands)
 app.route("/contribute", "GET", routes.misc.contribute)
-app.route("/scrobblrr", "GET", routes.misc.scrobblrr)
 
 # codefall routes
 app.route("/codefall", "GET", routes.codefall.main)
