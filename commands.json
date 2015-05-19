@@ -38,6 +38,17 @@
     "desc": "Post the hostname, port and current status of the LRR Mumble server."
   },
   {
+    "trigger": "\\rdio <user:str>",
+    "desc": "Query Rdio user information for the specified user name.",
+    "example": "\\quote Spoopifer",
+    "url": "https://www.rdio.com/"
+  },
+  {
+    "trigger": "\\song",
+    "desc": "Query Rdio user information for James.",
+    "url": "https://www.rdio.com/people/jameslrr/"
+  },
+  {
     "trigger": "\\help",
     "desc": "Post the link to Pump19's list of supported commands.",
     "url": "http://pump19.eu/commands"
