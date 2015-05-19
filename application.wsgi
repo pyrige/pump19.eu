@@ -12,7 +12,7 @@ See the file LICENSE for copying permission.
 
 from beaker.middleware import SessionMiddleware
 from bottle import Bottle
-from bottle.ext import sqlalchemy, redis
+from bottle.ext import sqlalchemy
 from functools import partial
 from os import environ
 from sqlalchemy import create_engine
