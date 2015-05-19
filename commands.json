@@ -40,7 +40,7 @@
   {
     "trigger": "\\rdio <user:str>",
     "desc": "Query Rdio user information for the specified user name.",
-    "example": "\\quote Spoopifer",
+    "example": "\\rdio Spoopifer",
     "url": "https://www.rdio.com/"
   },
   {
