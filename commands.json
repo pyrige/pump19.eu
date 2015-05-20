@@ -38,6 +38,12 @@
     "desc": "Post the hostname, port and current status of the LRR Mumble server."
   },
   {
+    "trigger": "\\last.fm <user:str>",
+    "desc": "Query Last.fm user information for the specified user name.",
+    "example": "\\last.fm Spoopifer",
+    "url": "http://www.last.fm/"
+  },
+  {
     "trigger": "\\rdio <user:str>",
     "desc": "Query Rdio user information for the specified user name.",
     "example": "\\rdio Spoopifer",
