@@ -51,8 +51,7 @@
   },
   {
     "trigger": "\\song",
-    "desc": "Query Rdio user information for James.",
-    "url": "https://www.rdio.com/people/jameslrr/"
+    "desc": "Query the most recently listened track for the current streamer."
   },
   {
     "trigger": "\\help",
