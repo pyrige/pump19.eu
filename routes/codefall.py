@@ -75,7 +75,7 @@ def add(db):
                                             code,
                                             code_type,
                                             user_name)
-                      VALUES (:description,:code, :code_type, :user_name)"""
+                      VALUES (:description, :code, :code_type, :user_name)"""
     try:
         db.execute(new_code_qry,
                    {"description": description,
