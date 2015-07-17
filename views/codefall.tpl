@@ -60,6 +60,7 @@
               <option>Steam</option>
               <option>Humble Bundle</option>
               <option>GOG</option>
+              <option>Origin</option>
               <option>Desura</option>
               <option>Other</option>
             </select>
