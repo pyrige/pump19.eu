@@ -25,8 +25,8 @@
     "url": "http://www.twitch.tv/loadingreadyrun/profile"
   },
   {
-    "trigger": "\\codefall",
-    "desc": "Post one of your unclaimed codefall entries.",
+    "trigger": "\\codefall [limit:int]",
+    "desc": "Post up to 3 of your unclaimed codefall entries.",
     "url": "http://pump19.eu/codefall"
   },
   {
