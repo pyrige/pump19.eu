@@ -44,12 +44,6 @@
     "url": "http://www.last.fm/"
   },
   {
-    "trigger": "\\rdio <user:str>",
-    "desc": "Query Rdio user information for the specified user name.",
-    "example": "\\rdio Spoopifer",
-    "url": "https://www.rdio.com/"
-  },
-  {
     "trigger": "\\song",
     "desc": "Query the most recently listened track for the current streamer."
   },
