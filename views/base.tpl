@@ -65,7 +65,7 @@
       </div>
       <div class="row">
         <div class="small-11 small-centered columns">
-        <small>&copy; 2015 Twisted Pear</small>
+        <small>&copy; 2015-2016 Twisted Pear</small>
         </div>
       </div>
     </footer>
