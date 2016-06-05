@@ -2,3 +2,4 @@ Beaker==1.7.0
 bottle-sqlalchemy==0.4.2
 bottle==0.12.8
 http://git.io/vUS0t  # Skippy
+requests==2.10.0

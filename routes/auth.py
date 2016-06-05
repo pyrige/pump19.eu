@@ -11,11 +11,9 @@ See the file LICENSE for copying permission.
 """
 
 from bottle import redirect, request, template
-from json import loads as json_loads
 from os import environ
-from urllib.error import HTTPError
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
+
+import requests
 
 # get settings for Twitch.tv authorization code flow
 TWITCH_BASE_URL = "https://api.twitch.tv/kraken"
@@ -58,15 +56,13 @@ def oauth():
         "redirect_uri": OAUTH_RESPONSE_URL,
         "code": code
     }
-    token_data = urlencode(token_opts).encode()
-    token_request = Request(TWITCH_TOKEN_URL, data=token_data)
     try:
-        response = urlopen(token_request, timeout=5)
-        raw_data = response.read()
-    except HTTPError:
+        token_request = requests.post(
+                TWITCH_TOKEN_URL, params=token_opts,
+                timeout=5)
+        token_data = token_request.json()
+    except Exception:
         redirect("/logout")
-
-    token_data = json_loads(raw_data.decode(errors="replace"))
 
     # make sure we got our token
     if "access_token" not in token_data:
@@ -78,14 +74,14 @@ def oauth():
 
     # now get the user name as well
     user_headers = {"Authorization": "OAuth {0}".format(token)}
-    user_request = Request(TWITCH_BASE_URL, headers=user_headers)
     try:
-        response = urlopen(user_request, timeout=5)
-        raw_data = response.read()
-    except HTTPError:
+        user_request = requests.get(
+                TWITCH_BASE_URL, headers=user_headers,
+                timeout=5)
+        user_data = user_request.json()
+    except Exception:
         redirect("/logout")
 
-    user_data = json_loads(raw_data.decode(errors="replace"))
     # make sure we got our token
     if "token" not in user_data or "user_name" not in user_data["token"]:
         redirect("/logout")
