@@ -1,14 +1,17 @@
-INPUT = vendor/modernizr.js \
-				vendor/jquery.js \
-				foundation/foundation.js \
-				foundation/foundation.abide.js \
-				foundation/foundation.topbar.js \
-				app.js
+SUFFIX = .js
+SOURCE_DIR = source
 
-OUTPUT = min.js
+INPUT_FILES = $(SOURCE_DIR)/vendor/modernizr$(SUFFIX) \
+              $(SOURCE_DIR)/vendor/jquery$(SUFFIX) \
+              $(SOURCE_DIR)/foundation/foundation$(SUFFIX) \
+              $(SOURCE_DIR)/foundation/foundation.abide$(SUFFIX) \
+              $(SOURCE_DIR)/foundation/foundation.topbar$(SUFFIX) \
+              $(SOURCE_DIR)/app$(SUFFIX)
+
+OUTPUT_FILE = min$(SUFFIX)
 
 mini:
-	uglifyjs $(INPUT) -o $(OUTPUT) -c
+	uglifyjs $(INPUT_FILES) -o $(OUTPUT_FILE) -c
 
 clean:
-	rm min.js
+	rm -f $(OUTPUT_FILE)
