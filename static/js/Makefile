@@ -1,8 +1,9 @@
-INPUT = vendor/jquery.js \
-        foundation/foundation.js \
-        foundation/foundation.abide.js \
-        foundation/foundation.topbar.js \
-        app.js
+INPUT = vendor/modernizr.js \
+				vendor/jquery.js \
+				foundation/foundation.js \
+				foundation/foundation.abide.js \
+				foundation/foundation.topbar.js \
+				app.js
 
 OUTPUT = min.js
 
