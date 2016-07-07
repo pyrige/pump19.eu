@@ -24,6 +24,11 @@
     "desc": "Query the 18th most watched game on Twitch.tv."
   },
   {
+    "trigger": "\\roll [[<count:int>]d<sides:int>]",
+    "desc": "Simulate a number of n-sides dice rolls.",
+    "example": "\\roll 3d20"
+  },
+  {
     "trigger": "\\codefall [limit:int]",
     "desc": "Post up to 3 of your unclaimed codefall entries.",
     "url": "http://pump19.eu/codefall"
