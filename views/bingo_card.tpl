@@ -1,16 +1,28 @@
-<h1 id="bingo-card-title">Your Trope Bingo Card</h1>
-<ul class="small-block-grid-5">
-  % for letter in "TROPE":
-  <li class="text-center">
-    <h1>{{letter}}</h1>
-  </li>
+% from itertools import islice
+<h2 id="bingo-card-title"><i class="fa fa-puzzle-piece"></i>&nbsp;Trope Bingo Card</h2>
+<table id="bingo-card">
+  <thead>
+    <tr>
+    % for letter in "TROPE":
+      <th class="text-center">
+        <h3>{{letter}}</h3>
+      </th>
+    % end
+    </tr>
+  </thead>
+  <tbody>
+  % for row in range(5):
+  <tr>
+    % start, stop = 5 * row, 5 + 5 * row
+    % for trope in islice(tropes, start, stop):
+    <td class="bingo-square">
+      {{trope}}
+    </td>
+    % end
+  </tr>
   % end
-  % for trope in tropes:
-  <li class="bingo-square text-center">
-    {{trope}}
-  </li>
-  % end
-</ul>
+  </tbody>
+</table>
 
 <a class="close-reveal-modal" aria-label="Close">
   <i class="fa fa-times-circle"></i>&nbsp;Close
