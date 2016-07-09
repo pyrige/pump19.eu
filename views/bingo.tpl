@@ -15,31 +15,18 @@
   </div>
 </div>
 <div class="row">
-  <div id="bingo-card" class="reveal-modal full" data-reveal role="dialog">
-    <h2 id="bingo-card-title">
-      Your Let's Nope Bingo Card
-    </h2>
-    <ul class="small-block-grid-5">
-      % for letter in "SPOOP":
-      <li class="text-center">
-        <h1>{{letter}}</h1>
-      </li>
-      % end
-      <li class="bingo-square text-center">
-      </li>
-    </ul>
-    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+  <div id="bingo-card-modal" class="reveal-modal full" data-reveal role="dialog">
   </div>
 
   <div class="small-10 small-centered columns">
     <ul class="even-2 stack-for-small radius button-group">
       <li>
-        <a class="button" href="/bingo/leno" data-reveal-id="bingo-card" data-reveal-ajax=true>
+        <a class="button" href="/bingo/leno" data-reveal-id="bingo-card-modal" data-reveal-ajax=true>
           <i class="fa fa-key"></i>&nbsp;Let's Nope
         </a>
       </li>
       <li>
-        <a class="button" href="/bingo/wap" data-reveal-id="bingo-card" data-reveal-ajax=true>
+        <a class="button" href="/bingo/wap" data-reveal-id="bingo-card-modal" data-reveal-ajax=true>
           <i class="fa fa-meh-o"></i>&nbsp;Watch &amp; Play
         </a>
       </li>
