@@ -12,13 +12,9 @@ See the file LICENSE for copying permission.
 
 from bottle import request, template
 from json import load as json_loadf
-from random import sample
 
 with open("commands.json") as cmd_fp:
     cmd_dict = json_loadf(cmd_fp)
-
-with open("tropes.json") as tropes_fp:
-    tropes = json_loadf(tropes_fp)
 
 
 def home():
@@ -40,11 +36,3 @@ def contribute():
     session = request.environ.get("beaker.session")
     return template("contribute", session=session,
                     subtitle="Contribute")
-
-
-def bingo():
-    """Show a random Let's Nope bingo card."""
-    session = request.environ.get("beaker.session")
-    random_tropes = sample(tropes, 25)
-    return template("bingo", session=session,
-                    subtitle="Trope Bingo", tropes=random_tropes)

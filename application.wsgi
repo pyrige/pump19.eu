@@ -38,9 +38,12 @@ application = SessionMiddleware(app, session_opts)
 
 # misc routes
 app.route("/", "GET", routes.misc.home)
-app.route("/bingo", "GET", routes.misc.bingo)
 app.route("/commands", "GET", routes.misc.commands)
 app.route("/contribute", "GET", routes.misc.contribute)
+
+# bingo routes
+app.route("/bingo", "GET", routes.bingo.main)
+app.route("/bingo/<show>", "GET", routes.bingo.show)
 
 # codefall routes
 app.route("/codefall", "GET", routes.codefall.main)

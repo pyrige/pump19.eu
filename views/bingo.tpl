@@ -1,22 +1,15 @@
-<%
-  bg_toggler = """
-  $(".bingo-square").click(function() {
-    $(this).toggleClass("stamped");
-  })
-  """
-
-  rebase("base.tpl", active="bingo", extra_script=bg_toggler)
-%>
+% rebase("base.tpl", active="bingo")
 <div class="row">
   <div class="small-12 columns">
-    <h1><i class="fa fa-snapchat-ghost"></i>&nbsp;Let's Nope Trope Bingo</h1>
+    <h1><i class="fa fa-puzzle-piece"></i>&nbsp;Trope Bingo</h1>
   </div>
 </div>
 <div class="row">
   <div class="small-11 small-centered columns">
     <p>
-      This is your very own interactive <em>Let's Nope</em> Trope Bingo card.
-      It is randomly generated each time you load this page.
+      These are your very own interactive <strong>Trope Bingo</strong> card.
+      You can choose between tropes that are common cause for frustration in either <em>Let's Nope</em> and <em>Watch &amp; Play</em> (or both).
+      The cards are randomly generated each time you load the respective page.
       Be aware that your progress does not carry over should you happen to reload.
     </p>
   </div>
@@ -32,17 +25,25 @@
         <h1>{{letter}}</h1>
       </li>
       % end
-      % for trope in tropes:
       <li class="bingo-square text-center">
-        {{trope}}
       </li>
-      % end
     </ul>
     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 
-  <div class="small-8 small-centered columns">
-    <a href="#" data-reveal-id="bingo-card" class="button radius expand">Show my card</a>
+  <div class="small-10 small-centered columns">
+    <ul class="even-2 stack-for-small radius button-group">
+      <li>
+        <a class="button" href="/bingo/leno" data-reveal-id="bingo-card" data-reveal-ajax=true>
+          <i class="fa fa-key"></i>&nbsp;Let's Nope
+        </a>
+      </li>
+      <li>
+        <a class="button" href="/bingo/wap" data-reveal-id="bingo-card" data-reveal-ajax=true>
+          <i class="fa fa-meh-o"></i>&nbsp;Watch &amp; Play
+        </a>
+      </li>
+    </ul>
   </div>
 </div>
 <div class="row">
