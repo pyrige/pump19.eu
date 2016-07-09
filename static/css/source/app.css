@@ -1,5 +1,14 @@
+.bingo-square
+{
+  border: 1px dashed grey;
+  width: 18vmin;
+  height: 18vmin;
+}
+
 .bingo-square.stamped
 {
   background-image: url(/static/img/spoopstamp.png);
+  background-position: center;
+  background-repeat: no-repeat;
   background-size: contain;
 }
