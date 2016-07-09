@@ -14,8 +14,6 @@ from bottle import request, template
 from json import load as json_loadf
 from os import environ
 
-SCROBBLE_URL = environ["SCROBBLE_URL"]
-
 with open("commands.json") as cmd_fp:
     cmd_dict = json_loadf(cmd_fp)
 
