@@ -27,7 +27,10 @@
             <li{{!" class=\"active\"" if get("active") == "codefall" else ""}}>
               <a href="/codefall"><i class="fa fa-gift"></i>&nbsp;Codefall</a>
             </li>
-            <li>
+            <li{{!" class=\"active\"" if get("active") == "bingo" else ""}}>
+              <a href="/bingo"><i class="fa fa-snapchat-ghost"></i>&nbsp;Trope Bingo</a>
+            </li>
+            <li{{!" class=\"active\"" if get("active") == "contribute" else ""}}>
               <a href="/contribute"><i class="fa fa-code-fork"></i>&nbsp;Contribute</a>
             </li>
           </ul>
@@ -72,5 +75,11 @@
 
     <!-- JS components -->
     <script src="/static/js/min.js"></script>
+    % extra_script = get("extra_script")
+    % if extra_script:
+    <script type="text/javascript">
+      {{! extra_script}}
+    </script>
+    % end
   </body>
 </html>
