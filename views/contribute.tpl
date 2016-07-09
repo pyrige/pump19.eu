@@ -1,4 +1,4 @@
-% rebase("base.tpl")
+% rebase("base.tpl", active="contribute")
 <div class="row">
   <div class="small-12 columns">
     <h1><i class="fa fa-code-fork"></i>&nbsp;Contribute to Pump19</h1>
