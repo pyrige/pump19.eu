@@ -44,6 +44,11 @@
     "url": "http://www.last.fm/"
   },
   {
+    "trigger": "\\bingo",
+    "desc": "Post the link to our interactive Trope Bingo cards.",
+    "url": "http://pump19.eu/bingo"
+  },
+  {
     "trigger": "\\help",
     "desc": "Post the link to Pump19's list of supported commands.",
     "url": "http://pump19.eu/commands"
