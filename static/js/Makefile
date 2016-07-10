@@ -5,7 +5,6 @@ INPUT_FILES = $(SOURCE_DIR)/vendor/modernizr$(SUFFIX) \
               $(SOURCE_DIR)/vendor/jquery$(SUFFIX) \
               $(SOURCE_DIR)/foundation/foundation$(SUFFIX) \
               $(SOURCE_DIR)/foundation/foundation.abide$(SUFFIX) \
-              $(SOURCE_DIR)/foundation/foundation.reveal$(SUFFIX) \
               $(SOURCE_DIR)/foundation/foundation.topbar$(SUFFIX) \
               $(SOURCE_DIR)/app$(SUFFIX)
 
