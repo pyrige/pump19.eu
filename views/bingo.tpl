@@ -32,12 +32,17 @@
 </div>
 <div class="row">
   <div class="small-11 small-centered columns">
-    <h3>Contribute</h3>
+    <h3><i class="fa fa-medkit"></i>&nbsp;Caveat Emptor</h3>
     <p>
-      If you think we're missing some tropes, feel free to
+      They might not look like it but the bingo cards use rather recent web wizardy.
+      Consequently, they probably won't work on every device/on every browser.
+      Should you happen to be or know a certified <em>Web Wizard</em>, please get in touch.
+    </p>
+    <p>
+      The same applies if you think we're missing some tropes or
+      you just want to help cleaning up those we already have.
+      Either way, feel free to
       <a href="/contribute"><i class="fa fa-code-fork"></i>&nbsp;contribute</a>.
-      Either open a new issue or send us a pull request on
-      <a href="https://github.com/"><i class="fa fa-github"></i>&nbsp;GitHub</a>.
     </p>
   </div>
 </div>
