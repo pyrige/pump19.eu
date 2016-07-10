@@ -116,7 +116,7 @@ html, body, #viewport
  * This allows for a 10% header.
  * The game itself is 85x85 with 17x17 squares.
  */
-@media screen and (orientation: portrait)
+@media all and (orientation: portrait)
 {
   #bingo-card
   {
@@ -142,7 +142,7 @@ html, body, #viewport
   }
 } /* orientation: portrait */
 
-@media screen and (orientation: landscape)
+@media all and (orientation: landscape)
 {
   #bingo-card
   {
