@@ -15,18 +15,15 @@
   </div>
 </div>
 <div class="row">
-  <div id="bingo-card-modal" class="reveal-modal full" data-reveal role="dialog">
-  </div>
-
   <div class="small-10 small-centered columns">
     <ul class="even-2 stack-for-small radius button-group">
       <li>
-        <a class="button" href="/bingo/leno" data-reveal-id="bingo-card-modal" data-reveal-ajax=true>
+        <a class="button" href="/bingo/leno">
           <i class="fa fa-key"></i>&nbsp;Let's Nope
         </a>
       </li>
       <li>
-        <a class="button" href="/bingo/wap" data-reveal-id="bingo-card-modal" data-reveal-ajax=true>
+        <a class="button" href="/bingo/wap">
           <i class="fa fa-meh-o"></i>&nbsp;Watch &amp; Play
         </a>
       </li>
