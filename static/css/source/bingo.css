@@ -167,3 +167,11 @@ html, body, #viewport
     width: 10vh;
   }
 } /* orientation: landscape */
+
+@media print
+{
+  #bingo-game .bingo-row .bingo-square
+  {
+    border: 1px solid black;
+  }
+}
