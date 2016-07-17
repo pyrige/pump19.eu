@@ -39,6 +39,12 @@
       Should you happen to be or know a certified <em>Web Wizard</em>, please get in touch.
     </p>
     <p>
+      As you have probably noticed, the bingo cards look somewhat bland right now.
+      If you happen to exhibit an artistic streak, we would appreciate some custom artwork.
+      While you probably can figure out the dimensions on your own, we provide template for both the
+      <a href="/static/img/bingo_card_template_v.png">vertical</a> and
+      <a href="/static/img/bingo_card_template_h.png">horizontal</a> layout.
+    <p>
       The same applies if you think we're missing some tropes or
       you just want to help cleaning up those we already have.
       Either way, feel free to
