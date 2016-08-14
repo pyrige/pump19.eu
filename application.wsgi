@@ -56,11 +56,6 @@ app.route("/login", "GET", routes.auth.login)
 app.route("/logout", "GET", routes.auth.logout)
 app.route("/oauth", "GET", routes.auth.oauth)
 
-# quote routes
-app.route("/quotes/", "GET", partial(routes.quotes.main, 0))
-app.route("/quotes/<page:int>", "GET", routes.quotes.main)
-app.route("/quotes/search", ("GET", "POST"), routes.quotes.search)
-
 
 if __name__ == "__main__":
     # we start a local dev server when this file is executed as a script
