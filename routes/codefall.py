@@ -184,4 +184,4 @@ def show(secret, db):
 
     return template("codefall_show", session=session,
                     subtitle="Codefall",
-                    entry=entry, rc_public=RECAPTCHA_PUBLIC)
+                    entry=entry, rc_sitekey=RECAPTCHA_PUBLIC)

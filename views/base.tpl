@@ -75,8 +75,11 @@
 
     <!-- JS components -->
     <script src="/static/js/min.js"></script>
-    % if defined("js_inject"):
-      {{! js_inject }}
-    % end
+    <%
+      rc_sitekey = get("rc_sitekey")
+      if rc_sitekey:
+        include("captcha_js.tpl", sitekey=rc_sitekey)
+      end
+    %>
   </body>
 </html>
