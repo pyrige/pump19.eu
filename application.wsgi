@@ -49,7 +49,7 @@ app.route("/bingo/<show>", "GET", routes.bingo.show)
 app.route("/codefall", "GET", routes.codefall.main)
 app.route("/codefall/<secret:int>", "GET", routes.codefall.show)
 app.route("/codefall/add", "POST", routes.codefall.add)
-app.route("/codefall/claim/<secret:int>", "GET", routes.codefall.claim)
+app.route("/codefall/claim/<secret:int>", "POST", routes.codefall.claim)
 
 # auth routes
 app.route("/login", "GET", routes.auth.login)

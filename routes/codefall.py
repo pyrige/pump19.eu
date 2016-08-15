@@ -15,9 +15,15 @@ from os import environ
 from skippy import Skippy
 from sqlalchemy.exc import IntegrityError
 
+import requests
+
 CODEFALL_CIPHER = Skippy(environ["CODEFALL_SECRET"].encode())
 CODEFALL_CLAIM_URL = environ["CODEFALL_CLAIM_URL"]
 CODEFALL_SHOW_URL = environ["CODEFALL_SHOW_URL"]
+
+RECAPTCHA_PUBLIC = environ["RECAPTCHA_PUBLIC"]
+RECAPTCHA_SECRET = environ["RECAPTCHA_SECRET"]
+RECAPTCHA_VERIFY_URL = environ["RECAPTCHA_VERIFY_URL"]
 
 
 def main(db):
@@ -103,6 +109,26 @@ def claim(secret, db):
         return template("codefall_claim", session=session,
                         subtitle="Codefall")
 
+    # ask mommy google whether the CAPTCHA was solved
+    rc_response = request.forms.getunicode("g-recaptcha-response")
+    verify_opts = {
+        "secret": RECAPTCHA_SECRET,
+        "response": rc_response
+    }
+    try:
+        verify_request = requests.post(
+                RECAPTCHA_VERIFY_URL, params=verify_opts,
+                timeout=5)
+        verify_data = verify_request.json()
+    except Exception:
+        return template("codefall_claim", session=session,
+                        subtitle="Codefall")
+
+    is_human = verify_data.get("success")
+    if not is_human:
+        return template("codefall_claim", session=session,
+                        subtitle="Codefall")
+
     claim_code_qry = """UPDATE codefall
                         SET claimed = True
                         WHERE
@@ -157,4 +183,5 @@ def show(secret, db):
              "code_type": code.code_type}
 
     return template("codefall_show", session=session,
-                    subtitle="Codefall", entry=entry)
+                    subtitle="Codefall",
+                    entry=entry, rc_public=RECAPTCHA_PUBLIC)

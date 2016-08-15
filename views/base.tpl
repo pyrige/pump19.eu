@@ -75,5 +75,8 @@
 
     <!-- JS components -->
     <script src="/static/js/min.js"></script>
+    % if defined("js_inject"):
+      {{! js_inject }}
+    % end
   </body>
 </html>
