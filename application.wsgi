@@ -6,7 +6,7 @@ application.wsgi
 
 The "Pump19 Twitch Chat Golem" bottle application.
 
-Copyright (c) 2015 Twisted Pear <pear at twistedpear dot at>
+Copyright (c) 2016 Twisted Pear <tp at pump19 dot eu>
 See the file LICENSE for copying permission.
 """
 

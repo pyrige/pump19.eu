@@ -7,7 +7,7 @@ routes/__init__.py
 Entry point for route handling in the "Pump19 Twitch Chat Golem" bottle
 application.
 
-Copyright (c) 2015 Twisted Pear <pear at twistedpear dot at>
+Copyright (c) 2016 Twisted Pear <tp at pump19 dot eu>
 See the file LICENSE for copying permission.
 """
 
@@ -15,5 +15,6 @@ import routes.auth
 import routes.bingo
 import routes.codefall
 import routes.misc
+import routes.pubsub
 
-__all__ = ["auth", "bingo", "codefall", "misc"]
+__all__ = ["auth", "bingo", "codefall", "misc", "pubsub"]
