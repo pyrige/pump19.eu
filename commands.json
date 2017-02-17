@@ -1,55 +1,45 @@
 [
   {
-    "trigger": ["\\latest", "\\latest video"],
-    "desc": "Post the latest video from the LRR video archive.",
-    "url": "http://loadingreadyrun.com/videos/archive"
-  },
-  {
-    "trigger": "\\latest podcast",
-    "desc": "Post the latest podcast from the LRR podcast archive.",
-    "url": "http://loadingreadyrun.com/lrrcasts/archive"
-  },
-  {
-    "trigger": "\\latest broadcast",
+    "trigger": ["?latest", "?latest broadcast"],
     "desc": "Post the latest broadcast from the LRR Twitch.tv channel.",
     "url": "http://www.twitch.tv/loadingreadyrun/profile/past_broadcasts"
   },
   {
-    "trigger": "\\latest highlight",
+    "trigger": "?latest highlight",
     "desc": "Post the latest highlight from the LRR Twitch.tv channel.",
     "url": "http://www.twitch.tv/loadingreadyrun/profile"
   },
   {
-    "trigger": "\\18gac",
-    "desc": "Query the 18th most watched game on Twitch.tv."
+    "trigger": ["?18gac [count:int]", "?🎮 [count:int]"],
+    "desc": "Query the 18th +count most watched game on Twitch.tv."
   },
   {
-    "trigger": "\\roll [[<count:int>]d<sides:int>]",
+    "trigger": ["?roll [[count:int]d<sides:int>]", "?🎲 [[count:int]d<sides:int>]"],
     "desc": "Simulate a number of n-sides dice rolls.",
-    "example": "\\roll 3d20"
+    "example": "?roll 3d20"
   },
   {
-    "trigger": "\\codefall [limit:int]",
+    "trigger": ["?codefall [limit:int]", "?🎁 [limit:int]"],
     "desc": "Post up to 3 of your unclaimed codefall entries.",
     "url": "http://pump19.eu/codefall"
   },
   {
-    "trigger": "\\lrrftb",
-    "desc": "Post the URL and current status of the modded LRR Minecraft server."
+    "trigger": "?lrrmc [vanilla|ftb]",
+    "desc": "Post the URL and current status of a LRR community Minecraft server."
   },
   {
-    "trigger": "\\last.fm <user:str>",
+    "trigger": ["?last.fm <user:str>", "?🎵 <user:str>"],
     "desc": "Query Last.fm user information for the specified user name.",
-    "example": "\\last.fm Spoopifer",
+    "example": "?last.fm Spoopifer",
     "url": "http://www.last.fm/"
   },
   {
-    "trigger": "\\bingo",
+    "trigger": "?bingo",
     "desc": "Post the link to our interactive Trope Bingo cards.",
     "url": "http://pump19.eu/bingo"
   },
   {
-    "trigger": "\\help",
+    "trigger": ["?help", "?🚑"],
     "desc": "Post the link to Pump19's list of supported commands.",
     "url": "http://pump19.eu/commands"
   }
