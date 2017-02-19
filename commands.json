@@ -24,7 +24,7 @@
     "url": "http://pump19.eu/codefall"
   },
   {
-    "trigger": "?lrrmc [vanilla|ftb]",
+    "trigger": ["?lrrmc [vanilla|ftb]", "?⛏️ [vanilla|ftb]"],
     "desc": "Post the URL and current status of a LRR community Minecraft server."
   },
   {
