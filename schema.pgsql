@@ -7,3 +7,10 @@ CREATE TABLE IF NOT EXISTS codefall
   user_name TEXT NOT NULL,
   claimed BOOLEAN NOT NULL DEFAULT FALSE
 );
+
+CREATE TABLE IF NOT EXISTS gac_history
+(
+  stream_date DATE NOT NULL,
+  game_id INTEGER NOT NULL,
+  game_name TEXT NOT NULL
+);
