@@ -15,6 +15,5 @@ import routes.auth
 import routes.bingo
 import routes.codefall
 import routes.misc
-import routes.pubsub
 
-__all__ = ["auth", "bingo", "codefall", "misc", "pubsub"]
+__all__ = ["auth", "bingo", "codefall", "misc"]
