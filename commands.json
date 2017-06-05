@@ -1,6 +1,6 @@
 [
   {
-    "trigger": "?latest",
+    "trigger": "?vod",
     "desc": "Post the latest broadcast from the LRR Twitch.tv channel.",
     "url": "https://www.twitch.tv/loadingreadyrun/videos/past-broadcasts"
   },
