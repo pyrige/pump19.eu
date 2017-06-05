@@ -30,7 +30,7 @@ gulp.task('sass', function(cb) {
     gulp.src(['./sass/app.sass', './sass/bingo.sass']),
     sass({includePaths: sassPaths}),
     prefix(),
-    //cssmin(),
+    cssmin(),
     gulp.dest('./static/css')
   ], cb);
 });
