@@ -1,62 +1,42 @@
 % rebase("base.tpl", active="commands")
-<div class="row">
-  <div class="small-12 columns">
-    <h1><i class="fa fa-keyboard-o"></i>&nbsp;Commands</h1>
-  </div>
-</div>
+<main class="row align-center">
+  <section class="small-11 column">
+    <h1>
+      <i class="fa fa-keyboard-o"></i>
+      Commands
+    </h1>
+    <p>
+      Here you can find a <small>mostly</small> complete and <small>probably</small> accurate list of commands supported by Pump19.
+      If you find the documentation lacking or think we could use additional commands, feel free to <a href="/contribute"><i class="fa fa-medkit"></i>&nbsp;contribute</a> feature and pull requests.
+    </p>
+  </section>
 % for command in commands:
-<div class="row">
-  <div class="small-11 small-centered columns">
-    <div class="row">
-      <div class="small-12 columns">
-      % if isinstance(command["trigger"], str):
-        <kbd>{{command["trigger"]}}</kbd>
-      % else:
-        % for trigger in command["trigger"]:
-        <kbd>{{trigger}}</kbd>
-        % end
-      % end
-      % if "modonly" in command:
-        <div class="right radius warning label">Moderator</div>
-      % else:
-        <div class="right radius success label">Everyone</div>
-      % end
-      </div>
-    </div>
-    <div class="row">
-      <div class="small-12 columns">
-        {{command["desc"]}}
-      % if "url" in command:
-        <a href="{{command["url"]}}" class="right">
-          <i class="fa fa-external-link"></i>&nbsp;Link
-        </a>
-      % end
-      </div>
-    </div>
-  % if "example" in command:
-    <div class="row hide-for-small-only">
-      <div class="small-12 columns">
-        <div class="radius callout panel clearfix">
-        % if isinstance(command["example"], str):
-          <span class="right radius label">Example</span>
-          <div>
-            <span class="round info label"><i class="fa fa-terminal"></i></span>
-            <kbd>{{command["example"]}}</kbd>
-          </div>
-        % else:
-          <span class="right radius label">Examples</span>
-          % for example in command["example"]:
-          <div>
-            <span class="round info label"><i class="fa fa-terminal"></i></span>
-            <kbd>{{example}}</kbd>
-          </div>
-          % end
-        % end
-        </div>
-      </div>
-    </div>
+  <section class="small-10 column callout clearfix">
+  % if "url" in command:
+    <a href="{{command["url"]}}" class="secondary button float-right">
+      <i class="fa fa-external-link"></i>&nbsp;Link
+    </a>
   % end
-    <div class="row"><div class="small-12 columns"><hr></div></div>
-  </div>
-</div>
-% end
+    <h6>
+      <i class="fa fa-info"></i>
+      {{command["desc"]}}
+    </h6>
+    <ul>
+    % if isinstance(command["trigger"], str):
+      <li><code>{{command["trigger"]}}</code></li>
+    % else:
+      % for trigger in command["trigger"]:
+      <li><code>{{trigger}}</code></li>
+      % end
+    % end
+    </ul>
+  % if "example" in command:
+    <span class="secondary label">
+      Example
+      <i class="fa fa-terminal"></i>
+      <kbd>{{command["example"]}}</kbd>
+    </span>
+  % end
+  </section>
+%end
+</main>

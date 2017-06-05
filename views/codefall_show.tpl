@@ -1,37 +1,37 @@
 % rebase("base.tpl", active="codefall")
+<main class="row align-center">
 % if defined("entry"):
-<div class="row">
-  <div class="small-12 columns">
-    <h1><i class="fa fa-gift"></i>&nbsp;Claim Code</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="small-11 small-centered columns">
-    <p>You're just one step away from claiming the following code:</p>
+  <section class="small-11 column">
+    <h1>
+      <i class="fa fa-gift"></i>
+      Claim Code
+    </h1>
+    <p>
+      You're just one step away from claiming the following code:
+    </p>
+  </section>
+  <section class="small-11 column">
     <form id="captcha-form" action="{{entry["claim_url"]}}" method="POST" accept-charset="utf-8">
       <div class="callout panel text-center">
         <h1>
-          <i class="fa fa-gamepad"></i>&nbsp;{{entry["description"]}}
+          <i class="fa fa-gamepad"></i>
+          {{entry["description"]}}
           <small>{{entry["code_type"]}}</small>
         </h1>
-
         <div id="captcha" style="display: inline-block;"></div>
       </div>
     </form>
-  </div>
-</div>
+  </section>
 % else:
-<div class="row">
-  <div class="small-12 columns">
-    <h1><i class="fa fa-frown-o"></i>&nbsp;Already Claimed</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="small-11 small-centered columns">
+  <section class="small-11 column">
+    <h1>
+      <i class="fa fa-frown-o"></i>
+      Already Claimed
+    </h1>
     <p>
       Sorry, the code you were trying to view is already claimed by someone else.
       Better luck next time!
     </p>
-  </div>
-</div>
+  </section>
 % end
+</main>

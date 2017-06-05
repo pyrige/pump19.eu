@@ -1,11 +1,10 @@
-% rebase("base.tpl")
-<div class="row">
-  <div class="small-12 columns">
-    <h1><i class="fa fa-twitch"></i>&nbsp;Pump19 Twitch Chat Golem</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="small-11 small-centered columns">
+% rebase("base.tpl", active="home")
+<main class="row align-center">
+  <section class="small-11 columns">
+    <h1>
+      <i class="fa fa-twitch"></i>
+      Pump19 Twitch Chat Golem
+    </h1>
     <p>
       Pump19 is an IRC and Twitch.tv chat golem (more commonly known as a bot) doing
       <a href="/commands">menial work</a> in the
@@ -13,7 +12,9 @@
       It provides a few additional services not currently supported by the otherwise excellent and
       certainly more crucial <a href="http://lrrbot.mrphlip.com/">LRRbot</a>.
     </p>
-    <h2>Why it is called &quot;Pump19&quot;</h2>
+  </section>
+  <section class="small-11 columns">
+    <h2>Why is it called &quot;Pump19&quot;?</h2>
     <p>
       The name is a reference to Terry Pratchett's Discworld novel <em>Going Postal</em>.
       Prior to <a href="https://en.wikipedia.org/wiki/Golems_(Discworld)">golems</a> being recognized as
@@ -36,5 +37,5 @@
       stuck performing menial tasks.
       For that, we'd like to apologize in advance to our future golem (and robot) overlords.
     </p>
-  </div>
-</div>
+  </section>
+</main>

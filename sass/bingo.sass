@@ -1,0 +1,137 @@
+html,
+body,
+#viewport
+  /* Center with flexbox {{{ */
+  display: flex
+  flex-direction: row
+  justify-content: center
+  align-items: center
+  /* Center with flexbox }}} */
+
+  /* Make viewport use all the space {{{ */
+  width: 100vw
+  height: 100vh
+  margin: 0
+  padding: 0
+  /* Make viewport use all the space }}} */
+
+  /* Common options {{{ */
+  font-family: sans-serif
+  text-align: center
+  user-select: none
+  /* Common options }}} */
+
+  background-color: #9098A8;
+
+#bingo-card
+  display: flex
+  /* Size and flex-direction depend on orientation. */
+
+  background-color: #202F4C
+
+#bingo-header
+  display: flex;
+  justify-content: space-around
+  /* Size and flex-direction depend on orientation. */
+
+  font-size: 8vmin
+  color: white
+
+  .bingo-letter
+    display: flex
+    justify-content: center
+    align-items: center
+
+#bingo-game
+  display: flex
+  flex-direction: column
+  justify-content: space-around
+
+  width: 85vmin
+  height: 85vmin
+
+  .bingo-row
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    align-items: center
+
+    height: 17vmin
+    width: 85vmin
+
+    color: #000000
+
+    .bingo-square
+      display: flex
+      justify-content: center
+      align-items: center
+
+      height: 15vmin
+      width: 15vmin
+
+      background-color: #69748B
+      cursor: cell
+
+      font-size: 2vmin
+      font-variant: small-caps
+      font-weight: bold
+
+      @media print
+        border: 1px solid black
+
+      .trope
+        overflow: hidden
+        text-overflow: ellipsis
+
+    .bingo-square.stamped
+      background-color: #D0B198
+      background-image: url(/static/img/spoopstamp.png)
+      background-position: center
+      background-repeat: no-repeat
+      background-size: contain
+
+/* Orientation determines whether header
+ * is up or to the left of the game.
+ *
+ * The card is always 95%x85% (or 85%x95%).
+ * This allows for a 10% header.
+ * The game itself is 85x85 with 17x17 squares.
+ */
+@media all and (orientation: portrait)
+  #bingo-card
+    /* puts header on the top */
+    flex-direction: column
+
+    width: 85vw
+    height: 95vw
+
+  #bingo-header
+    flex-direction: row
+
+    height: 10vw
+    width: 85vw
+
+    .bingo-letter
+      width: 17vw;
+      height: 10vw;
+/* orientation: portrait */
+
+@media all and (orientation: landscape)
+  #bingo-card
+    /* puts header on the left */
+    flex-direction: row
+
+    height: 85vh
+    width: 95vh
+
+  #bingo-header
+    flex-direction: column
+
+    width: 10vh
+    height: 85vh
+
+    .bingo-letter
+      height: 17vh;
+      width: 10vh;
+/* orientation: landscape */
+

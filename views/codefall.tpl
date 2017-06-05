@@ -1,19 +1,26 @@
 % rebase("base.tpl", active="codefall")
-<div class="row">
-  <div class="small-12 columns">
-    <h1><i class="fa fa-gift"></i>&nbsp;Codefall</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="small-11 small-centered columns">
-    <p>On this page you can <strong>add new keys and links</strong> for codefall and view your claimed and unclaimed codefall entries.</p>
+<main class="row align-center">
+  <section class="small-11 column">
+    <h1>
+      <i class="fa fa-gift"></i>
+      Codefall
+    </h1>
+    <p>
+      On this page you can <strong>add new keys and links</strong> for codefall and view your claimed and unclaimed codefall entries.
+    </p>
 % if session.get("logged_in", False):
-    <h3>Unclaimed Entries</h3>
+  </section>
+  <section class="small-11 column">
+    <h3>
+      Unclaimed Entries
+    </h3>
   % if not len(unclaimed):
-    <p>You don't have any unclaimed entries.</p>
+    <p>
+      You don't have any unclaimed entries.
+    </p>
   % else:
     % for entry in unclaimed:
-    <div class="radius callout panel">
+    <div class="callout">
       <h4>
         <i class="fa fa-gift"></i>
         <strong>{{entry["description"]}}</strong>
@@ -28,10 +35,11 @@
     </div>
     % end
   % end
-
+  </section>
+  <section class="small-11 column">
     <h3>Add a New Entry</h3>
     <form action="/codefall/add" method="POST" accept-charset="utf-8" data-abide>
-      <fieldset>
+      <fieldset class="fieldset">
         <legend>New Codefall Entry</legend>
 
         <div class="desc-field">
@@ -39,8 +47,10 @@
             <i class="fa fa-info"></i>&nbsp;Description
             <small>required</small>
             <input required type="text" name="description" id="codefallDescription" placeholder="Game of the Year">
+            <span class="form-error">
+              Please supply a short description (e.g. the game's title).
+            </span>
           </label>
-          <small class="error">Please supply a short description (e.g. the game's title).</small>
         </div>
 
         <div class="code-field">
@@ -48,8 +58,10 @@
             <i class="fa fa-link"></i>&nbsp;Link or Key
             <small>required</small>
             <input required type="text" name="code" id="codefallKeyLink" placeholder="S3CR3T-D0WNL04D-K3Y">
+            <span class="form-error">
+              Please specify the actual link or key people can use to redeem this game.
+            </span>
           </label>
-          <small class="error">Please specify the actual link or key people can use to redeem this game.</small>
         </div>
 
         <div class="type-field">
@@ -64,45 +76,49 @@
               <option>Desura</option>
               <option>Other</option>
             </select>
+            <span class="form-error">
+              Please specify what kind of codefall entry this is.
+            </span>
           </label>
-          <small class="error">Please specify what kind of codefall entry this is.</small>
         </div>
       </fieldset>
 
       <div class="row">
-        <div class="small-4 columns">
-          <button type="reset" class="radius secondary expand button">
+        <div class="small-4 column">
+          <button type="reset" class="secondary expanded button">
             <i class="fa fa-times"></i>
             Reset
           </button>
         </div>
-        <div class="small-8 columns">
-          <button type="submit" class="radius success expand button">
+        <div class="small-8 column">
+          <button type="submit" class="success expanded button">
             <i class="fa fa-check"></i>
             Submit
           </button>
         </div>
       </div>
     </form>
-
+  </section>
+  <section class="small-11 column">
     <h3>Claimed Entries</h3>
   % if not len(claimed):
     <p class="text-info">You don't have any claimed entries.</p>
   % else:
-    <ul class="square">
+    <ul class="callout" style="max-height: 300px; overflow: auto;">
       % for entry in claimed:
       <li>
         {{entry["description"]}}
-        <span class="radius info label">{{entry["code_type"]}}</span>
+        <span class="secondary label">{{entry["code_type"]}}</span>
       </li>
       % end
     </ul>
   % end
+  </section>
 % else:
     <p>
       You need to <a href="/login"><i class="fa fa-sign-in"></i>&nbsp;log in</a> if you want to use
       this page.
     </p>
 % end
-  </div>
-</div>
+  </section>
+</main>

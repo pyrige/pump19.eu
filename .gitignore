@@ -6,3 +6,9 @@ venv/
 
 # Python cache
 __pycache__/
+
+# node.js modules
+node_modules/
+
+# yarn stuff
+.yarnclean

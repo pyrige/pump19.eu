@@ -1,12 +1,11 @@
 % rebase("base.tpl", active="login")
+<main class="row align-center">
 % if session.get("logged_in", False):
-<div class="row">
-  <div class="small-12 columns">
-    <h1><i class="fa fa-twitch"></i>&nbsp;Connected with Twitch.tv</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="small-11 small-centered columns">
+  <section class="small-11 columns">
+    <h1>
+      <i class="fa fa-twitch"></i>
+      Connected with Twitch.tv
+    </h1>
     <p>
       You are now logged in as <strong>{{session.get("user_name")}}</strong>.
       In the unlikely case that this isn't you, please
@@ -19,16 +18,13 @@
       If you do not wish to grant us access to that kind of information, you may
       <a href="/logout"><i class="fa fa-sign-out"></i>&nbsp;log out</a> now.
     </p>
-  </div>
-</div>
+  </section>
 % else:
-<div class="row">
-  <div class="small-12 columns">
-    <h1><i class="fa fa-sign-in"></i>&nbsp;Connect with Twitch.tv</h1>
-  </div>
-</div>
-<div class="row">
-  <div class="small-11 small-centered columns">
+  <section class="small-11 columns">
+    <h1>
+      <i class="fa fa-sign-in"></i>
+      Connect with Twitch.tv
+    </h1>
     <p>
       Granting us <strong>minimal</strong> access to your <a href="https://twitch.tv">Twitch.tv</a>
       account will allow us to see your Twitch user name and lets us provide additional functionality
@@ -48,6 +44,6 @@
       <input type="hidden" name="state" value="{{session.id}}">
       <input type="image" alt="Connect with Twitch.tv" src="/static/img/twitch_connect.png">
     </form>
-  </div>
-</div>
+  </section>
 % end
+</main>
