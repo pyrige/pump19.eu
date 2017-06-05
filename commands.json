@@ -1,17 +1,17 @@
 [
   {
-    "trigger": ["?latest", "?latest broadcast"],
+    "trigger": "?latest",
     "desc": "Post the latest broadcast from the LRR Twitch.tv channel.",
-    "url": "http://www.twitch.tv/loadingreadyrun/profile/past_broadcasts"
+    "url": "https://www.twitch.tv/loadingreadyrun/videos/past-broadcasts"
   },
   {
-    "trigger": "?latest highlight",
-    "desc": "Post the latest highlight from the LRR Twitch.tv channel.",
-    "url": "http://www.twitch.tv/loadingreadyrun/profile"
+    "trigger": "?clip",
+    "desc": "Post the top clip from the LRR Twitch.tv channel.",
+    "url": "https://www.twitch.tv/loadingreadyrun/clips"
   },
   {
     "trigger": ["?18gac [count:int]", "?🎮 [count:int]"],
-    "desc": "Query the 18th +count most watched game on Twitch.tv."
+    "desc": "Query the 18th +count most watched game on Twitch.tv. Previously played games are omitted."
   },
   {
     "trigger": ["?roll [[count:int]d<sides:int>]", "?🎲 [[count:int]d<sides:int>]"],
@@ -21,7 +21,7 @@
   {
     "trigger": ["?codefall [limit:int]", "?🎁 [limit:int]"],
     "desc": "Post up to 3 of your unclaimed codefall entries.",
-    "url": "http://pump19.eu/codefall"
+    "url": "https://pump19.eu/codefall"
   },
   {
     "trigger": ["?lrrmc [vanilla|ftb]", "?⛏️ [vanilla|ftb]"],
@@ -31,16 +31,16 @@
     "trigger": ["?last.fm <user:str>", "?🎵 <user:str>"],
     "desc": "Query Last.fm user information for the specified user name.",
     "example": "?last.fm Spoopifer",
-    "url": "http://www.last.fm/"
+    "url": "https://www.last.fm/"
   },
   {
     "trigger": "?bingo",
     "desc": "Post the link to our interactive Trope Bingo cards.",
-    "url": "http://pump19.eu/bingo"
+    "url": "https://pump19.eu/bingo"
   },
   {
     "trigger": ["?help", "?🚑"],
     "desc": "Post the link to Pump19's list of supported commands.",
-    "url": "http://pump19.eu/commands"
+    "url": "https://pump19.eu/commands"
   }
 ]
