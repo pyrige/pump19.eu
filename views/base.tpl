@@ -14,53 +14,49 @@
     <header class="expanded row align-center">
       <nav class="column top-bar">
         <div class="top-bar-left">
-          <ul class="menu icon-top">
+          <ul class="expanded menu icon-top text-center">
             <li{{!" class=\"active\"" if get("active") == "home" else ""}}>
-              <a href="/">
-                <i class="fa fa-twitch"></i>
-                <span>Pump19</span>
+              <a href="/" title="Pump19">
+                <i class="fa fa-2x fa-twitch"></i>
+                <span class="show-for-medium">Pump19</span>
               </a>
             </li>
             <li{{!" class=\"active\"" if get("active") == "commands" else ""}}>
-              <a href="/commands">
-                <i class="fa fa-keyboard-o"></i>
-                <span>Commands</span>
+              <a href="/commands" title="Commands">
+                <i class="fa fa-2x fa-keyboard-o"></i>
+                <span class="show-for-medium">Commands</span>
               </a>
             </li>
             <li{{!" class=\"active\"" if get("active") == "codefall" else ""}}>
-              <a href="/codefall">
-                <i class="fa fa-gift"></i>
-                <span>Codefall</span>
+              <a href="/codefall" title="Codefall">
+                <i class="fa fa-2x fa-gift"></i>
+                <span class="show-for-medium">Codefall</span>
               </a>
             </li>
             <li{{!" class=\"active\"" if get("active") == "bingo" else ""}}>
-              <a href="/bingo">
-                <i class="fa fa-puzzle-piece"></i>
-                <span>Trope Bingo</span>
+              <a href="/bingo" title="Trope Bingo">
+                <i class="fa fa-2x fa-puzzle-piece"></i>
+                <span class="show-for-medium">Trope Bingo</span>
               </a>
             </li>
             <li{{!" class=\"active\"" if get("active") == "contribute" else ""}}>
-              <a href="/contribute">
-                <i class="fa fa-medkit"></i>
-                <span>Contribute</span>
+              <a href="/contribute" title="Contribute">
+                <i class="fa fa-2x fa-medkit"></i>
+                <span class="show-for-medium">Contribute</span>
               </a>
             </li>
-          </ul>
-        </div>
-        <div class="top-bar-right">
-          <ul class="menu icon-top">
           % if session.get("logged_in", False):
             <li>
-              <a href="/logout">
-                <i class="fa fa-sign-out"></i>
-                <span>Log out</span>
+              <a href="/logout" title="Log out">
+                <i class="fa fa-2x fa-sign-out"></i>
+                <span class="show-for-medium">Log out</span>
               </a>
             </li>
           % else:
             <li{{!" class=\"active\"" if get("active") == "login" else ""}}>
-              <a href="/login">
-                <i class="fa fa-sign-in"></i>
-                <span>Log in</span>
+              <a href="/login" title="Log in">
+                <i class="fa fa-2x fa-sign-in"></i>
+                <span class="show-for-medium">Log in</span>
               </a>
             </li>
           % end
