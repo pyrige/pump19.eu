@@ -6,7 +6,7 @@ routes/codefall.py
 
 Codefall routes for the "Pump19 Twitch Chat Golem" bottle application.
 
-Copyright (c) 2015 Twisted Pear <pear at twistedpear dot at>
+Copyright (c) 2017 Twisted Pear <pear at twistedpear dot at>
 See the file LICENSE for copying permission.
 """
 
