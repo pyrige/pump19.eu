@@ -11,7 +11,7 @@
     </p>
   </section>
 % for command in commands:
-  <section class="small-10 column callout clearfix">
+  <section class="small-11 column callout clearfix">
   % if "url" in command:
     <a href="{{command["url"]}}" class="secondary button float-right">
       <i class="fa fa-external-link"></i>&nbsp;Link
