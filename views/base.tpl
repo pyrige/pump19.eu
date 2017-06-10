@@ -12,7 +12,7 @@
   </head>
   <body>
     <header class="expanded row align-center">
-      <nav class="column top-bar">
+      <nav class="small-12 column top-bar">
         <div class="top-bar-left">
           <ul class="expanded menu icon-top text-center">
             <li{{!" class=\"active\"" if get("active") == "home" else ""}}>
