@@ -9,8 +9,7 @@
   "homepage": "https://pump19.eu/",
   "bugs": "https://github.com/pyrige/pump19.eu/issues",
   "private": true,
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
     "font-awesome": "^4.7.0",
