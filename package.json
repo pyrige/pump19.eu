@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Web frontend for pump19",
   "main": "application.wsgi",
-  "repository": "github:pyrige/pump19.eu",
+  "repository": "github:pump19/pump19.eu",
   "author": "Twisted Pear <pyrige@users.noreply.github.com>",
   "license": "MIT",
   "homepage": "https://pump19.eu/",
-  "bugs": "https://github.com/pyrige/pump19.eu/issues",
+  "bugs": "https://github.com/pump19/pump19.eu/issues",
   "private": true,
   "dependencies": {},
   "devDependencies": {

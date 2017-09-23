@@ -32,11 +32,11 @@
       </small>
     </h3>
     <div class="stacked button-group">
-      <a class="primary button" href="https://github.com/pyrige/pump19">
+      <a class="primary button" href="https://github.com/pump19/pump19">
         <i class="fa fa-code-fork"></i>
         Source Code
       </a>
-      <a class="secondary button" href="https://github.com/pyrige/pump19/issues">
+      <a class="secondary button" href="https://github.com/pump19/pump19/issues">
         <i class="fa fa-bug"></i>
         Issue Tracker
       </a>
@@ -51,11 +51,11 @@
       </small>
     </h3>
     <div class="stacked button-group">
-      <a class="primary button" href="https://github.com/pyrige/pump19.eu">
+      <a class="primary button" href="https://github.com/pump19/pump19.eu">
         <i class="fa fa-code-fork"></i>
         Source Code
       </a>
-      <a class="secondary button" href="https://github.com/pyrige/pump19.eu/issues">
+      <a class="secondary button" href="https://github.com/pump19/pump19.eu/issues">
         <i class="fa fa-bug"></i>
         Issue Tracker
       </a>
