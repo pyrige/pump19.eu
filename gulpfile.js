@@ -43,7 +43,7 @@ gulp.task('js', function(cb) {
       './node_modules/foundation-sites/js/foundation.util.mediaQuery.js',
       './node_modules/foundation-sites/js/foundation.abide.js',
       './js/app.js']),
-    babel({presets: ['es2015']}),
+    babel({presets: ['env']}),
     concat('app.js'),
     uglify({}),
     gulp.dest('./static/js')

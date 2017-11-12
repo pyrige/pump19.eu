@@ -1,7 +1,7 @@
-Beaker==1.8.1
+Beaker==1.9.0
 bottle-sqlalchemy==0.4.3
 bottle==0.12.13
-cchardet==2.1.0
+cchardet==2.1.1
 chardet==3.0.4
 http://git.io/vUS0t  # Skippy
-requests==2.17.3
+requests==2.18.4
