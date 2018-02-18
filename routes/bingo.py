@@ -6,7 +6,7 @@ routes/bingo.py
 
 Trope Bingo routes for the "Pump19 Twitch Chat Golem" bottle application.
 
-Copyright (c) 2017 Twisted Pear <tp at pump19 dot eu>
+Copyright (c) 2018 Twisted Pear <tp at pump19 dot eu>
 See the file LICENSE for copying permission.
 """
 
@@ -29,7 +29,7 @@ def show(show):
     """Return a random selection of tropes for the given show."""
     try:
         show_tropes = tropes[show]
-        random_tropes = sample(show_tropes, 25)
+        random_tropes = sample(show_tropes, 24)
     except KeyError:
         abort(404, "Show Not Found")
 

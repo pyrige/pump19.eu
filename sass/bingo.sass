@@ -1,137 +1,94 @@
 html,
 body,
 #viewport
-  /* Center with flexbox {{{ */
+  // Center with flexbox {{{
   display: flex
   flex-direction: row
   justify-content: center
   align-items: center
-  /* Center with flexbox }}} */
+  // Center with flexbox }}}
 
-  /* Make viewport use all the space {{{ */
+  // Make viewport use all the space {{{
   width: 100vw
   height: 100vh
   margin: 0
   padding: 0
-  /* Make viewport use all the space }}} */
+  // Make viewport use all the space }}}
 
-  /* Common options {{{ */
+  // Common options {{{
   font-family: sans-serif
   text-align: center
   user-select: none
-  /* Common options }}} */
+  // Common options }}}
 
-  background-color: #9098A8;
+  background: #161A19
 
 #bingo-card
-  display: flex
-  /* Size and flex-direction depend on orientation. */
+  display: grid
 
-  background-color: #202F4C
+  grid-gap: 1vmin
+  padding: 1vmin
 
-#bingo-header
-  display: flex;
-  justify-content: space-around
-  /* Size and flex-direction depend on orientation. */
+  box-shadow: 0 0 1vmin black
+  background: #272622
+  border: 1px solid black
+  border-radius: 1vmin
 
-  font-size: 8vmin
-  color: white
+  @media all and (orientation: portrait)
+    grid-template: auto repeat(5, 18vmin) / repeat(5, 18vmin);
+    grid-auto-flow: row // puts header on the top
 
-  .bingo-letter
+    width: 94vmin
+    height: 106vmin
+
+  @media all and (orientation: landscape)
+    grid-template: repeat(5, 18vmin) / auto repeat(5, 18vmin);
+    grid-auto-flow: column // puts header on the left
+
+    height: 94vmin
+    width: 106vmin
+
+  div
     display: flex
+    align-items: center
     justify-content: center
-    align-items: center
 
-#bingo-game
-  display: flex
-  flex-direction: column
-  justify-content: space-around
+  .letter
+    font-size: 8vmin
+    color: #db2018
 
-  width: 85vmin
-  height: 85vmin
+  .square
+    background: #1e352f
+    cursor: cell
+    transition: background-color 1s ease-out,color 1s ease-out
+    &:not(.stamped):hover
+      background: #25423B
 
-  .bingo-row
-    display: flex
-    flex-direction: row
-    justify-content: space-around
-    align-items: center
+    .trope
+      overflow: hidden
+      text-overflow: ellipsis
 
-    height: 17vmin
-    width: 85vmin
+  .square:not(.stamped)
+    color: #f6edd9
+    box-shadow: 0 0 0.25vmin black
 
-    color: #000000
+  .stamped
+    color: #161A19
+    background-color: #11AA24
+    box-shadow: inset 0 0 0.5vmin black
 
-    .bingo-square
-      display: flex
-      justify-content: center
-      align-items: center
+  .square,.free
+    border: 1px solid black
+    border-radius: 0.25vmin
+    padding: 0.25vmin
 
-      height: 15vmin
-      width: 15vmin
+    font-size: 2vmin
+    font-variant: small-caps
+    font-weight: bold
 
-      background-color: #69748B
-      cursor: cell
+    transition-duration: 0.5s
+    transition-property: background-color, color, box-shadow
+    transition-timing-function: ease-out;
 
-      font-size: 2vmin
-      font-variant: small-caps
-      font-weight: bold
-
-      @media print
-        border: 1px solid black
-
-      .trope
-        overflow: hidden
-        text-overflow: ellipsis
-
-    .bingo-square.stamped
-      background-color: #D0B198
-      background-image: url(/static/img/spoopstamp.png)
-      background-position: center
-      background-repeat: no-repeat
-      background-size: contain
-
-/* Orientation determines whether header
- * is up or to the left of the game.
- *
- * The card is always 95%x85% (or 85%x95%).
- * This allows for a 10% header.
- * The game itself is 85x85 with 17x17 squares.
- */
-@media all and (orientation: portrait)
-  #bingo-card
-    /* puts header on the top */
-    flex-direction: column
-
-    width: 85vw
-    height: 95vw
-
-  #bingo-header
-    flex-direction: row
-
-    height: 10vw
-    width: 85vw
-
-    .bingo-letter
-      width: 17vw;
-      height: 10vw;
-/* orientation: portrait */
-
-@media all and (orientation: landscape)
-  #bingo-card
-    /* puts header on the left */
-    flex-direction: row
-
-    height: 85vh
-    width: 95vh
-
-  #bingo-header
-    flex-direction: column
-
-    width: 10vh
-    height: 85vh
-
-    .bingo-letter
-      height: 17vh;
-      width: 10vh;
-/* orientation: landscape */
-
+  .free
+    grid-area: -4 / -4 / span 1 / span 1 // place the free square in the middle

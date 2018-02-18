@@ -10,33 +10,22 @@
   </head>
   <body id="viewport">
     <div id="bingo-card">
-      <div id="bingo-header">
-      % for letter in "TROPE":
-        <span class="bingo-letter">{{letter}}</span>
-      % end
+    % for letter in "TROPE":
+      <div class="letter">{{letter}}</div>
+    % end
+      <div class="free stamped">Loading Ready Trope Bingo</div>
+      % for trope in tropes:
+      <div class="square">
+        <span class="trope">{{trope}}</span>
       </div>
-      <div id="bingo-game">
-      % from itertools import islice
-      % for row in range(5):
-        <div class="bingo-row">
-        % start, stop = 5 * row, 5 + 5 * row
-        % for trope in islice(tropes, start, stop):
-          <div class="bingo-square">
-            <span class="trope">{{trope}}</span>
-          </div>
-        % end
-        </div>
       % end
-      </div>
     </div>
 
-    <script
-      src="https://code.jquery.com/jquery-3.1.0.slim.min.js"
-      integrity="sha256-cRpWjoSOw5KcyIOaZNo4i6fZ9tKPhYYb6i5T9RSVJG8="
-      crossorigin="anonymous"></script>
     <script type="text/javascript">
-      $(".bingo-square").click(function() {
-        $(this).toggleClass("stamped");
+      document.querySelectorAll("#bingo-card .square").forEach((el) => {
+        el.addEventListener("click", () => {
+          el.classList.toggle("stamped");
+        });
       });
     </script>
   </body>

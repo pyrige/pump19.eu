@@ -1,6 +1,6 @@
 {
   "name": "pump19.eu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Web frontend for pump19",
   "main": "application.wsgi",
   "repository": "github:pump19/pump19.eu",
