@@ -21,7 +21,7 @@
       % end
     </div>
 
-    <script type="text/javascript">
+    <script>
       document.querySelectorAll("#bingo-card .square").forEach((el) => {
         el.addEventListener("click", () => {
           el.classList.toggle("stamped");
