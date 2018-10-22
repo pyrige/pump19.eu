@@ -109,7 +109,7 @@ def claim(secret, db):
         return template("codefall_claim", session=session,
                         subtitle="Codefall")
 
-    # ask mommy google whether the CAPTCHA was solved
+    # ask google whether the CAPTCHA was solved
     rc_response = request.forms.getunicode("g-recaptcha-response")
     verify_opts = {
         "secret": RECAPTCHA_SECRET,
@@ -151,6 +151,53 @@ def claim(secret, db):
     return template("codefall_claim", session=session,
                     subtitle="Codefall", entry=entry)
 
+def claim_txt(secret, db):
+    """Claim a codefall page."""
+    session = request.environ.get("beaker.session")
+
+    # ask google whether the CAPTCHA was solved
+    rc_response = request.forms.getunicode("g-recaptcha-response")
+    verify_opts = {
+        "secret": RECAPTCHA_SECRET,
+        "response": rc_response
+    }
+    try:
+        verify_request = requests.post(
+            RECAPTCHA_VERIFY_URL, params=verify_opts,
+            timeout=5)
+        verify_data = verify_request.json()
+    except Exception:
+        return template("codefall_claim", session=session,
+                        subtitle="Codefall")
+
+    is_human = verify_data.get("success")
+    if not is_human:
+        return template("codefall_claim", session=session,
+                        subtitle="Codefall")
+
+    claim_code_qry = """UPDATE codefall
+                        SET claimed = TRUE
+                        WHERE
+                            claimed = FALSE 
+                            AND cid = (SELECT cid
+                                       FROM codefall_unclaimed
+                                       WHERE key = :secret)
+                        RETURNING description, code, code_type"""
+
+    code = db.execute(claim_code_qry, {"secret": secret})
+    db.commit()
+    code = code.first()
+    if not code:
+        return template("codefall_claim", session=session,
+                        subtitle="Codefall")
+
+    entry = {"description": code.description,
+             "code": code.code,
+             "code_type": code.code_type}
+
+    return template("codefall_claim", session=session,
+                    subtitle="Codefall", entry=entry)
+
 
 def show(secret, db):
     """Show a codefall page (letting people claim it)."""
@@ -171,6 +218,30 @@ def show(secret, db):
                             claimed = False"""
 
     code = db.execute(show_code_qry, {"cid": cid})
+    code = code.first()
+    if not code:
+        return template("codefall_show", session=session,
+                        subtitle="Codefall")
+
+    claim_url = CODEFALL_CLAIM_URL.format(secret=secret)
+
+    entry = {"description": code.description,
+             "claim_url": claim_url,
+             "code_type": code.code_type}
+
+    return template("codefall_show", session=session,
+                    subtitle="Codefall",
+                    entry=entry, rc_sitekey=RECAPTCHA_PUBLIC)
+
+def show_txt(secret, db):
+    """Show a codefall page (letting people claim it)."""
+    session = request.environ.get("beaker.session")
+
+    show_code_qry = """SELECT description, code_type
+                       FROM codefall_unclaimed
+                       WHERE key = :secret"""
+
+    code = db.execute(show_code_qry, {"secret": secret})
     code = code.first()
     if not code:
         return template("codefall_show", session=session,
