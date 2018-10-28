@@ -54,7 +54,7 @@
             <i class="fa fa-info"></i>&nbsp;Description
             <small>required</small>
             <input required type="text" name="description" id="codefallDescription" placeholder="Game of the Year">
-            <span class="form-error">
+            <span class="form-error" data-form-error-for="codefallDescription">
               Please supply a short description (e.g. the game's title).
             </span>
           </label>
@@ -65,7 +65,7 @@
             <i class="fa fa-link"></i>&nbsp;Link or Key
             <small>required</small>
             <input required type="text" name="code" id="codefallKeyLink" placeholder="S3CR3T-D0WNL04D-K3Y">
-            <span class="form-error">
+            <span class="form-error" data-form-error-for="codefallKeyLink">
               Please specify the actual link or key people can use to redeem this game.
             </span>
           </label>
@@ -83,7 +83,7 @@
               <option>Desura</option>
               <option>Other</option>
             </select>
-            <span class="form-error">
+            <span class="form-error" data-form-error-for="codefallType">
               Please specify what kind of codefall entry this is.
             </span>
           </label>
