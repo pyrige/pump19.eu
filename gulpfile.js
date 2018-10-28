@@ -1,13 +1,16 @@
-var pump = require('pump');
 var gulp = require('gulp');
-var babel = require('gulp-babel');
-var sass = require('gulp-sass');
+
 var concat = require('gulp-concat');
 var cssmin = require('gulp-cssmin');
 var prefix = require('gulp-autoprefixer');
+var sass = require('gulp-sass');
+var streamify = require('gulp-streamify');
 var uglify = require('gulp-uglify');
 
+var browserify = require('browserify');
+var pump = require('pump');
 var runSequence = require('run-sequence');
+var source = require('vinyl-source-stream');
 
 var sassPaths = [
   'node_modules/font-awesome/scss',
@@ -36,18 +39,13 @@ gulp.task('sass', function(cb) {
 });
 
 gulp.task('js', function(cb) {
+  var b = browserify('./js/app.js');
+
   pump([
-    gulp.src([
-      './node_modules/jquery/dist/jquery.min.js',
-      './node_modules/foundation-sites/js/foundation.core.js',
-      './node_modules/foundation-sites/js/foundation.util.mediaQuery.js',
-      './node_modules/foundation-sites/js/foundation.abide.js',
-      './js/app.js']),
-    babel({presets: ['@babel/env']}),
-    concat('app.js'),
-    uglify({}),
-    gulp.dest('./static/js')
-  ], cb);
+    b.bundle(),
+    source('app.js'),
+    streamify(uglify()),
+    gulp.dest('./static/js')], cb);
 });
 
 gulp.task('sass:watch', function(){
