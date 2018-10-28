@@ -38,12 +38,12 @@ gulp.task('sass', function(cb) {
 gulp.task('js', function(cb) {
   pump([
     gulp.src([
-      './node_modules/jquery/dist/jquery.slim.min.js',
+      './node_modules/jquery/dist/jquery.min.js',
       './node_modules/foundation-sites/js/foundation.core.js',
       './node_modules/foundation-sites/js/foundation.util.mediaQuery.js',
       './node_modules/foundation-sites/js/foundation.abide.js',
       './js/app.js']),
-    babel({presets: ['env']}),
+    babel({presets: ['@babel/env']}),
     concat('app.js'),
     uglify({}),
     gulp.dest('./static/js')
