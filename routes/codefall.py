@@ -6,7 +6,7 @@ routes/codefall.py
 
 Codefall routes for the "Pump19 Twitch Chat Golem" bottle application.
 
-Copyright (c) 2017 Twisted Pear <pear at twistedpear dot at>
+Copyright (c) 2018 Twisted Pear <tp at pump19 dot eu>
 See the file LICENSE for copying permission.
 """
 
@@ -20,6 +20,7 @@ import requests
 CODEFALL_CIPHER = Skippy(environ["CODEFALL_SECRET"].encode())
 CODEFALL_CLAIM_URL = environ["CODEFALL_CLAIM_URL"]
 CODEFALL_SHOW_URL = environ["CODEFALL_SHOW_URL"]
+CODEFALL_ANNOUNCE_URL = environ["CODEFALL_ANNOUNCE_URL"]
 
 RECAPTCHA_PUBLIC = environ["RECAPTCHA_PUBLIC"]
 RECAPTCHA_SECRET = environ["RECAPTCHA_SECRET"]
@@ -37,9 +38,13 @@ def main(db):
                         subtitle="Codefall")
 
     # get all codes for the user from the database
-    codes_qry = """SELECT cid, description, code, code_type, claimed
+    codes_qry = """SELECT cid, key, description, code, code_type, claimed
                    FROM codefall
-                   WHERE user_name = :user_name
+                   LEFT OUTER JOIN codefall_keys ON codefall.cid = codefall_keys.kid
+                   WHERE
+                       user_name = :user_name
+                       AND
+                       key IS NOT NULL
                    ORDER BY description"""
     codes = db.execute(codes_qry, {"user_name": user_name})
 
@@ -53,13 +58,15 @@ def main(db):
             secret = CODEFALL_CIPHER.encrypt(code.cid)
             secret_url = CODEFALL_SHOW_URL.format(secret=secret)
             entry["secret_url"] = secret_url
+            entry["secret"] = code.key
             unclaimed.append(entry)
         else:
             claimed.append(entry)
 
     return template("codefall", session=session,
                     subtitle="Codefall",
-                    unclaimed=unclaimed, claimed=claimed)
+                    unclaimed=unclaimed, claimed=claimed,
+                    announce_url=CODEFALL_ANNOUNCE_URL)
 
 
 def add(db):
@@ -96,6 +103,35 @@ def add(db):
 
     # now redirect back to codefall page
     redirect("/codefall")
+
+
+def announce(db):
+    """Notify PostgreSQL listeners on codefall channel."""
+    session = request.environ.get("beaker.session")
+
+    # we require users to be logged in when announcing their codes
+    if not session.get("logged_in", False):
+        return None
+
+    user_name = session.get("user_name")
+    secret = request.forms.getunicode("secret")
+    if not all((user_name, secret)):
+        return None
+
+    announce_qry = """SELECT pg_notify('codefall',
+                        (SELECT key
+                         FROM codefall_unclaimed
+                         WHERE
+                            user_name = :user_name
+                            AND
+                            key = :secret
+                         LIMIT 1))"""
+
+    db.execute(announce_qry,
+               {"user_name": user_name, "secret": secret})
+    db.commit()
+
+    return None
 
 
 def claim(secret, db):
@@ -151,6 +187,7 @@ def claim(secret, db):
     return template("codefall_claim", session=session,
                     subtitle="Codefall", entry=entry)
 
+
 def claim_txt(secret, db):
     """Claim a codefall page."""
     session = request.environ.get("beaker.session")
@@ -178,7 +215,7 @@ def claim_txt(secret, db):
     claim_code_qry = """UPDATE codefall
                         SET claimed = TRUE
                         WHERE
-                            claimed = FALSE 
+                            claimed = FALSE
                             AND cid = (SELECT cid
                                        FROM codefall_unclaimed
                                        WHERE key = :secret)
@@ -232,6 +269,7 @@ def show(secret, db):
     return template("codefall_show", session=session,
                     subtitle="Codefall",
                     entry=entry, rc_sitekey=RECAPTCHA_PUBLIC)
+
 
 def show_txt(secret, db):
     """Show a codefall page (letting people claim it)."""

@@ -6,7 +6,7 @@ application.wsgi
 
 The "Pump19 Twitch Chat Golem" bottle application.
 
-Copyright (c) 2017 Twisted Pear <tp at pump19 dot eu>
+Copyright (c) 2018 Twisted Pear <tp at pump19 dot eu>
 See the file LICENSE for copying permission.
 """
 
@@ -50,6 +50,7 @@ app.route("/codefall", "GET", routes.codefall.main)
 app.route("/codefall/<secret:int>", "GET", routes.codefall.show)
 app.route("/codefall/<secret:re:[a-z]{6}>", "GET", routes.codefall.show_txt)
 app.route("/codefall/add", "POST", routes.codefall.add)
+app.route("/codefall/announce", "POST", routes.codefall.announce)
 app.route("/codefall/claim/<secret:int>", "POST", routes.codefall.claim)
 app.route("/codefall/claim/<secret:re:[a-z]{6}>", "POST", routes.codefall.claim_txt)
 

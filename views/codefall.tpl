@@ -34,6 +34,11 @@
           (or copy <a href="{{entry["secret_url"]}}">this link</a>)
         </p>
       </div>
+      <button title="Announce"
+              class="cell shrink announcer large primary button"
+              data-secret="{{entry["secret"]}}">
+        <i class="fa fa-lg fa-bullhorn"></i>
+      </button>
     </div>
     % end
   % end
