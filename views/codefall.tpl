@@ -1,6 +1,6 @@
 % rebase("base.tpl", active="codefall")
-<main class="row align-center">
-  <section class="small-11 column">
+<article class="grid-x grid-margin-x align-center">
+  <section class="small-11 cell">
     <h1>
       <i class="fa fa-gift"></i>
       Codefall
@@ -10,7 +10,7 @@
     </p>
 % if session.get("logged_in", False):
   </section>
-  <section class="small-11 column">
+  <section class="small-11 cell">
     <h3>
       Unclaimed Entries
     </h3>
@@ -20,23 +20,25 @@
     </p>
   % else:
     % for entry in unclaimed:
-    <div class="callout">
-      <h4>
-        <i class="fa fa-gift"></i>
-        <strong>{{entry["description"]}}</strong>
-        <small>{{entry["code_type"]}}</small>
-      </h4>
-      <p>
-        <i class="fa fa-link"></i>
-        Claim Link:
-        <code>{{entry["secret_url"]}}</code>
-        (or copy <a href="{{entry["secret_url"]}}">this link</a>)
-      </p>
+    <div class="callout grid-x">
+      <div class="cell auto">
+        <h4>
+          <i class="fa fa-gift"></i>
+          <strong>{{entry["description"]}}</strong>
+          <small>{{entry["code_type"]}}</small>
+        </h4>
+        <p>
+          <i class="fa fa-link"></i>
+          Claim Link:
+          <code>{{entry["secret_url"]}}</code>
+          (or copy <a href="{{entry["secret_url"]}}">this link</a>)
+        </p>
+      </div>
     </div>
     % end
   % end
   </section>
-  <section class="small-11 column">
+  <section class="small-11 cell">
     <h3>Add a New Entry</h3>
     <form action="/codefall/add" method="POST" accept-charset="utf-8" data-abide>
       <fieldset class="fieldset">
@@ -83,14 +85,14 @@
         </div>
       </fieldset>
 
-      <div class="row">
-        <div class="small-4 column">
+      <div class="grid-x grid-margin-x">
+        <div class="small-4 cell">
           <button type="reset" class="secondary expanded button">
             <i class="fa fa-times"></i>
             Reset
           </button>
         </div>
-        <div class="small-8 column">
+        <div class="small-8 cell">
           <button type="submit" class="success expanded button">
             <i class="fa fa-check"></i>
             Submit
@@ -99,12 +101,12 @@
       </div>
     </form>
   </section>
-  <section class="small-11 column">
+  <section class="small-11 cell">
     <h3>Claimed Entries</h3>
   % if not len(claimed):
     <p class="text-info">You don't have any claimed entries.</p>
   % else:
-    <ul class="callout" style="max-height: 300px; overflow: auto;">
+    <ul class="callout no-bullet" style="max-height: 25vh; overflow: auto;">
       % for entry in claimed:
       <li>
         {{entry["description"]}}
@@ -121,4 +123,4 @@
     </p>
 % end
   </section>
-</main>
+</article>

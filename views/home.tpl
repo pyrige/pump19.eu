@@ -1,6 +1,6 @@
 % rebase("base.tpl", active="home")
-<main class="row align-center">
-  <section class="small-11 columns">
+<article class="grid-x align-center">
+  <section class="small-11 cell">
     <h1>
       <i class="fa fa-twitch"></i>
       Pump19 Twitch Chat Golem
@@ -13,7 +13,7 @@
       certainly more crucial <a href="http://lrrbot.mrphlip.com/">LRRbot</a>.
     </p>
   </section>
-  <section class="small-11 columns">
+  <section class="small-11 cell">
     <h2>Why is it called &quot;Pump19&quot;?</h2>
     <p>
       The name is a reference to Terry Pratchett's Discworld novel <em>Going Postal</em>.
@@ -38,4 +38,4 @@
       For that, we'd like to apologize in advance to our future golem (and robot) overlords.
     </p>
   </section>
-</main>
+</article>

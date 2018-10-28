@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/static/css/app.css">
   </head>
   <body>
-    <header class="expanded row align-center">
-      <nav class="small-12 column top-bar">
+    <header>
+      <nav class="grid-container small-12 top-bar">
         <div class="top-bar-left">
           <ul class="expanded menu icon-top text-center">
             <li{{!" class=\"active\"" if get("active") == "home" else ""}}>
@@ -34,9 +34,9 @@
               </a>
             </li>
             <li{{!" class=\"active\"" if get("active") == "bingo" else ""}}>
-              <a href="/bingo" title="Trope Bingo">
+              <a href="/bingo" title=" Bingo">
                 <i class="fa fa-2x fa-puzzle-piece"></i>
-                <span class="show-for-medium">Trope Bingo</span>
+                <span class="show-for-medium">Trope&nbsp;Bingo</span>
               </a>
             </li>
             <li{{!" class=\"active\"" if get("active") == "contribute" else ""}}>
@@ -49,14 +49,14 @@
             <li>
               <a href="/logout" title="Log out">
                 <i class="fa fa-2x fa-sign-out"></i>
-                <span class="show-for-medium">Log out</span>
+                <span class="show-for-medium">Log&nbsp;out</span>
               </a>
             </li>
           % else:
             <li{{!" class=\"active\"" if get("active") == "login" else ""}}>
               <a href="/login" title="Log in">
                 <i class="fa fa-2x fa-sign-in"></i>
-                <span class="show-for-medium">Log in</span>
+                <span class="show-for-medium">Log&nbsp;in</span>
               </a>
             </li>
           % end
@@ -65,7 +65,9 @@
       </nav>
     </header>
 
-    {{!base}}
+    <main class="grid-container">
+      {{!base}}
+    </main>
 
     <footer class="text-center">
       <small>
@@ -78,7 +80,7 @@
         </a>
         <br>
         <i class="fa fa-copyright"></i>
-        2015-2017 Twisted Pear
+        2015-2018 Twisted Pear
       </small>
     </footer>
 
@@ -88,6 +90,11 @@
       rc_sitekey = get("rc_sitekey")
       if rc_sitekey:
         include("captcha_js.tpl", sitekey=rc_sitekey)
+      end
+
+      announce_url = get("announce_url")
+      if announce_url:
+        include("announcer_js.tpl", url=announce_url)
       end
     %>
   </body>

@@ -1,24 +1,50 @@
 @import 'settings'
 @import 'foundation'
+
+// global styles
 @include foundation-global-styles
-@include foundation-flex-classes
-@include foundation-flex-grid
-@include foundation-typography
 @include foundation-forms
+@include foundation-typography
+
+// grid
+@include foundation-xy-grid-classes
+
+// generic components
 @include foundation-button
 @include foundation-button-group
-@include foundation-callout
-@include foundation-menu
 @include foundation-label
+
+// basic components
+@include foundation-callout
+
+// menu-base containers
+@include foundation-menu
+
+// layout components
 @include foundation-top-bar
-@include foundation-visibility-classes
+
+// helpers
+@include foundation-flex-classes
 @include foundation-float-classes
+@include foundation-visibility-classes
 
 header
   background: #272622
   border-bottom: 1px solid black
-  margin-bottom: 1rem
+  margin-bottom: $global-margin
   box-shadow: 0 0 0.5rem black
 
 .top-bar
   max-width: $global-width
+  ul
+    border-left: 1px solid black
+  ul > li
+    border-right: 1px solid black
+
+button.announcer
+  transition-duration: 0.5s
+  transition-property: all
+  transition-timing-function: ease-out
+
+.callout :last-child
+  margin-bottom: 0 !important

@@ -1,6 +1,6 @@
 % rebase("base.tpl", active="bingo")
-<main class="row align-center">
-  <section class="small-11 columns">
+<article class="grid-x grid-margin-x align-center">
+  <section class="small-11 cell">
     <h1>
       <i class="fa fa-puzzle-piece"></i>
       Trope Bingo
@@ -12,7 +12,7 @@
       Be aware that your progress does not carry over should you happen to reload.
     </p>
   </section>
-  <section class="small-9 medium-7 large-5 columns">
+  <section class="small-9 medium-7 large-5 cell">
     <div class="large stacked button-group">
       <a class="primary button" href="/bingo/leno">
         <i class="fa fa-key"></i>
@@ -24,7 +24,7 @@
       </a>
     </div>
   </section>
-  <section class="small-11 columns">
+  <section class="small-11 cell">
     <h3>
       <i class="fa fa-info"></i>
       Caveat Emptor
@@ -45,4 +45,4 @@
       <a href="/contribute"><i class="fa fa-medkit"></i>&nbsp;contribute</a>.
     </p>
   </section>
-</main>
+</article>

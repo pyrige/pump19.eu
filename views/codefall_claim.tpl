@@ -1,7 +1,7 @@
 % rebase("base.tpl", active="codefall")
-<main class="row align-center">
+<article class="grid-x grid-margin-x align-center">
 % if defined("entry"):
-  <section class="small-11 column">
+  <section class="small-11 cell">
     <h1>
       <i class="fa fa-gift"></i>
       Claimed Code
@@ -10,7 +10,7 @@
       Congratulations, you just claimed the following entry:
     </p>
   </section>
-  <section class="small-11 column">
+  <section class="small-10 cell">
     <div class="callout panel text-center">
       <h1>
         <i class="fa fa-gamepad"></i>
@@ -23,7 +23,7 @@
     </div>
   </section>
 % else:
-  <section class="small-11 column">
+  <section class="small-11 cell">
     <h1>
       <i class="fa fa-frown-o"></i>
       Already Claimed
@@ -34,4 +34,4 @@
     </p>
   </section>
 % end
-</main>
+</article>

@@ -1,6 +1,6 @@
 % rebase("base.tpl", active="contribute")
-<main class="row align-center">
-  <section class="small-11 columns">
+<article class="grid-x grid-margin-x align-center">
+  <section class="small-11 cell">
     <h1>
       <i class="fa fa-medkit"></i>
       Contribute to Pump19
@@ -16,14 +16,14 @@
       There you can suggest new features, report issues, or even fork and contribute your own functionality.
     </p>
   </section>
-  <section class="small-11 columns">
+  <section class="small-11 cell">
     <h2>Repositories</h2>
     <p>
       There exist two distinct source code repositories: one for the chat golem itself and one for
       this website.
     </p>
   </section>
-  <section class="small-9 medium-5 columns text-center">
+  <section class="small-9 medium-5 cell text-center">
     <h3>
       Pump19
       <small>
@@ -42,7 +42,7 @@
       </a>
     </div>
   </section>
-  <section class="small-9 medium-5 columns text-center">
+  <section class="small-9 medium-5 cell text-center">
     <h3>
       Pump19.eu
       <small>
@@ -61,4 +61,4 @@
       </a>
     </div>
   </section>
-</main>
+</article>

@@ -1,7 +1,7 @@
 % rebase("base.tpl", active="login")
-<main class="row align-center">
+<article class="grid-x grid-margin-x align-center">
 % if session.get("logged_in", False):
-  <section class="small-11 columns">
+  <section class="small-11 cell">
     <h1>
       <i class="fa fa-twitch"></i>
       Connected with Twitch.tv
@@ -20,7 +20,7 @@
     </p>
   </section>
 % else:
-  <section class="small-11 columns">
+  <section class="small-11 cell">
     <h1>
       <i class="fa fa-sign-in"></i>
       Connect with Twitch.tv
@@ -46,4 +46,4 @@
     </form>
   </section>
 % end
-</main>
+</article>
