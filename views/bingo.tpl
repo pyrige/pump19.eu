@@ -1,8 +1,8 @@
 % rebase("base.tpl", active="bingo")
-<article class="grid-x grid-margin-x align-center">
-  <section class="small-11 cell">
+<section class="section">
+  <div class="content container">
     <h1>
-      <i class="fa fa-puzzle-piece"></i>
+      <span class="icon"><i class="mdi mdi-puzzle"></i></span>
       Trope Bingo
     </h1>
     <p>
@@ -11,23 +11,19 @@
       The cards are randomly generated each time you load the respective page.
       Be aware that your progress does not carry over should you happen to reload.
     </p>
-  </section>
-  <section class="small-9 medium-7 large-5 cell">
-    <div class="large stacked button-group">
-      <a class="primary button" href="/bingo/leno">
-        <i class="fa fa-key"></i>
-        Let's Nope
+    <div class="buttons is-centered">
+      <a class="button is-info is-large" href="/bingo/leno">
+        <span class="icon"><i class="mdi mdi-key"></i></span>
+        <span>Let's Nope</span>
       </a>
-      <a class="secondary button" href="/bingo/wap">
-        <i class="fa fa-meh-o"></i>
-        Watch &amp; Play
+      <a class="button is-danger is-large" href="/bingo/wap">
+        <span class="icon"><i class="mdi mdi-image-broken-variant"></i></span>
+        <span>Watch &amp; Play</span>
       </a>
     </div>
-  </section>
-  <section class="small-11 cell">
     <h3>
-      <i class="fa fa-info"></i>
-      Caveat Emptor
+      <span class="icon"><i class="mdi mdi-information"></i></span>
+      <span>Caveat Emptor</span>
     </h3>
     <p>
       They might not look like it but the bingo cards use rather recent web wizardy.
@@ -42,7 +38,7 @@
       The same applies if you think we're missing some tropes or
       you just want to help cleaning up those we already have.
       Either way, feel free to
-      <a href="/contribute"><i class="fa fa-medkit"></i>&nbsp;contribute</a>.
+      <a href="/contribute"><span class="icon"><i class="mdi mdi-medical-bag"></i></span>contribute</a>.
     </p>
-  </section>
-</article>
+  </div>
+</section>

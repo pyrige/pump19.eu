@@ -13,16 +13,17 @@ var runSequence = require('run-sequence');
 var source = require('vinyl-source-stream');
 
 var sassPaths = [
-  'node_modules/font-awesome/scss',
-  'node_modules/roboto-fontface/css/roboto/sass',
-  'node_modules/roboto-fontface/css/roboto-slab/sass',
-  'node_modules/foundation-sites/scss'
+  './node_modules/bulma',
+
+  './node_modules/@mdi/font/scss',
+  './node_modules/roboto-fontface/css/roboto/sass',
+  './node_modules/roboto-fontface/css/roboto-slab/sass'
 ];
 
 gulp.task('fonts', function(cb) {
   pump([
     gulp.src([
-      './node_modules/font-awesome/fonts/fontawesome-webfont.*',
+      './node_modules/@mdi/font/fonts/*',
       './node_modules/roboto-fontface/fonts/**/*']),
     gulp.dest('./static/fonts')
   ], cb);

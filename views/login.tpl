@@ -1,28 +1,26 @@
 % rebase("base.tpl", active="login")
-<article class="grid-x grid-margin-x align-center">
-% if session.get("logged_in", False):
-  <section class="small-11 cell">
+<section class="section">
+  <div class="content container">
+  % if session.get("logged_in", False):
     <h1>
-      <i class="fa fa-twitch"></i>
+      <span class="icon"><i class="mdi mdi-twitch"></i></span>
       Connected with Twitch.tv
     </h1>
     <p>
       You are now logged in as <strong>{{session.get("user_name")}}</strong>.
       In the unlikely case that this isn't you, please
-      <a href="/logout"><i class="fa fa-sign-out"></i>&nbsp;log out</a> now.
+      <a href="/logout"><span class="icon"><i class="mdi mdi-logout"></i></span>log out</a> now.
     </p>
     <p>
       While we keep track of your user name, we <strong>do not</strong> have access to your password.
       We use cookies to maintain your session and the connection to your Twitch account. Those
       sessions will be cleared on a regular basis.
       If you do not wish to grant us access to that kind of information, you may
-      <a href="/logout"><i class="fa fa-sign-out"></i>&nbsp;log out</a> now.
+      <a href="/logout"><span class="icon"><i class="mdi mdi-logout"></i></span>log out</a> now.
     </p>
-  </section>
-% else:
-  <section class="small-11 cell">
+  % else:
     <h1>
-      <i class="fa fa-sign-in"></i>
+      <span class="icon"><i class="mdi mdi-login"></i></span>
       Connect with Twitch.tv
     </h1>
     <p>
@@ -44,6 +42,6 @@
       <input type="hidden" name="state" value="{{session.id}}">
       <input type="image" alt="Connect with Twitch.tv" src="/static/img/twitch_connect.png">
     </form>
-  </section>
-% end
-</article>
+  % end
+  </div>
+</section>

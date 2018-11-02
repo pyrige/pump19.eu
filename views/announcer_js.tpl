@@ -4,18 +4,15 @@
         var secret = $(this).data("secret");
         $.post("{{url}}", {"secret": secret});
 
-        var content = $(this).html();
-        var restore = $.proxy(function(content)
+        var restore = $.proxy(function()
         {
-          $(this).html(content)
-                 .toggleClass("hollow")
+          $(this).toggleClass("is-loading")
                  .prop("disabled", false);
         }, this);
 
         $(this).prop("disabled", true)
-               .toggleClass("hollow")
-               .html('<i class="fa fa-lg fa-spinner fa-spin"></i>');
+               .toggleClass("is-loading");
 
-        setTimeout(restore, 3000, content);
+        setTimeout(restore, 3000);
       });
     </script>

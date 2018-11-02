@@ -12,76 +12,85 @@
   </head>
   <body>
     <header>
-      <nav class="grid-container small-12 top-bar">
-        <div class="top-bar-left">
-          <ul class="expanded menu icon-top text-center">
-            <li{{!" class=\"active\"" if get("active") == "home" else ""}}>
-              <a href="/" title="Pump19">
-                <i class="fa fa-2x fa-twitch"></i>
-                <span class="show-for-medium">Pump19</span>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
+          <div class="navbar-brand">
+            <a href="/" title="Pump19"
+               class="navbar-item{{!" is-active" if get("active") == "home" else ""}}">
+              <span class="icon is-medium"><i class="mdi mdi-24px mdi-twitch"></i></span>
+              <span>Pump19</span>
+            </a>
+            <a role="button" class="navbar-burger burger"
+              aria-label="menu" aria-expanded="false"
+              data-target="mainMenu">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div id="mainMainu" class="navbar-menu">
+            <div class="navbar-start">
+              <a href="/commands" title="Commands"
+                 class="navbar-item{{!" is-active" if get("active") == "commands" else ""}}">
+                <span class="icon is-medium"><i class="mdi mdi-24px mdi-console"></i></span>
+                <span>Commands</span>
               </a>
-            </li>
-            <li{{!" class=\"active\"" if get("active") == "commands" else ""}}>
-              <a href="/commands" title="Commands">
-                <i class="fa fa-2x fa-keyboard-o"></i>
-                <span class="show-for-medium">Commands</span>
+              <a href="/codefall" title="Codefall"
+                 class="navbar-item{{!" is-active" if get("active") == "codefall" else ""}}">
+                <span class="icon is-medium"><i class="mdi mdi-24px mdi-gift"></i></span>
+                <span>Codefall</span>
               </a>
-            </li>
-            <li{{!" class=\"active\"" if get("active") == "codefall" else ""}}>
-              <a href="/codefall" title="Codefall">
-                <i class="fa fa-2x fa-gift"></i>
-                <span class="show-for-medium">Codefall</span>
+              <a href="/bingo" title="Trope Bingo"
+                 class="navbar-item{{!" is-active" if get("active") == "bingo" else ""}}">
+                <span class="icon is-medium"><i class="mdi mdi-24px mdi-puzzle"></i></span>
+                <span>Trope&nbsp;Bingo</span>
               </a>
-            </li>
-            <li{{!" class=\"active\"" if get("active") == "bingo" else ""}}>
-              <a href="/bingo" title=" Bingo">
-                <i class="fa fa-2x fa-puzzle-piece"></i>
-                <span class="show-for-medium">Trope&nbsp;Bingo</span>
+              <a href="/contribute" title="Contribute"
+                 class="navbar-item{{!" is-active" if get("active") == "contribute" else ""}}">
+                <span class="icon is-medium"><i class="mdi mdi-24px mdi-medical-bag"></i></span>
+                <span>Contribute</span>
               </a>
-            </li>
-            <li{{!" class=\"active\"" if get("active") == "contribute" else ""}}>
-              <a href="/contribute" title="Contribute">
-                <i class="fa fa-2x fa-medkit"></i>
-                <span class="show-for-medium">Contribute</span>
-              </a>
-            </li>
-          % if session.get("logged_in", False):
-            <li>
-              <a href="/logout" title="Log out">
-                <i class="fa fa-2x fa-sign-out"></i>
-                <span class="show-for-medium">Log&nbsp;out</span>
-              </a>
-            </li>
-          % else:
-            <li{{!" class=\"active\"" if get("active") == "login" else ""}}>
-              <a href="/login" title="Log in">
-                <i class="fa fa-2x fa-sign-in"></i>
-                <span class="show-for-medium">Log&nbsp;in</span>
-              </a>
-            </li>
-          % end
-          </ul>
+            </div>
+
+            <div class="navbar-end">
+              <div class="navbar-item">
+              % if session.get("logged_in", False):
+                <a href="/logout" title="Log out" class="button is-dark">
+                  <span class="icon"><i class="mdi mdi-logout"></i></span>
+                  <span>Log&nbsp;out</span>
+                </a>
+              % else:
+                <a href="/login" title="Log in" class="button is-primary">
+                  <span class="icon"><i class="mdi mdi-login"></i></span>
+                  <span>Log&nbsp;in</span>
+                </a>
+              % end
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
     </header>
 
-    <main class="grid-container">
-      {{!base}}
-    </main>
+    {{!base}}
 
-    <footer class="text-center">
-      <small>
-        Powered by
-        <a href="http://foundation.zurb.com/">Foundation</a>
-        and
-        <a href="https://fortawesome.github.io/Font-Awesome/">
-          <i class="fa fa-flag"></i>
-          Font Awesome
-        </a>
-        <br>
-        <i class="fa fa-copyright"></i>
-        2015-2018 Twisted Pear
-      </small>
+    <div class="expander"></div>
+
+    <footer class="footer">
+      <div class="content container has-text-centered">
+        <small>
+          Powered by
+          <a href="https://bulma.io/">Bulma</a>
+          and
+          <a href="https://materialdesignicons.com/">
+            Material Design Icons
+          </a>
+          <br>
+          <i class="mdi mdi-copyright"></i>
+          2015-2018 Twisted Pear
+        </small>
+      </div>
     </footer>
 
     <!-- JS components -->

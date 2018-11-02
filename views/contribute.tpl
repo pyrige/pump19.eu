@@ -1,8 +1,8 @@
 % rebase("base.tpl", active="contribute")
-<article class="grid-x grid-margin-x align-center">
-  <section class="small-11 cell">
+<section class="section">
+  <div class="content container">
     <h1>
-      <i class="fa fa-medkit"></i>
+      <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
       Contribute to Pump19
     </h1>
     <p>
@@ -12,53 +12,61 @@
       itself released under the <a href="http://opensource.org/licenses/MIT">MIT License</a>.
     </p>
     <p>
-      All of Pump19's source code is hosted on <a href="https://github.com/"><i class="fa fa-github"></i>&nbsp;GitHub</a>.
+      All of Pump19's source code is hosted on
+      <a href="https://github.com/">
+        <span class="icon"><i class="mdi mdi-github-face"></i></span>GitHub
+      </a>.
       There you can suggest new features, report issues, or even fork and contribute your own functionality.
     </p>
-  </section>
-  <section class="small-11 cell">
+
     <h2>Repositories</h2>
     <p>
       There exist two distinct source code repositories: one for the chat golem itself and one for
       this website.
     </p>
-  </section>
-  <section class="small-9 medium-5 cell text-center">
-    <h3>
-      Pump19
-      <small>
-        <i class="fa fa-comments-o"></i>
-        Chat Golem
-      </small>
-    </h3>
-    <div class="stacked button-group">
-      <a class="primary button" href="https://github.com/pump19/pump19">
-        <i class="fa fa-code-fork"></i>
-        Source Code
-      </a>
-      <a class="secondary button" href="https://github.com/pump19/pump19/issues">
-        <i class="fa fa-bug"></i>
-        Issue Tracker
-      </a>
+    <div class="columns is-centered">
+      <div class="column is-narrow has-text-centered">
+        <div class="box">
+          <h3 class="title">
+            Pump19
+            <small>
+              <span class="icon"><i class="mdi mdi-comment-multiple-outline"></i></span>
+              Chat Golem
+            </small>
+          </h3>
+          <div class="buttons is-centered">
+            <a class="button is-info is-medium" href="https://github.com/pump19/pump19">
+              <span class="icon"><i class="mdi mdi-source-fork"></i></span>
+              <span>Source Code</span>
+            </a>
+            <a class="button is-danger is-medium" href="https://github.com/pump19/pump19/issues">
+              <span class="icon"><i class="mdi mdi-bug-outline"></i></span>
+              <span>Issue Tracker</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="column is-narrow has-text-centered">
+        <div class="box">
+          <h3 class="title">
+            Pump19
+            <small>
+              <span class="icon"><i class="mdi mdi-earth"></i></span>
+              Website
+            </small>
+          </h3>
+          <div class="buttons is-centered">
+            <a class="button is-info is-medium" href="https://github.com/pump19/pump19.eu">
+              <span class="icon"><i class="mdi mdi-source-fork"></i></span>
+              <span>Source Code</span>
+            </a>
+            <a class="button is-danger is-medium" href="https://github.com/pump19/pump19.eu/issues">
+              <span class="icon"><i class="mdi mdi-bug-outline"></i></span>
+              <span>Issue Tracker</span>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
-  <section class="small-9 medium-5 cell text-center">
-    <h3>
-      Pump19.eu
-      <small>
-        <i class="fa fa-globe"></i>
-        Website
-      </small>
-    </h3>
-    <div class="stacked button-group">
-      <a class="primary button" href="https://github.com/pump19/pump19.eu">
-        <i class="fa fa-code-fork"></i>
-        Source Code
-      </a>
-      <a class="secondary button" href="https://github.com/pump19/pump19.eu/issues">
-        <i class="fa fa-bug"></i>
-        Issue Tracker
-      </a>
-    </div>
-  </section>
-</article>
+  </div>
+</section>

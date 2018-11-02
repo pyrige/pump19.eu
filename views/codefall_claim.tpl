@@ -1,37 +1,37 @@
 % rebase("base.tpl", active="codefall")
-<article class="grid-x grid-margin-x align-center">
+<section class="hero is-medium is-dark">
+  <div class="hero-body">
+    <div class="content container has-text-centered">
 % if defined("entry"):
-  <section class="small-11 cell">
-    <h1>
-      <i class="fa fa-gift"></i>
-      Claimed Code
-    </h1>
-    <p>
-      Congratulations, you just claimed the following entry:
-    </p>
-  </section>
-  <section class="small-10 cell">
-    <div class="callout panel text-center">
       <h1>
-        <i class="fa fa-gamepad"></i>
-        {{entry["description"]}}
-        <small>{{entry["code_type"]}}</small>
+        <span class="icon"><i class="mdi mdi-gift"></i></span>
+        Claimed Code
       </h1>
-      <h2>
-        <code>{{entry["code"]}}</code>
-      </h2>
-    </div>
-  </section>
+      <p>
+        Congratulations, you just claimed the following entry:
+      </p>
+      <div class="notification is-info">
+        <h3 class="title">
+          <span class="icon"><i class="mdi mdi-gamepad"></i></span>
+          {{entry["description"]}}
+        </h3>
+        <h4 class="subtitle">
+          {{entry["code_type"]}}
+        </h4>
+        <h2>
+          <code>{{entry["code"]}}</code>
+        </h2>
+      </div>
 % else:
-  <section class="small-11 cell">
-    <h1>
-      <i class="fa fa-frown-o"></i>
-      Already Claimed
-    </h1>
-    <p>
-      Sorry, the code you were trying to view is already claimed by someone else.
-      Better luck next time!
-    </p>
-  </section>
+      <h1>
+        <span class="icon"><i class="mdi mdi-emoticon-sad"></i></span>
+        Already Claimed
+      </h1>
+      <p>
+        Sorry, the code you were trying to view is already claimed by someone else.
+        Better luck next time!
+      </p>
 % end
-</article>
+    </div>
+  </div>
+</section>

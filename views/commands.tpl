@@ -1,48 +1,41 @@
 % rebase("base.tpl", active="commands")
-<article class="grid-x grid-margin-x align-center">
-  <section class="small-11 cell">
+<section class="section">
+  <div class="content container">
     <h1>
-      <i class="fa fa-keyboard-o"></i>
+      <span class="icon"><i class="mdi mdi-console"></i></span>
       Commands
     </h1>
     <p>
       Here you can find a <small>mostly</small> complete and <small>probably</small> accurate list of commands supported by Pump19.
-      If you find the documentation lacking or think we could use additional commands, feel free to <a href="/contribute"><i class="fa fa-medkit"></i>&nbsp;contribute</a> feature and pull requests.
+      If you find the documentation lacking or think we could use additional commands, feel free to <a href="/contribute"><span class="icon"><i class="mdi mdi-medical-bag"></i></span>contribute</a> feature and pull requests.
     </p>
-  </section>
-  <section class="small-11 cell">
+  </div>
+  <div class="container">
   % for command in commands:
-    <div class="callout grid-x">
-      <div class="cell auto">
-        <h6>
-          <i class="fa fa-info"></i>
-          {{command["desc"]}}
-        </h6>
-        <ul>
-        % if isinstance(command["trigger"], str):
-          <li><code>{{command["trigger"]}}</code></li>
-        % else:
-          % for trigger in command["trigger"]:
-          <li><code>{{trigger}}</code></li>
+    <div class="message">
+      <div class="message-header">
+        <p>
+          <span class="icon"><i class="mdi mdi-console-line"></i></span>
+          <kbd>{{command["trigger"]}}</kbd>
+        </p>
+      </div>
+      <div class="message-body content">
+        <div class="columns">
+          <div class="column">
+            <p>
+              {{command["desc"]}}
+            </p>
+          </div>
+          % if "url" in command:
+          <div class="column is-narrow">
+            <a href="{{command["url"]}}" class="button is-primary is-small">
+              <span class="icon"><i class="mdi mdi-link-variant"></i></span>
+              <span>Link</span>
+            </a>
+          </div>
           % end
-        % end
-        </ul>
-      % if "example" in command:
-        <span class="secondary label">
-          Example
-          <i class="fa fa-terminal"></i>
-          <kbd>{{command["example"]}}</kbd>
-        </span>
-      % end
+        </div>
       </div>
-      % if "url" in command:
-      <div class="cell shrink">
-        <a href="{{command["url"]}}" class="secondary button">
-          <i class="fa fa-external-link"></i>&nbsp;Link
-        </a>
-      </div>
-      % end
     </div>
   %end
-  </section>
-</article>
+</section>

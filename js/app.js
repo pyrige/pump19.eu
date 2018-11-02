@@ -1,4 +1,9 @@
 global.$ = require('jquery');
-var foundation = require('foundation-sites');
 
-$(document).foundation();
+$(document).ready(function() {
+  $(".navbar-burger").click(function() {
+
+    $(".navbar-burger").toggleClass("is-active");
+    $(".navbar-menu").toggleClass("is-active");
+  });
+});
