@@ -2,6 +2,7 @@ var gulp = require('gulp');
 
 var concat = require('gulp-concat');
 var cssmin = require('gulp-cssmin');
+var gzip = require('gulp-gzip');
 var prefix = require('gulp-autoprefixer');
 var sass = require('gulp-sass');
 var streamify = require('gulp-streamify');
@@ -35,6 +36,7 @@ gulp.task('sass', function(cb) {
     sass({includePaths: sassPaths}),
     prefix(),
     cssmin(),
+    gzip(),
     gulp.dest('./static/css')
   ], cb);
 });
@@ -46,6 +48,7 @@ gulp.task('js', function(cb) {
     b.bundle(),
     source('app.js'),
     streamify(uglify()),
+    streamify(gzip()),
     gulp.dest('./static/js')], cb);
 });
 

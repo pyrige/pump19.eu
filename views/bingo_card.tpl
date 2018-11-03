@@ -6,7 +6,7 @@
 
     <title>Pump19 &#124; Trope Bingo Card</title>
     <link rel="icon" type="image/gif" href="data:image/gif;base64,R0lGODlhEAAQAOMJAAABACcgFkE2IllMMnJiQop3Uf92AP+pAP/MBv///////////////////////////yH5BAEKAA8ALAAAAAAQABAAAARf8MkHqrVzAjGIJ0UIZNvQfZ4olSeajhQ3CEFN0HVRyYNxGAGCD6gDBAScA+IQGCiZRRpnaBoKokeTidfRxTgfpODj3cgIrZP3a6q5QeuYKVWgw9jdkIqEVO8zFBcYEhEAOw==">
-    <link rel="stylesheet" href="/static/css/bingo.css">
+    <link rel="stylesheet" href="/static/css/bingo.css.gz">
   </head>
   <body id="viewport">
     <div id="bingo-card">
