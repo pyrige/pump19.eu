@@ -36,6 +36,7 @@ gulp.task('sass', function(cb) {
     sass({includePaths: sassPaths}),
     prefix(),
     cssmin(),
+    gulp.dest('./static/css'),
     gzip(),
     gulp.dest('./static/css')
   ], cb);
@@ -48,6 +49,7 @@ gulp.task('js', function(cb) {
     b.bundle(),
     source('app.js'),
     streamify(uglify()),
+    gulp.dest('./static/js'),
     streamify(gzip()),
     gulp.dest('./static/js')], cb);
 });
