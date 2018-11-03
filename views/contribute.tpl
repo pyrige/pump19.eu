@@ -24,43 +24,48 @@
       There exist two distinct source code repositories: one for the chat golem itself and one for
       this website.
     </p>
+
     <div class="columns is-centered">
-      <div class="column is-narrow has-text-centered">
-        <div class="box">
-          <h3 class="title">
+      <div class="column is-one-third">
+        <div class="message">
+          <div class="message-header">
             Pump19
             <small>
               <span class="icon"><i class="mdi mdi-comment-multiple-outline"></i></span>
               Chat Golem
             </small>
-          </h3>
-          <div class="buttons is-centered">
-            <a class="button is-info is-medium" href="https://github.com/pump19/pump19">
+          </div>
+          <div class="message-body">
+            <a class="button is-info is-medium is-fullwidth"
+               href="https://github.com/pump19/pump19">
               <span class="icon"><i class="mdi mdi-source-fork"></i></span>
               <span>Source Code</span>
             </a>
-            <a class="button is-danger is-medium" href="https://github.com/pump19/pump19/issues">
+            <a class="button is-danger is-medium is-fullwidth"
+               href="https://github.com/pump19/pump19/issues">
               <span class="icon"><i class="mdi mdi-bug-outline"></i></span>
               <span>Issue Tracker</span>
             </a>
           </div>
         </div>
       </div>
-      <div class="column is-narrow has-text-centered">
-        <div class="box">
-          <h3 class="title">
+      <div class="column is-one-third">
+        <div class="message">
+          <div class="message-header">
             Pump19
             <small>
               <span class="icon"><i class="mdi mdi-earth"></i></span>
               Website
             </small>
-          </h3>
-          <div class="buttons is-centered">
-            <a class="button is-info is-medium" href="https://github.com/pump19/pump19.eu">
+          </div>
+          <div class="message-body">
+            <a class="button is-info is-medium is-fullwidth"
+               href="https://github.com/pump19/pump19.eu">
               <span class="icon"><i class="mdi mdi-source-fork"></i></span>
               <span>Source Code</span>
             </a>
-            <a class="button is-danger is-medium" href="https://github.com/pump19/pump19.eu/issues">
+            <a class="button is-danger is-medium is-fullwidth"
+               href="https://github.com/pump19/pump19.eu/issues">
               <span class="icon"><i class="mdi mdi-bug-outline"></i></span>
               <span>Issue Tracker</span>
             </a>

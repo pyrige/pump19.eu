@@ -10,17 +10,23 @@
       <p>
         Congratulations, you just claimed the following entry:
       </p>
-      <div class="notification is-info">
-        <h3 class="title">
-          <span class="icon"><i class="mdi mdi-gamepad"></i></span>
-          {{entry["description"]}}
-        </h3>
-        <h4 class="subtitle">
-          {{entry["code_type"]}}
-        </h4>
-        <h2>
-          <code>{{entry["code"]}}</code>
-        </h2>
+      <div class="columns is-centered">
+        <div class="column is-narrow">
+          <div class="message is-large">
+            <div class="message-body">
+              <h3 class="title">
+                <span class="icon"><i class="mdi mdi-gamepad"></i></span>
+                {{entry["description"]}}
+              </h3>
+              <h4 class="subtitle">
+                {{entry["code_type"]}}
+              </h4>
+              <h3>
+                <code>{{entry["code"]}}</code>
+              </h3>
+            </div>
+          </div>
+        </div>
       </div>
 % else:
       <h1>

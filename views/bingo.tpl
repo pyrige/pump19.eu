@@ -11,15 +11,19 @@
       The cards are randomly generated each time you load the respective page.
       Be aware that your progress does not carry over should you happen to reload.
     </p>
-    <div class="buttons is-centered">
-      <a class="button is-info is-large" href="/bingo/leno">
-        <span class="icon"><i class="mdi mdi-key"></i></span>
-        <span>Let's Nope</span>
-      </a>
-      <a class="button is-danger is-large" href="/bingo/wap">
-        <span class="icon"><i class="mdi mdi-emoticon-neutral"></i></span>
-        <span>Watch &amp; Play</span>
-      </a>
+    <div class="columns is-centered">
+      <div class="column is-one-third">
+        <a class="button is-info is-large is-fullwidth" href="/bingo/leno">
+          <span class="icon"><i class="mdi mdi-key"></i></span>
+          <span>Let's Nope</span>
+        </a>
+      </div>
+      <div class="column is-one-third">
+        <a class="button is-danger is-large is-fullwidth" href="/bingo/wap">
+          <span class="icon"><i class="mdi mdi-emoticon-neutral"></i></span>
+          <span>Watch &amp; Play</span>
+        </a>
+      </div>
     </div>
     <h3>
       <span class="icon"><i class="mdi mdi-information"></i></span>

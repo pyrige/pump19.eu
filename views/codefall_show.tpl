@@ -10,17 +10,24 @@
       <p>
         You're just one step away from claiming the following code:
       </p>
-      <div class="notification is-info">
-        <h3 class="title">
-          <span class="icon"><i class="mdi mdi-gamepad"></i></span>
-          {{entry["description"]}}
-        </h3>
-        <h4 class="subtitle">
-          {{entry["code_type"]}}
-        </h4>
-        <form id="captcha-form" action="{{entry["claim_url"]}}" method="POST" accept-charset="utf-8">
-          <div id="captcha" style="display: inline-block;"></div>
-        </form>
+      <div class="columns is-centered">
+        <div class="column is-narrow">
+          <div class="message is-large">
+            <div class="message-body">
+              <h3 class="title">
+                <span class="icon"><i class="mdi mdi-gamepad"></i></span>
+                {{entry["description"]}}
+              </h3>
+              <h4 class="subtitle">
+                {{entry["code_type"]}}
+              </h4>
+
+              <form id="captcha-form" action="{{entry["claim_url"]}}" method="POST" accept-charset="utf-8">
+              <div id="captcha" style="display: inline-block;"></div>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
 % else:
       <h1>
