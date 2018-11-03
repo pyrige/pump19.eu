@@ -14,7 +14,6 @@ var runSequence = require('run-sequence');
 var source = require('vinyl-source-stream');
 
 var sassPaths = [
-  './node_modules/@mdi/font/scss',
   './node_modules/roboto-fontface/css/roboto/sass',
   './node_modules/roboto-fontface/css/roboto-slab/sass',
 

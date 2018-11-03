@@ -17,7 +17,7 @@
         <span>Let's Nope</span>
       </a>
       <a class="button is-danger is-large" href="/bingo/wap">
-        <span class="icon"><i class="mdi mdi-image-broken-variant"></i></span>
+        <span class="icon"><i class="mdi mdi-emoticon-neutral"></i></span>
         <span>Watch &amp; Play</span>
       </a>
     </div>
