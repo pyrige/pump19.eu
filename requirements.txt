@@ -4,6 +4,5 @@ bottle-sqlalchemy==0.4.3
 bottle==0.12.13
 cchardet==2.1.4
 chardet==3.0.4
-http://git.io/vUS0t  # Skippy
 psycopg2==2.7.5
 requests==2.20.0

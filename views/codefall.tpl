@@ -18,11 +18,12 @@
     </p>
   % else:
     % for entry in unclaimed:
+    %   secret_url = show_url.format(secret=entry["secret"])
     <div class="message">
       <div class="message-header">
         <span class="icon"><i class="mdi mdi-gift"></i></span>
-        <strong>{{entry["description"]}}</strong>
-        <small>{{entry["code_type"]}}</small>
+        <strong>{{ entry["description"] }}</strong>
+        <small>{{ entry["code_type"] }}</small>
       </div>
       <div class="message-body">
         <div class="columns">
@@ -30,13 +31,13 @@
             <span class="icon"><i class="mdi mdi-link-variant"></i></span>
             Claim Link
             <br>
-            <code>{{entry["secret_url"]}}</code>
-            (or copy <a href="{{entry["secret_url"]}}">this link</a>)
+            <code>{{ secret_url }}</code>
+            (or copy <a href="{{ secret_url }}">this link</a>)
           </div>
           <div class="column is-narrow">
             <button title="Announce"
                     class="announcer button is-medium is-primary"
-                    data-secret="{{entry["secret"]}}">
+                    data-secret="{{ entry["secret"] }}">
               <span class="icon"><i class="mdi mdi-bullhorn"></i></span>
               <span>Announce</span>
             </button>
