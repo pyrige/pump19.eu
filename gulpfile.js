@@ -10,7 +10,7 @@ var uglify = require('gulp-uglify');
 
 var browserify = require('browserify');
 var pump = require('pump');
-var runSequence = require('run-sequence');
+var runSequence = require('gulp4-run-sequence');
 var source = require('vinyl-source-stream');
 
 var sassPaths = [
@@ -20,7 +20,7 @@ var sassPaths = [
   './node_modules',
 ];
 
-gulp.task('fonts', function(cb) {
+gulp.task('fonts', function (cb) {
   pump([
     gulp.src([
       './node_modules/@mdi/font/fonts/*',
@@ -29,10 +29,10 @@ gulp.task('fonts', function(cb) {
   ], cb);
 });
 
-gulp.task('sass', function(cb) {
+gulp.task('sass', function (cb) {
   pump([
     gulp.src(['./sass/app.sass', './sass/bingo.sass']),
-    sass({includePaths: sassPaths}),
+    sass({ includePaths: sassPaths }),
     prefix(),
     cssmin(),
     gulp.dest('./static/css'),
@@ -41,7 +41,7 @@ gulp.task('sass', function(cb) {
   ], cb);
 });
 
-gulp.task('js', function(cb) {
+gulp.task('js', function (cb) {
   var b = browserify('./js/app.js');
 
   pump([
@@ -53,10 +53,10 @@ gulp.task('js', function(cb) {
     gulp.dest('./static/js')], cb);
 });
 
-gulp.task('sass:watch', function(){
+gulp.task('sass:watch', function () {
   gulp.watch('./sass/*.s?ss', ['sass'])
 });
 
-gulp.task('default', function() {
+gulp.task('default', function () {
   runSequence('sass', 'fonts', 'js');
 });
