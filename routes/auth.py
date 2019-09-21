@@ -16,12 +16,14 @@ from os import environ
 import requests
 
 # get settings for Twitch.tv authorization code flow
-TWITCH_BASE_URL = "https://api.twitch.tv/kraken"
-TWITCH_OAUTH_URL = TWITCH_BASE_URL + "/oauth2/authorize"
-TWITCH_TOKEN_URL = TWITCH_BASE_URL + "/oauth2/token"
+TWITCH_OAUTH_URL = "https://id.twitch.tv/oauth2/authorize"
+TWITCH_TOKEN_URL = "https://id.twitch.tv/oauth2/token"
+TWITCH_VALID_URL = "https://id.twitch.tv/oauth2/validate"
+TWITCH_USERS_URL = "https://api.twitch.tv/helix/users"
 TWITCH_CLIENT_ID = environ["TWITCH_CLIENT_ID"]
 TWITCH_CLIENT_SECRET = environ["TWITCH_CLIENT_SECRET"]
 OAUTH_RESPONSE_URL = environ["OAUTH_RESPONSE_URL"]
+
 
 
 def login():
@@ -73,21 +75,23 @@ def oauth():
     session["oauth_token"] = token
 
     # now get the user name as well
-    user_headers = {"Authorization": "OAuth {0}".format(token)}
+    user_headers = {"Authorization": "Bearer {0}".format(token)}
+    user_opts = {"client_id": TWITCH_CLIENT_ID}
     try:
         user_request = requests.get(
-                TWITCH_BASE_URL, headers=user_headers,
+                TWITCH_USERS_URL,
+                headers=user_headers, params=user_opts,
                 timeout=5)
         user_data = user_request.json()
     except Exception:
         redirect("/logout")
 
-    # make sure we got our token
-    if "token" not in user_data or "user_name" not in user_data["token"]:
+    # make sure we got exactly one user
+    if "data" not in user_data or len(user_data["data"]) != 1:
         redirect("/logout")
 
     # store user name in our session
-    user_name = user_data["token"]["user_name"]
+    user_name = user_data["data"][0]["login"]
     session["user_name"] = user_name
     session["logged_in"] = True
     session.save()
