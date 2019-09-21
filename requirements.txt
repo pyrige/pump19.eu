@@ -1,8 +1,8 @@
-Beaker==1.10.0
+Beaker==1.11.0
 SQLAlchemy==1.2.12
 bottle-sqlalchemy==0.4.3
-bottle==0.12.13
+bottle==0.12.17
 cchardet==2.1.4
 chardet==3.0.4
-psycopg2==2.7.5
-requests==2.20.0
+pycodestyle==2.4.0
+requests==2.22.0
