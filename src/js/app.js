@@ -1,4 +1,5 @@
-import * as $ from 'jquery';
+import $ from 'jquery';
+window.jQuery = window.$ = $;
 
 $(document).ready(function () {
   $(".navbar-burger").click(function () {
