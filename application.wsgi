@@ -68,5 +68,5 @@ if __name__ == "__main__":
         return static_file(filepath, "./dist")
 
     run(app=application,
-        host="dev.pump19.eu", port=8080,
+        host="pump19.localhost", port=8080,
         reloader=True, debug=True)
