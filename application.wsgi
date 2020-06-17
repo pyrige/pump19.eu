@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
     @app.route("/static/<filepath:path>")
     def serve_static(filepath):
-        return static_file(filepath, "./static")
+        return static_file(filepath, "./dist")
 
     run(app=application,
         host="dev.pump19.eu", port=8080,

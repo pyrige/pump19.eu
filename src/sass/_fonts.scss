@@ -1,0 +1,38 @@
+@import "~@mdi/font/scss/variables";
+$mdi-icons: (
+    "bug-outline": F0A30,
+    "bullhorn": F00E6,
+    "cancel": F073A,
+    "check": F012C,
+    "comment-multiple-outline": F0181,
+    "console": F018D,
+    "console-line": F07B7,
+    "copyright": F05E6,
+    "earth": F01E7,
+    "emoticon-neutral": F0C74,
+    "emoticon-sad": F0C76,
+    "gamepad": F0296,
+    "gift": F0E44,
+    "github": F02A4,
+    "information": F02FC,
+    "key": F0306,
+    "link-variant": F0339,
+    "login": F0342,
+    "logout": F0343,
+    "medical-bag": F06EF,
+    "puzzle": F0431,
+    "source-fork": F04C1,
+    "twitch": F0543,
+);
+
+$mdi-font-path: "~@mdi/font/fonts";
+@import "~@mdi/font/scss/functions";
+@import "~@mdi/font/scss/path";
+@import "~@mdi/font/scss/core";
+@import "~@mdi/font/scss/icons";
+@import "~@mdi/font/scss/extras";
+@import "~@mdi/font/scss/animated";
+
+$roboto-font-path: "~roboto-fontface/fonts";
+@import "~roboto-fontface/css/roboto/sass/roboto-fontface";
+@import "~roboto-fontface/css/roboto-slab/sass/roboto-slab-fontface";

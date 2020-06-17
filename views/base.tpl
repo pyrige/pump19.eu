@@ -88,7 +88,7 @@
           </a>
           <br>
           <i class="mdi mdi-copyright"></i>
-          2015-2018 Twisted Pear
+          2015-2020 Twisted Pear
         </small>
       </div>
     </footer>

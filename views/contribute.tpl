@@ -14,7 +14,7 @@
     <p>
       All of Pump19's source code is hosted on
       <a href="https://github.com/">
-        <span class="icon"><i class="mdi mdi-github-face"></i></span>GitHub
+        <span class="icon"><i class="mdi mdi-github"></i></span>GitHub
       </a>.
       There you can suggest new features, report issues, or even fork and contribute your own functionality.
     </p>
