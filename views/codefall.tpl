@@ -103,6 +103,7 @@
                       <option>Steam</option>
                       <option>Humble Bundle</option>
                       <option>GOG</option>
+                      <option>Epic Games</option>
                       <option>Origin</option>
                       <option>Other</option>
                     </select>
