@@ -54,9 +54,9 @@ def oauth():
     token_opts = {
         "client_id": TWITCH_CLIENT_ID,
         "client_secret": TWITCH_CLIENT_SECRET,
+        "code": code,
         "grant_type": "authorization_code",
-        "redirect_uri": OAUTH_RESPONSE_URL,
-        "code": code
+        "redirect_uri": OAUTH_RESPONSE_URL
     }
     try:
         token_request = requests.post(
@@ -75,12 +75,14 @@ def oauth():
     session["oauth_token"] = token
 
     # now get the user name as well
-    user_headers = {"Authorization": "Bearer {0}".format(token)}
-    user_opts = {"client_id": TWITCH_CLIENT_ID}
+    user_headers = {
+        "Authorization": "Bearer {0}".format(token),
+        "Client-ID": TWITCH_CLIENT_ID
+    }
     try:
         user_request = requests.get(
                 TWITCH_USERS_URL,
-                headers=user_headers, params=user_opts,
+                headers=user_headers,
                 timeout=5)
         user_data = user_request.json()
     except Exception:
@@ -93,6 +95,10 @@ def oauth():
     # store user name in our session
     user_name = user_data["data"][0]["login"]
     session["user_name"] = user_name
+
+    display_name = user_data["data"][0]["display_name"]
+    session["display_name"] = display_name
+
     session["logged_in"] = True
     session.save()
 

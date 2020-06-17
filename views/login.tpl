@@ -7,7 +7,7 @@
       Connected with Twitch.tv
     </h1>
     <p>
-      You are now logged in as <strong>{{session.get("user_name")}}</strong>.
+      You are now logged in as <strong>{{session.get("display_name")}}</strong>.
       In the unlikely case that this isn't you, please
       <a href="/logout"><span class="icon"><i class="mdi mdi-logout"></i></span>log out</a> now.
     </p>
@@ -36,9 +36,10 @@
       entirely.
     </p>
     <form action="{{twitch_oauth_url}}" method="GET">
-      <input type="hidden" name="response_type" value="code">
       <input type="hidden" name="client_id" value="{{twitch_client_id}}">
       <input type="hidden" name="redirect_uri" value="{{oauth_response_url}}">
+      <input type="hidden" name="response_type" value="code">
+      <input type="hidden" name="scope" value="">
       <input type="hidden" name="state" value="{{session.id}}">
       <input type="image" alt="Connect with Twitch.tv" src="/static/img/twitch_connect.png">
     </form>
