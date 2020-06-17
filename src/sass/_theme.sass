@@ -18,7 +18,7 @@ $white:        hsl(189,   5%, 100%)
 $blue:         #22454C
 $green:        #749C4E
 $orange:       #D58638
-$red:          #DB2019
+$red:          #DB2020
 $yellow:       #DDD065
 
 $primary: $red
@@ -78,7 +78,11 @@ $message-radius: $radius
 
 // forms
 $label-color: $white-ter
-$input-placeholder-color: $red
+$input-background-color: $white-ter
+$input-color: $red
+$input-icon-active-color: $red
+$input-placeholder-color: transparantize($red, 0.2)
+$input-icon-color: transparantize($red, 0.2)
 
 @import '~bulma/sass/utilities/all'
 @import '~bulma/sass/base/all'
