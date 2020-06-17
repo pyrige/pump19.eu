@@ -1,6 +1,6 @@
 % rebase("base.tpl", active="codefall")
 <section class="hero is-medium is-dark">
-  <div class="hero-body">
+  <div class="hero-body" id="code-hero">
     <div class="content container has-text-centered">
 % if defined("entry"):
       <h1>
