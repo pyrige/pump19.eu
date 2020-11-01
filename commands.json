@@ -1,27 +1,8 @@
 [
   {
-    "trigger": "?vod",
-    "desc": "Post the latest broadcast from the LRR Twitch.tv channel.",
-    "url": "https://www.twitch.tv/loadingreadyrun/videos/past-broadcasts"
-  },
-  {
-    "trigger": "?clip",
-    "desc": "Post the top clip from the LRR Twitch.tv channel.",
-    "url": "https://www.twitch.tv/loadingreadyrun/clips"
-  },
-  {
     "trigger": "?codefall [limit:int]",
     "desc": "Post up to 3 of your unclaimed codefall entries.",
     "url": "https://pump19.eu/codefall"
-  },
-  {
-    "trigger": "?lrrmc [vanilla|ftb]",
-    "desc": "Post the URL and current status of a LRR community Minecraft server."
-  },
-  {
-    "trigger": "?last.fm <user:str>",
-    "desc": "Query Last.fm user information for the specified user name.",
-    "url": "https://www.last.fm/"
   },
   {
     "trigger": "?bingo",
