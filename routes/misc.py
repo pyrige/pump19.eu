@@ -6,7 +6,7 @@ routes/misc.py
 
 Miscellaneous routes for the "Pump19 Twitch Chat Golem" bottle application.
 
-Copyright (c) 2017 Twisted Pear <tp at pump19 dot eu>
+Copyright (c) 2020 Kevin Perry <perry at pump19 dot eu>
 See the file LICENSE for copying permission.
 """
 
