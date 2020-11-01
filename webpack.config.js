@@ -1,58 +1,61 @@
 const path = require('path');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const {
   CleanWebpackPlugin
 } = require('clean-webpack-plugin');
 
 module.exports = {
+  mode: 'production',
   entry: {
     app: [path.resolve(__dirname, 'src/js/app.js'), path.resolve(__dirname, 'src/sass/app.sass')],
     bingo: [path.resolve(__dirname, 'src/sass/bingo.sass')]
   },
   module: {
     rules: [{
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: 'babel-loader'
+      test: /\.js$/,
+      exclude: /node_modules/,
+      loader: 'babel-loader'
+    },
+    {
+      test: /\.css$/,
+      use: [{
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          publicPath: '..'
+        }
       },
-      {
-        test: /\.css$/,
-        use: [{
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '..'
-            }
-          },
-          'css-loader'
-        ]
+        'css-loader'
+      ]
+    },
+    {
+      test: /\.s[ac]ss$/,
+      use: [{
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          publicPath: '..'
+        }
       },
-      {
-        test: /\.s[ac]ss$/,
-        use: [{
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: '..'
-            }
-          },
-          'css-loader',
-          'sass-loader'
-        ]
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: 'fonts/[hash].[ext]'
-          }
+        'css-loader',
+        'sass-loader'
+      ]
+    },
+    {
+      test: /\.(woff|woff2|eot|ttf|otf)$/,
+      use: {
+        loader: 'file-loader',
+        options: {
+          name: 'fonts/[hash].[ext]'
         }
       }
+    }
     ],
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new CompressionPlugin(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
     }),
@@ -69,5 +72,6 @@ module.exports = {
   output: {
     filename: 'js/[name].js',
     path: path.resolve(__dirname, 'dist')
-  }
+  },
+  devtool: 'source-map'
 }
