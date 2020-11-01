@@ -10,6 +10,10 @@
     "url": "https://pump19.eu/bingo"
   },
   {
+    "trigger": "?multi <value:decimal>",
+    "desc": "Post several integer multiples of a given decimal value."
+  },
+  {
     "trigger": "?help",
     "desc": "Post the link to Pump19's list of supported commands.",
     "url": "https://pump19.eu/commands"
