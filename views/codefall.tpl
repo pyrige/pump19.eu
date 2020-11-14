@@ -26,23 +26,11 @@
         <small>{{ entry["code_type"] }}</small>
       </div>
       <div class="message-body">
-        <div class="columns">
-          <div class="column">
-            <span class="icon"><i class="mdi mdi-link-variant"></i></span>
-            Claim Link
-            <br>
-            <code>{{ secret_url }}</code>
-            (or copy <a href="{{ secret_url }}">this link</a>)
-          </div>
-          <div class="column is-narrow">
-            <button title="Announce"
-                    class="announcer button is-medium is-primary"
-                    data-secret="{{ entry["secret"] }}">
-              <span class="icon"><i class="mdi mdi-bullhorn"></i></span>
-              <span>Announce</span>
-            </button>
-          </div>
-        </div>
+        <span class="icon"><i class="mdi mdi-link-variant"></i></span>
+        Claim Link
+        <br>
+        <code>{{ secret_url }}</code>
+        (or copy <a href="{{ secret_url }}">this link</a>)
       </div>
     </div>
     % end
