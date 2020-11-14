@@ -26,11 +26,17 @@
         <small>{{ entry["code_type"] }}</small>
       </div>
       <div class="message-body">
-        <span class="icon"><i class="mdi mdi-link-variant"></i></span>
-        Claim Link
-        <br>
-        <code>{{ secret_url }}</code>
-        (or copy <a href="{{ secret_url }}">this link</a>)
+        <p>
+          <span class="icon"><i class="mdi mdi-link-variant"></i></span>
+          Claim Link
+          <code>{{ secret_url }}</code>
+          (or copy <a href="{{ secret_url }}">this link</a>)
+        </p>
+        <p>
+          <span class="icon"><i class="mdi mdi-twitch"></i></span>
+          Chat Template
+          <code>Codefall | {{ entry["description"] }} ({{ entry["code_type"] }}) {{ secret_url }}</code>
+        </p>
       </div>
     </div>
     % end
