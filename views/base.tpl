@@ -73,6 +73,8 @@
       </nav>
     </header>
 
+    % include("announcement.tpl")
+
     {{!base}}
 
     <div class="expander"></div>
