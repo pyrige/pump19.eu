@@ -2,11 +2,6 @@
   <div class="content container">
     <div class="message">
       <div class="message-body">
-        <h3>
-          Please, check out
-          <a href="https://desertbus.org/">Desert Bus for Hope</a>!
-        </h3>
-
         <div class="columns">
           <div class="column is-narrow">
             <span class="icon is-large has-text-primary">
