@@ -45,7 +45,6 @@
                     class="announcer button is-medium is-primary"
                     data-secret="{{ entry["secret"] }}">
               <span class="icon"><i class="mdi mdi-bullhorn"></i></span>
-              <span>Announce</span>
             </button>
           </div>
         </div>
