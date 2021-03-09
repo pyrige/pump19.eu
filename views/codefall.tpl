@@ -26,17 +26,29 @@
         <small>{{ entry["code_type"] }}</small>
       </div>
       <div class="message-body">
-        <p>
-          <span class="icon"><i class="mdi mdi-link-variant"></i></span>
-          Claim Link
-          <code>{{ secret_url }}</code>
-          (or copy <a href="{{ secret_url }}">this link</a>)
-        </p>
-        <p>
-          <span class="icon"><i class="mdi mdi-twitch"></i></span>
-          Chat Template
-          <code>Codefall | {{ entry["description"] }} ({{ entry["code_type"] }}) {{ secret_url }}</code>
-        </p>
+        <div class="columns">
+          <div class="column">
+            <p>
+              <span class="icon"><i class="mdi mdi-link-variant"></i></span>
+              Claim Link
+              <code>{{ secret_url }}</code>
+              (or copy <a href="{{ secret_url }}">this link</a>)
+            </p>
+            <p>
+              <span class="icon"><i class="mdi mdi-twitch"></i></span>
+              Chat Template
+              <code>Codefall | {{ entry["description"] }} ({{ entry["code_type"] }}) {{ secret_url }}</code>
+            </p>
+          </div>
+          <div class="column is-narrow">
+            <button title="Announce"
+                    class="announcer button is-medium is-primary"
+                    data-secret="{{ entry["secret"] }}">
+              <span class="icon"><i class="mdi mdi-bullhorn"></i></span>
+              <span>Announce</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     % end
